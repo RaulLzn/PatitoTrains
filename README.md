@@ -1,2 +1,2 @@
 # PatitoTrains
-Sistema de gestión de trenes de transporte de pasajeros
+Passenger train management system
