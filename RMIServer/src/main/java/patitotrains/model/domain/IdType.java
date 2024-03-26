@@ -1,6 +1,8 @@
-package patitotrains.controller.domain;
+package patitotrains.model.domain;
 
-// Enum para los tipos de identificación
+/**
+ * Enumeracion que representa los tipos de identificacion
+ */
 public enum IdType {
     CC, // Cedula de ciudadania
     CE, // Cedula de extranjeria

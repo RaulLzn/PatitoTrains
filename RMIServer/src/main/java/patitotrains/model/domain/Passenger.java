@@ -1,40 +1,54 @@
-package patitotrains.controller.domain;
+package patitotrains.model.domain;
 
 import raul.Model.array.Array;
 
 import java.io.Serializable;
 
+/**
+ * Clase que representa un pasajero
+ */
 public class Passenger extends AbstractPerson implements Serializable {
-    private String id;
+    private String idPassenger;
     private IdType idType;
     private String address;
     private ContactPerson contactPerson;
 
-    //constructor con parametros
-    public Passenger(String names, String lastNames, Array<String> phones, String id, IdType idType, String address, ContactPerson contactPerson) {
+    /**
+     * Constructor de la clase
+     * @param names nombres del pasajero
+     * @param lastNames apellidos del pasajero
+     * @param phones teléfonos del pasajero
+     * @param idPassenger identificación del pasajero
+     * @param idType tipo de identificación del pasajero
+     * @param address dirección del pasajero
+     * @param contactPerson persona de contacto del pasajero
+     */
+    public Passenger(String names, String lastNames, Array<String> phones, String idPassenger, IdType idType, String address, ContactPerson contactPerson) {
         super(names, lastNames, phones);
-        this.id = id;
+        this.idPassenger = idPassenger;
         this.idType = idType;
         this.address = address;
         this.contactPerson = contactPerson;
     }
 
-    //Constructor vacio
+    /**
+     * Constructor vacio
+     */
     public Passenger() {
         super();
-        this.id = "";
+        this.idPassenger = "";
         this.idType = IdType.NULL;
         this.address = "";
         this.contactPerson = ContactPerson.getEmptyContactPerson();
     }
 
     //Getters y Setters
-    public String getId() {
-        return id;
+    public String getIdPassenger() {
+        return idPassenger;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setIdPassenger(String idPassenger) {
+        this.idPassenger = idPassenger;
     }
 
     public IdType getIdType() {
@@ -61,7 +75,10 @@ public class Passenger extends AbstractPerson implements Serializable {
         this.contactPerson = contactPerson;
     }
 
-    //Devolver constructor vacio
+    /**
+     * Método que retorna un pasajero vacío
+     * @return pasajero vacío
+     */
     public static Passenger getEmptyPassenger() {
         return new Passenger();
     }
