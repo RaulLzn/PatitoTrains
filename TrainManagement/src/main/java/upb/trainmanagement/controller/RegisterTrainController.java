@@ -23,7 +23,7 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import upb.trainmanagement.controller.interfaces.RegisterTrainControllerInterface;
 import upb.trainmanagement.model.domain.Train;
-import upb.trainmanagement.model.domain.TrianManager;
+import upb.trainmanagement.model.domain.TrainManager;
 import upb.trainmanagement.model.domain.types.TrainType;
 
 public class RegisterTrainController implements Initializable, RegisterTrainControllerInterface{
@@ -52,19 +52,19 @@ public class RegisterTrainController implements Initializable, RegisterTrainCont
     @FXML
     private Label lblAssignedId;
 
-    private TrianManager trainManager;
+    private TrainManager trainManager;
 
 
 
 
     public RegisterTrainController(){
-        trainManager = new TrianManager();
+        trainManager = new TrainManager();
         trainManager.setTrainIdCounter(10036); // Temporal, el contador de ID sera bajado de la base de datos, esto es usado para las pruebas,
         // Hasta que se conecte el modulo a la base de datos
         
     }
     public RegisterTrainController(@SuppressWarnings("exports") LinkedList<Train> list){
-        trainManager = new TrianManager();
+        trainManager = new TrainManager();
         trainManager.setTrainList(list);
         trainManager.setTrainIdCounter(10036);; // Temporal, el contador de ID sera bajado de la base de datos, esto es usado para las pruebas,
         // Hasta que se conecte el modulo a la base de datos

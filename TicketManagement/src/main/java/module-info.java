@@ -2,14 +2,16 @@ module upb.train {
     requires javafx.controls;
     requires javafx.fxml;
     requires DataStructure;
+    requires javafx.base;
+    requires javafx.graphics;
 
-    opens upb.trainmanagement to javafx.fxml;
-    opens upb.trainmanagement.controller to javafx.fxml;
-    opens upb.trainmanagement.model.domain to javafx.base;
+    opens upb.ticketmanagement to javafx.fxml;
+    opens upb.ticketmanagement.controller to javafx.fxml;
+    opens upb.ticketmanagement.model.domain to javafx.base;
     
-    exports upb.trainmanagement.view;
-    exports upb.trainmanagement.controller;
-    exports upb.trainmanagement;
+    exports upb.ticketmanagement.view;
+    exports upb.ticketmanagement.controller;
+    exports upb.ticketmanagement;
     
     
 }

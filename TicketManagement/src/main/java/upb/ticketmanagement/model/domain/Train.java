@@ -1,8 +1,8 @@
-package upb.trainmanagement.model.domain;
+package upb.ticketmanagement.model.domain;
 
 import com.edu.upb.array.Array;
 
-import upb.trainmanagement.model.domain.types.TrainType;
+import upb.ticketmanagement.model.domain.types.TrainType;
 
 public class Train {
     

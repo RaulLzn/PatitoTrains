@@ -29,7 +29,7 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import upb.trainmanagement.controller.interfaces.SearchTrainControllerInterface;
 import upb.trainmanagement.model.domain.Train;
-import upb.trainmanagement.model.domain.TrianManager;
+import upb.trainmanagement.model.domain.TrainManager;
 
 public class SearchTrainController implements Initializable, SearchTrainControllerInterface{
 
@@ -68,20 +68,21 @@ public class SearchTrainController implements Initializable, SearchTrainControll
     @FXML
     private TextField txtFieldSearch;
 
-    private TrianManager trainManager;
+    private TrainManager trainManager;
 
 
 
  
-
+    //Eliminar una vez se tenga conectado a base, hecho para simular el flujo mantener los datos
     public SearchTrainController(@SuppressWarnings("exports") LinkedList<Train> list){
-        trainManager = new TrianManager();
+        trainManager = new TrainManager();
         trainManager.setTrainList(list);
     }
+    //------------------------------------
 
     public SearchTrainController(){
         
-        trainManager = new TrianManager();
+        trainManager = new TrainManager();
 
         // Codigo utilizado para las pruebas(Temporal)
         // Una vez se conecte el modulo con la base de datos esta informacion sera bajada de esta misma
@@ -243,7 +244,7 @@ public class SearchTrainController implements Initializable, SearchTrainControll
         columnMileage.setCellValueFactory(cellData -> {
          
 
-            return new SimpleStringProperty(Integer.toString(cellData.getValue().getMileage()));
+            return new SimpleStringProperty(Double.toString(cellData.getValue().getMileage()));
 
         });
 

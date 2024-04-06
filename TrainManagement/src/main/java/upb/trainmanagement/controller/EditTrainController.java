@@ -22,7 +22,7 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import upb.trainmanagement.controller.interfaces.EditTrainControllerInterface;
 import upb.trainmanagement.model.domain.Train;
-import upb.trainmanagement.model.domain.TrianManager;
+import upb.trainmanagement.model.domain.TrainManager;
 
 public class EditTrainController implements Initializable, EditTrainControllerInterface {
 
@@ -85,7 +85,7 @@ public class EditTrainController implements Initializable, EditTrainControllerIn
     @FXML
     private Label lblCargoCapacity;
 
-    private TrianManager trainManager;
+    private TrainManager trainManager;
 
     private Train train;
 
@@ -93,7 +93,7 @@ public class EditTrainController implements Initializable, EditTrainControllerIn
     public EditTrainController(){
 
        
-        trainManager = new TrianManager();
+        trainManager = new TrainManager();
      // Provisional para las pruebas
         idtrain = "0057";
         trainManager.addTrain("0057", "Charala Tren", trainManager.getTrainTypeById("001"), 12);
@@ -102,7 +102,7 @@ public class EditTrainController implements Initializable, EditTrainControllerIn
     }
     // Provisional para las pruebas
     public EditTrainController(String idTrain, @SuppressWarnings("exports") LinkedList<Train> list){
-        trainManager = new TrianManager();
+        trainManager = new TrainManager();
         trainManager.setTrainList(list);
         this.idtrain = idTrain;
         train = trainManager.getTrainById(idtrain);
@@ -287,7 +287,7 @@ public class EditTrainController implements Initializable, EditTrainControllerIn
         lblAmtLugaggeWagons.setText(Integer.toString(train.getLuggageWagons().lenght()));
         lblCargoCapacity.setText(Integer.toString(train.getType().getCargoCapacity()));
         lblModel.setText(train.getType().getDescription());
-        lblMileage.setText(Integer.toString(train.getMileage()));
+        lblMileage.setText(Double.toString(train.getMileage()));
         
         if(train.isOnJourney()){
             lblOnJourney.setText("SI");
