@@ -22,6 +22,7 @@ import upb.ticketmanagement.model.domain.Ticket;
 import upb.ticketmanagement.model.domain.TicketManager;
 
 public class ViewMoreController implements Initializable, ViewMoreControllerInterface {
+    
     @FXML
     private Button btnGoBack;
 

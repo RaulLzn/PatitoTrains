@@ -3,7 +3,6 @@ package upb.trainmanagement.controller;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import com.edu.upb.linkedList.doubly.LinkedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -91,21 +90,13 @@ public class EditTrainController implements Initializable, EditTrainControllerIn
 
     private String idtrain;
     public EditTrainController(){
-
-       
         trainManager = new TrainManager();
-     // Provisional para las pruebas
-        idtrain = "0057";
-        trainManager.addTrain("0057", "Charala Tren", trainManager.getTrainTypeById("001"), 12);
-        train = trainManager.getTrainById(idtrain);
-
+        trainManager.pullData();
     }
     // Provisional para las pruebas
-    public EditTrainController(String idTrain, @SuppressWarnings("exports") LinkedList<Train> list){
-        trainManager = new TrainManager();
-        trainManager.setTrainList(list);
-        this.idtrain = idTrain;
-        train = trainManager.getTrainById(idtrain);
+    public EditTrainController(@SuppressWarnings("exports") Train train, @SuppressWarnings("exports") TrainManager trainManager){
+        this.trainManager = trainManager;
+        this.train = train;
     }
 
     @Override
@@ -113,7 +104,7 @@ public class EditTrainController implements Initializable, EditTrainControllerIn
         spltPaneActions.getItems().remove(brdPaneCancel);
         spltPaneActions.getItems().remove(brdPaneApply);
 
-       setValues();
+        setValues();
         
 
         
@@ -123,15 +114,8 @@ public class EditTrainController implements Initializable, EditTrainControllerIn
     @FXML
     public void btnEditClicked(@SuppressWarnings("exports") ActionEvent event) {
         if(!train.isOnJourney()){
-            spltPaneActions.getItems().remove(brdPaneEdit);
-            spltPaneActions.getItems().add(brdPaneApply);
-            spltPaneActions.getItems().add(brdPaneCancel);
-
-            txtFieldAmtPassangerWagons.setEditable(true);
-            txtFieldAmtPassangerWagons.setEditable(true);
-            txtFieldName.setEditable(true);
-            radBtnDisable.setDisable(false);
-            radBtnEnable.setDisable(false);
+            edit();
+            
         }else{
             labelMessage.setText("No puedes editar un tren que esta en viaje.");
         }
@@ -234,24 +218,7 @@ public class EditTrainController implements Initializable, EditTrainControllerIn
                     message = "No ha sido posible editar el tren.";
                 }
 
-                labelMessage.setText(message);
-
-            
-                spltPaneActions.getItems().remove(brdPaneCancel);
-                spltPaneActions.getItems().remove(brdPaneApply);
-                spltPaneActions.getItems().add(brdPaneEdit);
-
-                txtFieldAmtPassangerWagons.setEditable(false);
-                txtFieldAmtPassangerWagons.setEditable(false);
-                txtFieldName.setEditable(false);
-
-                
-
-                radBtnDisable.setDisable(true);
-                radBtnEnable.setDisable(true);
-
-                
-
+                noEdit();
                 setValues();
 
 
@@ -263,6 +230,26 @@ public class EditTrainController implements Initializable, EditTrainControllerIn
 
     @FXML
     public void btnCancelClicked(@SuppressWarnings("exports") ActionEvent event) {
+        noEdit();
+        setValues();
+
+
+    }
+    private void edit(){
+
+        spltPaneActions.getItems().remove(brdPaneEdit);
+        spltPaneActions.getItems().add(brdPaneApply);
+        spltPaneActions.getItems().add(brdPaneCancel);
+
+        txtFieldAmtPassangerWagons.setEditable(true);
+        txtFieldAmtPassangerWagons.setEditable(true);
+        txtFieldName.setEditable(true);
+        radBtnDisable.setDisable(false);
+        radBtnEnable.setDisable(false);
+
+
+    }
+    private void noEdit(){
         spltPaneActions.getItems().remove(brdPaneCancel);
         spltPaneActions.getItems().remove(brdPaneApply);
         spltPaneActions.getItems().add(brdPaneEdit);
@@ -275,12 +262,9 @@ public class EditTrainController implements Initializable, EditTrainControllerIn
 
         radBtnDisable.setSelected(false);
         radBtnEnable.setSelected(false);
-        setValues();
-
-
     }
 
-    public void setValues(){
+    private void setValues(){
         lblId.setText(train.getId());
         txtFieldName.setText(train.getName());
         txtFieldAmtPassangerWagons.setText(Integer.toString(train.getPassengerWagons().lenght()));

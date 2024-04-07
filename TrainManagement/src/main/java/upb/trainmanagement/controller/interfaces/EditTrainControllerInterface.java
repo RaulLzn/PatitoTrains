@@ -14,5 +14,4 @@ public interface EditTrainControllerInterface {
     void radBtnEnableClicked(ActionEvent event);
     void btnApplyClicked(ActionEvent event);
     void btnCancelClicked(ActionEvent event);
-    void setValues();
 }

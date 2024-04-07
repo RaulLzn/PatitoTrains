@@ -3,9 +3,6 @@ package upb.trainmanagement.controller;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-
-import com.edu.upb.linkedList.doubly.LinkedList;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -22,7 +19,6 @@ import javafx.scene.control.TextField;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import upb.trainmanagement.controller.interfaces.RegisterTrainControllerInterface;
-import upb.trainmanagement.model.domain.Train;
 import upb.trainmanagement.model.domain.TrainManager;
 import upb.trainmanagement.model.domain.types.TrainType;
 
@@ -63,9 +59,8 @@ public class RegisterTrainController implements Initializable, RegisterTrainCont
         // Hasta que se conecte el modulo a la base de datos
         
     }
-    public RegisterTrainController(@SuppressWarnings("exports") LinkedList<Train> list){
-        trainManager = new TrainManager();
-        trainManager.setTrainList(list);
+    public RegisterTrainController(@SuppressWarnings("exports") TrainManager trainManager){
+        this.trainManager = trainManager;
         trainManager.setTrainIdCounter(10036);; // Temporal, el contador de ID sera bajado de la base de datos, esto es usado para las pruebas,
         // Hasta que se conecte el modulo a la base de datos
         
