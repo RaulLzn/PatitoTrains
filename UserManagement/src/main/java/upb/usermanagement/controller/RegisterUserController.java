@@ -3,12 +3,15 @@ package upb.usermanagement.controller;
 import javafx.scene.Node;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 import com.edu.upb.array.Array;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -16,11 +19,12 @@ import javafx.scene.control.Label;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import upb.usermanagement.controller.interfaces.RegisterUserControllerInterface;
 import upb.usermanagement.model.domain.Employee;
 import upb.usermanagement.model.domain.User;
 import upb.usermanagement.model.domain.UserManager;
 
-public class RegisterUserController {
+public class RegisterUserController implements Initializable, RegisterUserControllerInterface{
 
     @FXML
     private Button btnAdd;
@@ -73,8 +77,12 @@ public class RegisterUserController {
         this.userManager = userManager;
     }
 
+    @Override
+    public void initialize(URL arg0, ResourceBundle arg1) {
+    }
+
     @FXML
-    void btnAddClicked(ActionEvent event) {
+    public void btnAddClicked(@SuppressWarnings("exports") ActionEvent event) {
 
         //Variables
         String message = "";
@@ -168,7 +176,7 @@ public class RegisterUserController {
     }
 
     @FXML
-    void btnGoBackClicked(ActionEvent event) {
+    public void btnGoBackClicked(@SuppressWarnings("exports") ActionEvent event) {
         Stage stageRegister;
 
         Scene sceneRegister;
@@ -294,4 +302,6 @@ public class RegisterUserController {
         
         return array;
     }
+
+    
 }

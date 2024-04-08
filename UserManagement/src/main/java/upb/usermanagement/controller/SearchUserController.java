@@ -24,11 +24,12 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import upb.usermanagement.controller.interfaces.SearchUserControllerInterface;
 import upb.usermanagement.model.domain.Employee;
 import upb.usermanagement.model.domain.User;
 import upb.usermanagement.model.domain.UserManager;
 
-public class SearchUserController implements Initializable{
+public class SearchUserController implements Initializable, SearchUserControllerInterface{
 
     @FXML
     private Button btnRegisterUser;
@@ -69,7 +70,7 @@ public class SearchUserController implements Initializable{
 
 
     @FXML
-    void btnRegisterUserClicked(ActionEvent event) {
+    public void btnRegisterUserClicked(@SuppressWarnings("exports") ActionEvent event) throws IOException {
         Stage stageRegister;
 
         Scene sceneRegister;
@@ -78,9 +79,9 @@ public class SearchUserController implements Initializable{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/RegisterUser.fxml"));
         loader.setControllerFactory(controllerClass -> new RegisterUserController( userManager));
         Parent root;
-        try {
-            root = loader.load();
-            stageRegister = (Stage) ((Node)event.getSource()).getScene().getWindow();
+       
+        root = loader.load();
+        stageRegister = (Stage) ((Node)event.getSource()).getScene().getWindow();
         
         sceneRegister = new Scene(root);
         
@@ -88,9 +89,7 @@ public class SearchUserController implements Initializable{
         stageRegister.setMaximized(false);
         stageRegister.setMaximized(true);
         stageRegister.show();
-        } catch (IOException e) {
-            
-        }
+        
         
 
     }

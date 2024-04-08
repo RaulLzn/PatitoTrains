@@ -55,14 +55,11 @@ public class RegisterTrainController implements Initializable, RegisterTrainCont
 
     public RegisterTrainController(){
         trainManager = new TrainManager();
-        trainManager.setTrainIdCounter(10036); // Temporal, el contador de ID sera bajado de la base de datos, esto es usado para las pruebas,
-        // Hasta que se conecte el modulo a la base de datos
-        
+       
     }
     public RegisterTrainController(@SuppressWarnings("exports") TrainManager trainManager){
         this.trainManager = trainManager;
-        trainManager.setTrainIdCounter(10036);; // Temporal, el contador de ID sera bajado de la base de datos, esto es usado para las pruebas,
-        // Hasta que se conecte el modulo a la base de datos
+
         
     }
 
@@ -85,7 +82,7 @@ public class RegisterTrainController implements Initializable, RegisterTrainCont
                 // Se le pasa al contructor del controlador la trainList para simular el flujo a lo largo de el modulo
                 // de tal manera que si se hacen cambios en un tren estos se ven reflejados
                 // Sin embargo una vez se conecte el modulo a la base no se le pasara la lista al constructor
-        loader.setControllerFactory(controllerClass -> new SearchTrainController( trainManager.getTrainList()));
+        loader.setControllerFactory(controllerClass -> new SearchTrainController( trainManager));
         Parent root =loader.load();
         stageBack = (Stage) ((Node)event.getSource()).getScene().getWindow();
         sceneBack = new Scene(root, screenSize.getWidth(), screenSize.getHeight());

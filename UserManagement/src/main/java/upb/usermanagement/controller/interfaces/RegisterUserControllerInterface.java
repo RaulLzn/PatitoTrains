@@ -6,7 +6,7 @@ import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
 
-public interface RegisterTrainControllerInterface {
+public interface RegisterUserControllerInterface {
     void initialize(URL arg0, ResourceBundle arg1) throws IOException;
 
     void btnGoBackClicked(ActionEvent event) throws IOException;

@@ -88,7 +88,6 @@ public class EditTrainController implements Initializable, EditTrainControllerIn
 
     private Train train;
 
-    private String idtrain;
     public EditTrainController(){
         trainManager = new TrainManager();
         trainManager.pullData();
@@ -133,7 +132,7 @@ public class EditTrainController implements Initializable, EditTrainControllerIn
                 // Se le pasa al contructor del controlador la trainList para simular el flujo a lo largo de el modulo
                 // de tal manera que si se hacen cambios en un tren estos se ven reflejados
                 // Sin embargo una vez se conecte el modulo a la base no se le pasara la lista al constructor
-        loader.setControllerFactory(controllerClass -> new SearchTrainController( trainManager.getTrainList()));
+        loader.setControllerFactory(controllerClass -> new SearchTrainController( trainManager));
         Parent root =loader.load();
         stageBack = (Stage) ((Node)event.getSource()).getScene().getWindow();
         sceneBack = new Scene(root, screenSize.getWidth(), screenSize.getHeight());
@@ -161,7 +160,6 @@ public class EditTrainController implements Initializable, EditTrainControllerIn
         boolean toEdit = true;
 
         String txtName;
-        String txtId;
         int amtWagons;
         boolean status;
 
@@ -181,7 +179,6 @@ public class EditTrainController implements Initializable, EditTrainControllerIn
         }
 
         if(valuesFormatOk){
-            txtId = lblId.getText();
             txtName = txtFieldName.getText();
             amtWagons = getAmtWagons();
             status = getStatus();
@@ -203,7 +200,7 @@ public class EditTrainController implements Initializable, EditTrainControllerIn
             }
 
             if(toEdit){
-                if(trainManager.editTrain(idtrain, txtName, amtWagons, status)){
+                if(trainManager.editTrain(train.getId(), txtName, amtWagons, status)){
                     String statusAsString;
 
                     if(status){
@@ -213,7 +210,7 @@ public class EditTrainController implements Initializable, EditTrainControllerIn
                     }
 
                     message = "Tren " + train.getId()+ " " + train.getName() + " con " + train.getPassengerWagons().lenght() + " vagones de pasajeros  y en un estado "+ statusAsString + " ha sido exitosamente editado." ;
-                    idtrain = txtId;
+                    
                 }else{
                     message = "No ha sido posible editar el tren.";
                 }

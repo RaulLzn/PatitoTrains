@@ -8,12 +8,11 @@ import upb.ticketmanagement.model.domain.Ticket;
 import upb.ticketmanagement.model.domain.Train;
 
 public interface TicketManagerInterface {
+    public void pullData();
     
     public  Array<Lugagge> getLugaggeFromTicket(Ticket ticket);
 
     public  String getWagonIdFromLugagge(Lugagge lugagge, Train train);
-
-    public  Ticket getTicketById(String id);
 
     public  LinkedList<Ticket> searchTickets(String ticketToSearch);
 

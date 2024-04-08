@@ -125,9 +125,9 @@ public class ViewMoreController implements Initializable, ViewMoreControllerInte
         
     }
 
-    public ViewMoreController(String ticketId, @SuppressWarnings("exports") TicketManager ticketManager){
+    public ViewMoreController(@SuppressWarnings("exports") Ticket ticket, @SuppressWarnings("exports") TicketManager ticketManager){
         this.ticketManager = ticketManager;
-        ticket = ticketManager.getTicketById(ticketId);
+        this.ticket = ticket;
 
       
 

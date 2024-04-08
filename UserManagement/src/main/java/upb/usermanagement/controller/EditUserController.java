@@ -18,14 +18,14 @@ import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import upb.usermanagement.controller.interfaces.EditUserControllerInterface;
 import upb.usermanagement.model.domain.Employee;
 import upb.usermanagement.model.domain.User;
 import upb.usermanagement.model.domain.UserManager;
 
-public class EditUserController implements Initializable{
+public class EditUserController implements Initializable, EditUserControllerInterface{
 
     @FXML
     private BorderPane brdPaneApply;
@@ -112,7 +112,7 @@ public class EditUserController implements Initializable{
     }
 
     @FXML
-    void btnApplyClicked(ActionEvent event) {
+    public void btnApplyClicked(@SuppressWarnings("exports") ActionEvent event) {
         //Variables
         String message = "";
         boolean valuesFormatOk = true;
@@ -214,7 +214,7 @@ public class EditUserController implements Initializable{
     }
 
     @FXML
-    void btnCancelClicked(ActionEvent event) {
+    public void btnCancelClicked(@SuppressWarnings("exports") ActionEvent event) {
         noEditMode();
         setValues();
 
@@ -223,12 +223,14 @@ public class EditUserController implements Initializable{
 
  
     @FXML
-    void btnEditClicked(ActionEvent event) {
+    public
+    void btnEditClicked(@SuppressWarnings("exports") ActionEvent event) {
         editMode();
     }
 
     @FXML
-    void btnGoBackClicked(ActionEvent event) throws IOException {
+    public
+    void btnGoBackClicked(@SuppressWarnings("exports") ActionEvent event) throws IOException {
 
         Stage stageBack;
         Scene sceneBack;
@@ -249,12 +251,12 @@ public class EditUserController implements Initializable{
     }
 
     @FXML
-    void radBtnDisableClicked(ActionEvent event) {
+    public void radBtnDisableClicked(@SuppressWarnings("exports") ActionEvent event) {
         radBtnEnable.setSelected(false);
     }
 
     @FXML
-    void radBtnEnableClicked(ActionEvent event) {
+    public void radBtnEnableClicked(@SuppressWarnings("exports") ActionEvent event) {
         radBtnDisable.setSelected(false);
 
     }

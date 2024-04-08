@@ -9,5 +9,5 @@ import javafx.event.ActionEvent;
 public interface SearchTrainControllerInterface {
     void btnRegisterTrainClicked(ActionEvent event) throws IOException;
     void initialize(URL arg0, ResourceBundle arg1);
-    void setColumnsValues();
+    
 }

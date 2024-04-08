@@ -74,9 +74,9 @@ public class SearchTrainController implements Initializable, SearchTrainControll
 
  
     //Eliminar una vez se tenga conectado a base, hecho para simular el flujo mantener los datos
-    public SearchTrainController(@SuppressWarnings("exports") LinkedList<Train> list){
+    public SearchTrainController(@SuppressWarnings("exports")TrainManager trainManager){
         trainManager = new TrainManager();
-        trainManager.setTrainList(list);
+        this.trainManager = trainManager;
     }
     //------------------------------------
 
@@ -134,7 +134,7 @@ public class SearchTrainController implements Initializable, SearchTrainControll
         
     }   
 
-    public void setColumnsValues(){
+    private void setColumnsValues(){
         columnId.setCellValueFactory(new PropertyValueFactory<>("id"));
         columnName.setCellValueFactory(new PropertyValueFactory<>("name"));
         columnPassengerWagons.setCellValueFactory(cellData -> {

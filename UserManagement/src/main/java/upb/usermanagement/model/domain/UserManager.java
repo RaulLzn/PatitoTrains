@@ -3,7 +3,6 @@ package upb.usermanagement.model.domain;
 import com.edu.upb.array.Array;
 import com.edu.upb.linkedList.doubly.LinkedList;
 import com.edu.upb.util.iterator.Iterator;
-import java.util.function.Function;
 import java.util.function.Predicate;
 
 public class UserManager {

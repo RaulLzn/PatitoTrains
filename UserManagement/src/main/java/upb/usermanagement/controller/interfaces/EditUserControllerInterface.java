@@ -6,7 +6,7 @@ import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
 
-public interface EditTrainControllerInterface {
+public interface EditUserControllerInterface {
     void initialize(URL arg0, ResourceBundle arg1);
     void btnEditClicked(ActionEvent event);
     void btnGoBackClicked(ActionEvent event) throws IOException;
@@ -14,5 +14,4 @@ public interface EditTrainControllerInterface {
     void radBtnEnableClicked(ActionEvent event);
     void btnApplyClicked(ActionEvent event);
     void btnCancelClicked(ActionEvent event);
-    void setValues();
 }

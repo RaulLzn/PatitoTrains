@@ -13,7 +13,6 @@ public class TrainManager implements TrainManagerInterface{
     private LinkedList<TrainType> trainTypes;
     private int trainIdCounter;
 
-    
 
     public TrainManager() {
         trainList = new LinkedList<>();
@@ -24,46 +23,48 @@ public class TrainManager implements TrainManagerInterface{
 
     public void pullData(){
         trainIdCounter = 10036;
-        trainTypes.add(new TrainType("001", "Arnold", 32) );
-        trainTypes.add(new TrainType("002", "Mercedes", 28) );
+        TrainType arnonld = new TrainType("001", "Arnold", 32) ;
+        TrainType mercedes = new TrainType("002", "Mercedes", 28) ;
+        trainTypes.add(mercedes);
+        trainTypes.add(arnonld);
 
-        addTrain("10000", "Charala Train", getTrainTypeById("001"), 6);
-        addTrain("10001", "Granados Train", getTrainTypeById("001"), 6);
-        addTrain("10002", "Stormwind Express", getTrainTypeById("001"), 8);
-        addTrain("10003", "Ironforge Limited", getTrainTypeById("002"), 15);
-        addTrain("10004", "Orgrimmar Express", getTrainTypeById("001"), 10);
-        addTrain("10005", "Darnassus Local", getTrainTypeById("002"), 5);
-        addTrain("10006", "Undercity Commuter", getTrainTypeById("001"), 12);
-        addTrain("10007", "Silvermoon Shuttle", getTrainTypeById("002"), 7);
-        addTrain("10008", "Exodar Express", getTrainTypeById("001"), 14);
-        addTrain("10009", "Thunder Bluff Transit", getTrainTypeById("002"), 9);
-        addTrain("10010", "Gnomeregan Rapid", getTrainTypeById("001"), 11);
-        addTrain("10011", "Sen'jin Sprinter", getTrainTypeById("002"), 6);
-        addTrain("10012", "Stranglethorn Express", getTrainTypeById("001"), 18);
-        addTrain("10013", "Winterspring Wanderer", getTrainTypeById("002"), 13);
-        addTrain("10014", "Darkshore Deluxe", getTrainTypeById("001"), 8);
-        addTrain("10015", "Durotar Bullet", getTrainTypeById("002"), 17);
-        addTrain("10016", "Thousand Needles Transit", getTrainTypeById("001"), 4);
-        addTrain("10017", "Feralas Flyer", getTrainTypeById("002"), 15);
-        addTrain("10018", "Tanaris Thunder", getTrainTypeById("001"), 10);
-        addTrain("10019", "Silithus Swift", getTrainTypeById("002"), 12);
-        addTrain("10020", "Desolace Express", getTrainTypeById("001"), 5);
-        addTrain("10021", "Mulgore Mover", getTrainTypeById("002"), 16);
-        addTrain("10022", "Felwood Flyer", getTrainTypeById("001"), 7);
-        addTrain("10023", "Ashenvale Arrow", getTrainTypeById("002"), 14);
-        addTrain("10024", "Azshara Zephyr", getTrainTypeById("001"), 9);
-        addTrain("10025", "Un'Goro Underground", getTrainTypeById("002"), 11);
-        addTrain("10026", "Wailing Caverns Cruiser", getTrainTypeById("001"), 6);
-        addTrain("10027", "Train Tracker", getTrainTypeById("002"), 7);
-        addTrain("10028", "Train Transporter", getTrainTypeById("001"), 14);
-        addTrain("10029", "Train Traveler", getTrainTypeById("002"), 9);
-        addTrain("10030", "Train Trailblazer", getTrainTypeById("001"), 11);
-        addTrain("10031", "Train Transit", getTrainTypeById("002"), 6);
-        addTrain("10032", "Train Thunder", getTrainTypeById("001"), 18);
-        addTrain("10033", "Train Travelogue", getTrainTypeById("002"), 13);
-        addTrain("10034", "Train Trekker", getTrainTypeById("001"), 8);
-        addTrain("10035", "Train Turbo", getTrainTypeById("002"), 17);
-        addTrain("10036", "Train Tornado", getTrainTypeById("001"), 4);
+        addTrain("10000", "Charala Train", arnonld, 6);
+        addTrain("10001", "Granados Train",arnonld, 6);
+        addTrain("10002", "Stormwind Express", arnonld, 8);
+        addTrain("10003", "Ironforge Limited", mercedes, 15);
+        addTrain("10004", "Orgrimmar Express",arnonld, 10);
+        addTrain("10005", "Darnassus Local", mercedes, 5);
+        addTrain("10006", "Undercity Commuter", arnonld, 12);
+        addTrain("10007", "Silvermoon Shuttle", mercedes, 7);
+        addTrain("10008", "Exodar Express", arnonld, 14);
+        addTrain("10009", "Thunder Bluff Transit",mercedes, 9);
+        addTrain("10010", "Gnomeregan Rapid", arnonld, 11);
+        addTrain("10011", "Sen'jin Sprinter", mercedes, 6);
+        addTrain("10012", "Stranglethorn Express", arnonld, 18);
+        addTrain("10013", "Winterspring Wanderer", mercedes, 13);
+        addTrain("10014", "Darkshore Deluxe", arnonld, 8);
+        addTrain("10015", "Durotar Bullet", mercedes, 17);
+        addTrain("10016", "Thousand Needles Transit", arnonld, 4);
+        addTrain("10017", "Feralas Flyer", mercedes, 15);
+        addTrain("10018", "Tanaris Thunder", arnonld, 10);
+        addTrain("10019", "Silithus Swift", mercedes, 12);
+        addTrain("10020", "Desolace Express", arnonld, 5);
+        addTrain("10021", "Mulgore Mover", mercedes, 16);
+        addTrain("10022", "Felwood Flyer",arnonld, 7);
+        addTrain("10023", "Ashenvale Arrow", mercedes, 14);
+        addTrain("10024", "Azshara Zephyr", arnonld, 9);
+        addTrain("10025", "Un'Goro Underground", mercedes, 11);
+        addTrain("10026", "Wailing Caverns Cruiser", arnonld, 6);
+        addTrain("10027", "Train Tracker", mercedes, 7);
+        addTrain("10028", "Train Transporter", arnonld, 14);
+        addTrain("10029", "Train Traveler", mercedes, 9);
+        addTrain("10030", "Train Trailblazer", arnonld, 11);
+        addTrain("10031", "Train Transit", mercedes, 6);
+        addTrain("10032", "Train Thunder", arnonld, 18);
+        addTrain("10033", "Train Travelogue", mercedes, 13);
+        addTrain("10034", "Train Trekker", arnonld, 8);
+        addTrain("10035", "Train Turbo", mercedes, 17);
+        addTrain("10036", "Train Tornado", arnonld, 4);
 
 
         getTrainById("10001").setDisabled(true);
@@ -87,26 +88,8 @@ public class TrainManager implements TrainManagerInterface{
         getTrainById("10001").setMileage(60000);
 
     }
-
-    public LinkedList<Train> getTrainList() {
-        return trainList;
-    }
-
-    public void setTrainList(LinkedList<Train> trainList) {
-        this.trainList = trainList;
-    }
-
-    public boolean addTrain( Train train){
-        try{
-            trainList.add(train);
-            return true;
-        }catch( Exception e){
-            return false;
-        }
-    }
-
     
-    public  Train getTrainById(String id){
+    private Train getTrainById(String id){
 
         Iterator<Train> iter = trainList.iterator();
 
@@ -120,23 +103,6 @@ public class TrainManager implements TrainManagerInterface{
 
         return null;
 
-    }
-
-    public boolean existTrainById(String id){
-        
-        Iterator<Train> iter = trainList.iterator();
-
-        while(iter.hasNext()){
-            Train train = iter.next();
-
-            if(train.getId().equals(id)){
-                return true;
-            }
-        }
-
-        return false;
-       
-    
     }
 
     public boolean existTrainByName(String name){
@@ -155,22 +121,7 @@ public class TrainManager implements TrainManagerInterface{
        
     
     }
-
-    public TrainType getTrainTypeById(String id){
-
-        Iterator<TrainType> iter = trainTypes.iterator();
-
-        while(iter.hasNext()){
-            TrainType type = iter.next();
-
-            if(type.getId().equals(id)){
-                return type;
-            }
-        }
-
-        return null;
-
-    }
+  
     public TrainType getTrainTypeByDescription(String description){
 
         Iterator<TrainType> iter = trainTypes.iterator();
@@ -260,7 +211,7 @@ public class TrainManager implements TrainManagerInterface{
     public boolean editTrain(String id, String newName, int newAmtPassangerWagons, boolean newStatus){
         try{   
 
-            if(!existTrainById(id)){
+            if(!existTrainByName(id)){
                 return false;
             }
             Function<Train, Void> action = new Function<Train,Void>() {
@@ -334,13 +285,6 @@ public class TrainManager implements TrainManagerInterface{
         return trainArray;
     }
     
-    public LinkedList<TrainType> getTrainTypes() {
-        return trainTypes;
-    }
-    public void setTrainTypes(LinkedList<TrainType> trainTypes) {
-        this.trainTypes = trainTypes;
-    }
-
     public int getTrainIdCounter() {
         return trainIdCounter;
     }
@@ -348,7 +292,5 @@ public class TrainManager implements TrainManagerInterface{
     public void setTrainIdCounter(int trainIdCounter) {
         this.trainIdCounter = trainIdCounter;
     }
-
-  
 
 }
