@@ -11,7 +11,7 @@ public class Passenger extends AbstractPerson implements Serializable {
     private String idPassenger;
     private IdType idType;
     private String address;
-    private ContactPerson contactPerson;
+    private String idContactPerson;
 
     /**
      * Constructor de la clase

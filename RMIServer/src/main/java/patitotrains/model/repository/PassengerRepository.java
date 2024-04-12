@@ -3,7 +3,7 @@ package patitotrains.model.repository;
 import patitotrains.model.domain.ContactPerson;
 import patitotrains.model.domain.IdType;
 import patitotrains.model.domain.Passenger;
-import patitotrains.shared.mysqlAdapter.MySQLAdapter;
+import patitotrains.shared.jsonAdapter.MySQLAdapter;
 
 import raul.Model.array.Array;
 import raul.Model.linkedlist.doubly.circular.LinkedList;

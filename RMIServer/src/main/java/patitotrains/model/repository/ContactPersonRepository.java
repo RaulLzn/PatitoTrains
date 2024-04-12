@@ -1,104 +1,77 @@
 package patitotrains.model.repository;
 
 import patitotrains.model.domain.ContactPerson;
-import patitotrains.shared.mysqlAdapter.MySQLAdapter;
+import patitotrains.shared.jsonAdapter.FileJsonAdapter;
 
-import raul.Model.array.Array;
 import raul.Model.linkedlist.doubly.circular.LinkedList;
-import raul.Model.util.Iterator.Iterator;
+import raul.Model.util.list.List;
 
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Clase que se encarga de la persistencia de las personas de contacto
  */
 public class ContactPersonRepository {
     /**
-     * Adaptador de MySQL
+     * Ruta del archivo JSON para almacenar las personas de contacto
      */
-    private final MySQLAdapter<ContactPersonEntity> mySQLAdapter;
+    private static final String CONTACT_PERSON_FILE_PATH = "contactPersons.json";
+
     /**
-     * Nombre de la tabla en la base de datos
+     * Adaptador de archivos JSON
      */
-    private final String tableName;
-    /**
-     * Arreglo de entidades de personas de contacto
-     */
-    private Array<ContactPersonEntity> contactPersonsEntities;
+    private final FileJsonAdapter<ContactPerson> fileJsonAdapter;
 
     /**
      * Constructor de la clase
      */
     public ContactPersonRepository() {
-        this.tableName = "ContactPerson";
-        this.mySQLAdapter = MySQLAdapter.getInstance();
-        loadContactPerson();
+        this.fileJsonAdapter = FileJsonAdapter.getInstance();
     }
 
     /**
-     * Método que carga las personas de contacto de la base de datos
+     * Método que carga las personas de contacto desde el archivo JSON
+     *
+     * @return Lista de personas de contacto cargadas
      */
-    private void loadContactPerson() {
-        contactPersonsEntities = new Array<>(mySQLAdapter.getObjects(tableName, ContactPersonEntity[].class));
+    public LinkedList<ContactPerson> getContactPersons() {
+        List<ContactPerson> contactPersons = fileJsonAdapter.getObjects(CONTACT_PERSON_FILE_PATH, ContactPerson[].class);
+        return (LinkedList<ContactPerson>) contactPersons;
     }
 
     /**
-     * Método que retorna una persona de contacto por su id
-     * @param idPassenger id de la persona de contacto
-     * @return Persona de contacto
+     * Método para agregar una persona de contacto al archivo JSON
+     *
+     * @param newContactPerson Nueva persona de contacto a agregar
+     * @return Verdadero si la operación fue exitosa, falso en caso contrario
      */
-    public ContactPerson getPassengerContactByIdPassenger(String idPassenger) {
-        Iterator<ContactPersonEntity> iterator = contactPersonsEntities.iterator();
-        while (iterator.hasNext()){
-            ContactPersonEntity PCE = iterator.next();
-            if (PCE.idContactPerson.equals(idPassenger)){
-                // Separar la cadena de números de teléfono y convertirla en un array de números
-                String[] phoneNumbersStr = PCE.phones.split(",");
-                Array<String> phoneNumbers = new Array<>(phoneNumbersStr.length);
-                for (String phoneNumberStr : phoneNumbersStr) {
-                    phoneNumbers.add(phoneNumberStr.trim());
-                }
-                return new ContactPerson(PCE.names, PCE.lastNames, phoneNumbers);
-            }
+    public boolean addContactPerson(ContactPerson newContactPerson) {
+        try {
+            LinkedList<ContactPerson> contactPersons = getContactPersons();
+            contactPersons.add(newContactPerson);
+            return fileJsonAdapter.writeObjects(CONTACT_PERSON_FILE_PATH, contactPersons.toList());
+        } catch (Exception e) {
+            Logger.getLogger(ContactPersonRepository.class.getName()).log(Level.SEVERE, "Error adding contact person", e);
+            return false;
         }
-        return ContactPerson.getEmptyContactPerson();
     }
 
     /**
-     * Método que añade una persona de contacto a la base de datos
-     * @param contactPerson persona de contacto
-     * @return true si se añadió correctamente, false en caso contrario
+     * Método para agregar varias personas de contacto al archivo JSON
+     *
+     * @param newContactPersons Lista de nuevas personas de contacto a agregar
+     * @return Verdadero si la operación fue exitosa, falso en caso contrario
      */
-    public boolean addContactPerson(ContactPerson contactPerson) {
-        String phones = String.join(",", contactPerson.getPhonesAsString());
-        ContactPersonEntity contactPersonEntity = new ContactPersonEntity( null, contactPerson.getNames(), contactPerson.getLastNames(), phones);
-        return mySQLAdapter.writeObject(tableName, contactPersonEntity);
-    }
-
-    /**
-     * Método que añade una lista de personas de contacto a la base de datos
-     * @param contactPersons lista de personas de contacto
-     * @return true si se añadieron correctamente, false en caso contrario
-     */
-    public boolean addContactPersons(LinkedList<ContactPerson> contactPersons) {
-        int count = 0;
-        Iterator<ContactPerson> iterator = contactPersons.iterator();
-        while (iterator.hasNext()) {
-            ContactPerson contactPerson = iterator.next();
-            count++;
+    public boolean addContactPersons(LinkedList<ContactPerson> newContactPersons) {
+        try {
+            LinkedList<ContactPerson> contactPersons = getContactPersons();
+            contactPersons.add(newContactPersons);
+            return fileJsonAdapter.writeObjects(CONTACT_PERSON_FILE_PATH, contactPersons);
+        } catch (Exception e) {
+            Logger.getLogger(ContactPersonRepository.class.getName()).log(Level.SEVERE, "Error adding contact persons", e);
+            return false;
         }
-
-        ContactPersonEntity[] contactPersonEntities = new ContactPersonEntity[count];
-        int index = 0;
-        Iterator<ContactPerson> iterator2 = contactPersons.iterator();
-        while (iterator2.hasNext()) {
-            ContactPerson contactPerson = iterator2.next();
-            String phones = String.join(",", contactPerson.getPhonesAsString());
-            contactPersonEntities[index] = new ContactPersonEntity(null, contactPerson.getNames(), contactPerson.getLastNames(), phones);
-            index++;
-        }
-        return mySQLAdapter.writeObjects(tableName, contactPersonEntities);
     }
-
-
-
 }

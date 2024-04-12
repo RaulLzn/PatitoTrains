@@ -28,6 +28,11 @@ public class Employee extends AbstractPerson{
         this.idEmployee = "";
     }
 
+    public Employee(int i, String emp001, String john, String doe, String number) {
+        super();
+        this.idEmployee = "";
+    }
+
     //Getters y Setters
     public String getIdEmployee() {
         return idEmployee;
