@@ -1,91 +1,111 @@
-
 package patitotrains.model.repository;
 
-import patitotrains.shared.jsonAdapter.MySQLAdapter;
-
-import raul.Model.array.Array;
+import patitotrains.model.domain.Luggage;
+import patitotrains.model.repository.entity.LuggageEntity;
+import patitotrains.shared.jsonAdapter.FileJsonAdapter;
+import raul.Model.util.Iterator.Iterator;
+import raul.Model.util.list.List;
 
 /**
- * Clase que se encarga de la persistencia de los equipajes
+ * Repositorio para gestionar las maletas.
  */
 public class LuggageRepository {
-    /**
-     * Adaptador de MySQL
-     */
-    private final MySQLAdapter<LuggageEntity> mySQLAdapter;
-    /**
-     * Nombre de la tabla en la base de datos
-     */
-    private final String tableName;
-    /**
-     * Arreglo de entidades de equipajes
-     */
-    private Array<LuggageEntity> luggageEntities;
+
+    private final String LUGGAGE_DATA_FILE = "RMIServer/src/main/java/database/Luggage.Json"; // Ruta del archivo JSON
+    private final FileJsonAdapter<LuggageEntity> fileJsonAdapter; // Adaptador de archivos JSON
 
     /**
-     * Constructor de la clase
+     * Constructor de la clase.
      */
     public LuggageRepository() {
-        this.tableName = "Luggage";
-        this.mySQLAdapter = MySQLAdapter.getInstance();
-        loadLuggage();
+        this.fileJsonAdapter = FileJsonAdapter.getInstance();
     }
 
     /**
-     * Método que carga los equipajes de la base de datos
+     * Obtiene una lista de todas las maletas.
+     *
+     * @return Lista de maletas.
      */
-    private void loadLuggage() {
-        luggageEntities = new Array<>(mySQLAdapter.getObjects(tableName, LuggageEntity[].class));
-    }
-    }
+    public List<Luggage> getAllLuggage() {
+        List<LuggageEntity> luggageEntities = fileJsonAdapter.getObjects(LUGGAGE_DATA_FILE, LuggageEntity[].class);
+        List<Luggage> luggageList = new raul.Model.linkedlist.doubly.circular.LinkedList<>();
 
-    /**
-     * Método que retorna una lista de equipajes asociados a un vagón
-     * @param wagonId ID del vagón
-     * @return Lista de equipajes asociados al vagón
-     */
-    /*
-    public List<Luggage> getLuggageByIdWagon(String wagonId) {
-        List<Luggage> luggageList = new LinkedList<>();
         Iterator<LuggageEntity> iterator = luggageEntities.iterator();
         while (iterator.hasNext()) {
-            LuggageEntity luggageEntity = iterator.next();
-            if (luggageEntity.idVagon.equals(wagonId)) {
-                Luggage luggage = new Luggage(
-                        luggageEntity.getId(),
-                        luggageEntity.getContents(),
-                        luggageEntity.getWeight(),
-                        luggageEntity.getWagonId()
-                );
-                luggageList.add(luggage);
-            }
+            luggageList.add(mapToLuggage(iterator.next()));
         }
+
         return luggageList;
     }
 
     /**
-     * Método que retorna una lista de equipajes asociados a un pasajero
-     * @param passengerId ID del pasajero
-     * @return Lista de equipajes asociados al pasajero
+     * Guarda una maleta en el archivo JSON.
+     *
+     * @param luggage Maleta a guardar.
+     * @return Verdadero si la maleta se guardó correctamente, falso en caso contrario.
      */
-    /*
-    public List<Luggage> getLuggageByIdPassenger(String passengerId) {
-        List<Luggage> luggageList = new LinkedList<>();
+    public boolean saveLuggage(Luggage luggage) {
+        List<LuggageEntity> luggageEntities = fileJsonAdapter.getObjects(LUGGAGE_DATA_FILE, LuggageEntity[].class);
+        LuggageEntity entity = mapToLuggageEntity(luggage);
+        luggageEntities.add(entity);
+
+        return fileJsonAdapter.writeObjects(LUGGAGE_DATA_FILE, luggageEntities);
+    }
+
+    /**
+     * Mapea un objeto LuggageEntity a un objeto Luggage.
+     *
+     * @param entity Entidad de maleta.
+     * @return Objeto de maleta.
+     */
+    private Luggage mapToLuggage(LuggageEntity entity) {
+        return new Luggage(entity.getId(), entity.getWeight(), entity.getTicketId());
+    }
+
+    /**
+     * Mapea un objeto Luggage a un objeto LuggageEntity.
+     *
+     * @param luggage Maleta.
+     * @return Entidad de maleta.
+     */
+    private LuggageEntity mapToLuggageEntity(Luggage luggage) {
+        return new LuggageEntity(luggage.getId(), luggage.getWeight(), luggage.getTicketId());
+    }
+
+    /**
+     * Obtiene una maleta por su id.
+     *
+     * @param id Id de la maleta.
+     * @return Maleta.
+     */
+    public Luggage getLuggageById(String id) {
+        List<LuggageEntity> luggageEntities = fileJsonAdapter.getObjects(LUGGAGE_DATA_FILE, LuggageEntity[].class);
         Iterator<LuggageEntity> iterator = luggageEntities.iterator();
         while (iterator.hasNext()) {
             LuggageEntity luggageEntity = iterator.next();
-            if (luggageEntity.idPassenger.equals(passengerId)) {
-                Luggage luggage = new Luggage(
-                        luggageEntity.idPassenger,
-                        luggageEntity.(),
-                        luggageEntity.getWeight(),
-                        luggageEntity.getWagonId()
-                );
-                luggageList.add(luggage);
+            if (luggageEntity.getId().equals(id)) {
+                return mapToLuggage(luggageEntity);
             }
         }
-        return luggageList;
+        return null;
+    }
+
+    /**
+     * Elimina una maleta por su id.
+     *
+     * @param id Id de la maleta a eliminar.
+     * @return Verdadero si la maleta se eliminó correctamente, falso en caso contrario.
+     */
+    public boolean deleteLuggage(String id) {
+        List<LuggageEntity> luggageEntities = fileJsonAdapter.getObjects(LUGGAGE_DATA_FILE, LuggageEntity[].class);
+        Iterator<LuggageEntity> iterator = luggageEntities.iterator();
+        while (iterator.hasNext()) {
+            LuggageEntity luggageEntity = iterator.next();
+            if (luggageEntity.getId().equals(id)) {
+                luggageEntities.remove(luggageEntity);
+                return fileJsonAdapter.writeObjects(LUGGAGE_DATA_FILE, luggageEntities);
+            }
+        }
+        return false;
     }
 }
-
-     */

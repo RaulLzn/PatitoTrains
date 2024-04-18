@@ -1,189 +1,188 @@
 package patitotrains.model.repository;
 
 import patitotrains.model.domain.ContactPerson;
-import patitotrains.model.domain.IdType;
 import patitotrains.model.domain.Passenger;
-import patitotrains.shared.jsonAdapter.MySQLAdapter;
+import patitotrains.model.domain.types.IdType;
+import patitotrains.model.repository.entity.ContactPersonEntity;
+import patitotrains.model.repository.entity.PassengerEntity;
+import patitotrains.model.repository.entity.typesEntity.IdTypeEntity;
+import patitotrains.shared.jsonAdapter.FileJsonAdapter;
 
 import raul.Model.array.Array;
-import raul.Model.linkedlist.doubly.circular.LinkedList;
 import raul.Model.util.Iterator.Iterator;
 import raul.Model.util.list.List;
-
-import java.io.Serializable;
-
-
+import raul.Model.linkedlist.doubly.circular.LinkedList;
 
 /**
- * Clase que se encarga de la persistencia de los pasajeros
+ * Repositorio de pasajeros.
  */
-public class PassengerRepository implements Serializable {
-    /**
-     * Adaptador de MySQL
-     */
-    private final MySQLAdapter<PassengerEntity> mySQLAdapter;
-    /**
-     * Nombre de la tabla en la base de datos
-     */
-    private final String tableName;
-    /**
-     * Arreglo de entidades de pasajeros
-     */
-    private Array<PassengerEntity> passengersEntities;
-    /**
-     * Repositorio de personas de contacto
-     */
-    private final ContactPersonRepository contactPersonRepository = new ContactPersonRepository();
+public class PassengerRepository {
 
+    private final String PASSENGER_DATA_FILE = "RMIServer/src/main/java/database/Passenger.Json"; // Nombre del archivo JSON
+    private final FileJsonAdapter<PassengerEntity> fileJsonAdapter; // Adaptador de archivos JSON
 
     /**
-     * Constructor de la clase
+     * Constructor de la clase.
      */
     public PassengerRepository() {
-        this.tableName = "Passenger";
-        this.mySQLAdapter = MySQLAdapter.getInstance();
-        LoadPassengers();
+        this.fileJsonAdapter = FileJsonAdapter.getInstance();
     }
 
     /**
-     * Método que carga los pasajeros de la base de datos
+     * Obtiene una lista de todos los pasajeros.
+     *
+     * @return Lista de pasajeros.
      */
-    private void LoadPassengers(){
-        passengersEntities = new Array<>(mySQLAdapter.getObjects(tableName, PassengerEntity[].class));
-    }
-
-    /**
-     * Método que retorna un pasajero por su id
-     * @param idPassenger id del pasajero
-     * @return Pasajero
-     */
-    public Passenger gerPassengerById(String idPassenger){
-        Iterator<PassengerEntity> iterator = passengersEntities.iterator();
-        while (iterator.hasNext()){
-            PassengerEntity passengerEntity = iterator.next();
-            if (passengerEntity.idPassenger.equals(idPassenger)){
-                // Obtener la persona de contacto del pasajero
-                ContactPerson contactPerson = contactPersonRepository.getPassengerContactByIdPassenger(passengerEntity.idPassenger);
-
-                // Separar la cadena de números de teléfono y convertirla en un array de números
-                String[] phoneNumbersStr = passengerEntity.phones.split(",");
-                Array<String> phoneNumbers = new Array<>(phoneNumbersStr.length);
-                for (String phoneNumberStr : phoneNumbersStr) {
-                    phoneNumbers.add(phoneNumberStr.trim());
-                }
-
-                // Crear el objeto Passenger con los datos correctos
-                return new Passenger(passengerEntity.names, passengerEntity.lastNames, phoneNumbers, passengerEntity.idPassenger, IdType.valueOf(passengerEntity.idType), passengerEntity.address, contactPerson);
-            }
-        }
-        return Passenger.getEmptyPassenger();
-    }
-
-    /**
-     * Método que retorna una lista de pasajeros
-     * @return Lista de pasajeros
-     */
-    public List<Passenger> getPassengers(){
+    public List<Passenger> getAllPassengers() {
+        List<PassengerEntity> passengerEntities = fileJsonAdapter.getObjects(PASSENGER_DATA_FILE, PassengerEntity[].class);
         List<Passenger> passengers = new LinkedList<>();
-        Iterator<PassengerEntity> iterator = passengersEntities.iterator();
-        while (iterator.hasNext()){
-            PassengerEntity passengerEntity = iterator.next();
 
-            ContactPerson contactPerson = contactPersonRepository.getPassengerContactByIdPassenger(passengerEntity.idPassenger);
-
-            // Separar la cadena de números de teléfono y convertirla en un array de números
-            String[] phoneNumbersStr = passengerEntity.phones.split(",");
-            Array<String> phones = new Array<>(phoneNumbersStr.length);
-            for (String phoneNumberStr : phoneNumbersStr) {
-                phones.add(phoneNumberStr.trim());
-            }
-
-            // Crear el objeto Passenger con los datos correctos
-            passengers.add(new Passenger(passengerEntity.names, passengerEntity.lastNames, phones, passengerEntity.idPassenger, IdType.valueOf(passengerEntity.idType), passengerEntity.address, contactPerson));
+        Iterator<PassengerEntity> iterator = passengerEntities.iterator();
+        while (iterator.hasNext()) {
+            passengers.add(mapToPassenger(iterator.next()));
         }
+
         return passengers;
     }
 
     /**
-     * Método para agregar un pasajero a la base de datos junto con su persona de contacto asociada
-     * @param newPassenger Nuevo pasajero a agregar
-     * @param contactPerson Persona de contacto asociada al pasajero
-     * @return Verdadero si la operación fue exitosa, falso en caso contrario
+     * Guarda un pasajero en el archivo JSON.
+     *
+     * @param passenger Pasajero.
+     * @return Verdadero si el pasajero se guardó correctamente, falso en caso contrario.
      */
-    public boolean addPassengerWithContact(Passenger newPassenger, ContactPerson contactPerson) {
-        int currentSize = passengersEntities.size();
+    public boolean savePassenger(Passenger passenger) {
+        List<PassengerEntity> passengerEntities = fileJsonAdapter.getObjects(PASSENGER_DATA_FILE, PassengerEntity[].class);
+        PassengerEntity entity = mapToPassengerEntity(passenger);
+        passengerEntities.add(entity);
 
-        PassengerEntity[] newArray = new PassengerEntity[currentSize + 1];
-
-        for (int i = 0; i < currentSize; i++) {
-            newArray[i] = passengersEntities.get(i);
-        }
-
-        newArray[currentSize] = new PassengerEntity(
-                newPassenger.getIdPassenger(),
-                newPassenger.getNames(),
-                newPassenger.getLastNames(),
-                newPassenger.getIdType().toString(),
-                newPassenger.getAddress(),
-                newPassenger.getPhonesAsString()
-        );
-
-        // Escribir el nuevo pasajero en la base de datos
-        boolean passengerAdded = mySQLAdapter.writeObjects(tableName, newArray);
-
-        // Si el pasajero se agregó correctamente, agregar también la persona de contacto
-        if (passengerAdded) {
-            return contactPersonRepository.addContactPerson(contactPerson);
-        }
-
-        return false;
+        return fileJsonAdapter.writeObjects(PASSENGER_DATA_FILE, passengerEntities);
     }
 
     /**
-     * Método para agregar pasajeros a la base de datos junto con sus personas de contacto asociadas
-     * @param newPassengers Lista enlazada de pasajeros a agregar
-     * @param contactPersons Lista enlazada de personas de contacto asociadas a los pasajeros
-     * @return Verdadero si la operación fue exitosa, falso en caso contrario
+     * Mapea un objeto PassengerEntity a un objeto Passenger.
+     *
+     * @param entity Objeto PassengerEntity.
+     * @return Objeto Passenger.
      */
-    public boolean addPassengersWithContacts(LinkedList<Passenger> newPassengers, LinkedList<ContactPerson> contactPersons) {
-        // Verificar que las listas tengan el mismo tamaño
-        if (newPassengers.size() != contactPersons.size()) {
-            return false;
+    private Passenger mapToPassenger(PassengerEntity entity) {
+        String numbers = buildNumbersString(entity.getNumbers());
+
+        IdType idType = mapToIdType(entity.getIdType());
+
+        return new Passenger(
+                entity.getNames(),
+                entity.getLastNames(),
+                new Array<>(numbers.split(", ")),
+                entity.getId(),
+                idType,
+                entity.getAddress(),
+                null // No se maneja directamente la persona de contacto aquí para evitar una posible recursión infinita
+        );
+    }
+
+    /**
+     * Construye una cadena de números a partir de un arreglo de números.
+     *
+     * @param numbersArray Arreglo de números.
+     * @return Cadena de números.
+     */
+    private String buildNumbersString(Array<String> numbersArray) {
+        StringBuilder numbersBuilder = new StringBuilder();
+        Iterator<String> iterator = numbersArray.iterator();
+        while (iterator.hasNext()) {
+            numbersBuilder.append(iterator.next()).append(", ");
+        }
+        return numbersBuilder.substring(0, numbersBuilder.length() - 2);
+    }
+
+    /**
+     * Mapea un objeto IdTypeEntity a un objeto IdType.
+     *
+     * @param idTypeEntity Objeto IdTypeEntity.
+     * @return Objeto IdType.
+     */
+    private IdType mapToIdType(IdTypeEntity idTypeEntity) {
+        return new IdType(idTypeEntity.getId(), idTypeEntity.getDescription());
+    }
+
+    /**
+     * Mapea un objeto Passenger a un objeto PassengerEntity.
+     *
+     * @param passenger Objeto Passenger.
+     * @return Objeto PassengerEntity.
+     */
+    private PassengerEntity mapToPassengerEntity(Passenger passenger) {
+        // Obtener el tamaño de la colección de números del pasajero
+        int numbersSize = passenger.getNumbers().size();
+        // Crear un array con el tamaño de la colección de números del pasajero
+        Array<String> numbers = new Array<>(numbersSize);
+        // Iterar sobre los números del pasajero y agregarlos al array
+        Iterator<String> iterator = passenger.getNumbers().iterator();
+        while (iterator.hasNext()) {
+            numbers.add(iterator.next());
         }
 
-        LinkedList<PassengerEntity> tempPassengerList = new LinkedList<>();
+        // Mapear el tipo de identificación del pasajero
+        IdTypeEntity idTypeEntity = mapToIdTypeEntity(passenger.getIdType());
 
-        Iterator<Passenger> passengerIterator = newPassengers.iterator();
-        Iterator<ContactPerson> contactIterator = contactPersons.iterator();
-
-        // Recorrer ambas listas al mismo tiempo
-        while (passengerIterator.hasNext() && contactIterator.hasNext()) {
-            Passenger passenger = passengerIterator.next();
-            ContactPerson contactPerson = contactIterator.next();
-
-            // Agregar el pasajero a la lista temporal
-            tempPassengerList.add(new PassengerEntity(
-                    passenger.getIdPassenger(),
-                    passenger.getNames(),
-                    passenger.getLastNames(),
-                    passenger.getPhonesAsString(),
-                    passenger.getIdType().toString(),
-                    passenger.getAddress()
-            ));
-
-            // Agregar la persona de contacto a la base de datos
-            boolean contactAdded = contactPersonRepository.addContactPerson(contactPerson);
-            if (!contactAdded) {
-                return false;
-            }
-        }
-
-        PassengerEntity[] combinedPassengerArray = tempPassengerList.toArray();
-
-        // Escribir todos los objetos (pasajeros y personas de contacto) en la base de datos
-        return mySQLAdapter.writeObjects(tableName, combinedPassengerArray);
+        // Crear y devolver la entidad del pasajero
+        return new PassengerEntity(
+                passenger.getId(),
+                passenger.getNames(),
+                passenger.getLastNames(),
+                numbers,
+                passenger.getAddress(),
+                idTypeEntity,
+                null // No se maneja directamente la persona de contacto aquí para evitar una posible recursión infinita
+        );
     }
 
 
+    /**
+     * Mapea un objeto IdType a un objeto IdTypeEntity.
+     *
+     * @param idType Objeto IdType.
+     * @return Objeto IdTypeEntity.
+     */
+    private IdTypeEntity mapToIdTypeEntity(IdType idType) {
+        return new IdTypeEntity(idType.getId(), idType.getDescription());
+    }
 
+    /**
+     * Obtiene un pasajero por su identificación.
+     *
+     * @param id Identificación del pasajero.
+     * @return Pasajero.
+     */
+    public Passenger getPassengerById(String id) {
+        List<PassengerEntity> passengerEntities = fileJsonAdapter.getObjects(PASSENGER_DATA_FILE, PassengerEntity[].class);
+        Iterator<PassengerEntity> iterator = passengerEntities.iterator();
+        while (iterator.hasNext()) {
+            PassengerEntity passengerEntity = iterator.next();
+            if (passengerEntity.getId().equals(id)) {
+                return mapToPassenger(passengerEntity);
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Elimina un pasajero por su identificación.
+     *
+     * @param id Identificación del pasajero.
+     * @return Verdadero si el pasajero se eliminó correctamente, falso en caso contrario.
+     */
+    public boolean deletePassenger(String id) {
+        List<PassengerEntity> passengerEntities = fileJsonAdapter.getObjects(PASSENGER_DATA_FILE, PassengerEntity[].class);
+        Iterator<PassengerEntity> iterator = passengerEntities.iterator();
+        while (iterator.hasNext()) {
+            PassengerEntity passengerEntity = iterator.next();
+            if (passengerEntity.getId().equals(id)) {
+                passengerEntities.remove(passengerEntity);
+                return fileJsonAdapter.writeObjects(PASSENGER_DATA_FILE, passengerEntities);
+            }
+        }
+        return false;
+    }
 }

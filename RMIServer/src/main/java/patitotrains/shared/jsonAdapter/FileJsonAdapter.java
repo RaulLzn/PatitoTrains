@@ -3,7 +3,10 @@ package patitotrains.shared.jsonAdapter;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -14,7 +17,7 @@ import raul.Model.util.list.List;
  * Adaptador de archivos JSON
  * @param <E> Tipo de objeto a manejar
  */
-public class FileJsonAdapter<E> {
+public class FileJsonAdapter<E> implements FileJsonAdapterInterface<E>{
 
     /**
      * Bloqueo para escritura de archivos
@@ -43,6 +46,7 @@ public class FileJsonAdapter<E> {
      * @param classOfT Clase del objeto
      * @return Objeto de tipo E
      */
+    @Override
     public List<E> getObjects(String pathFile, Class<E[]> classOfT) {
         List<E> objList = new LinkedList<>();
         try {
@@ -66,6 +70,7 @@ public class FileJsonAdapter<E> {
      * @param objects Objeto a escribir
      * @return True si se escribió correctamente, false en caso contrario
      */
+    @Override
     public Boolean writeObjects(String pathFile, List<E> objects) {
         boolean successful = false;
         Gson gson = new GsonBuilder().setPrettyPrinting().create();

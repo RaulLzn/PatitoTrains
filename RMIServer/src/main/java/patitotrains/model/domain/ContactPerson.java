@@ -1,34 +1,33 @@
 package patitotrains.model.domain;
 
+
 import raul.Model.array.Array;
 
-/**
- * Clase que representa una persona de contacto
- */
 public class ContactPerson extends AbstractPerson{
+    
+    private String id;
 
-    /**
-     * Constructor de la clase
-     * @param names nombres de la persona
-     * @param lastNames apellidos de la persona
-     * @param phones teléfonos de la persona
-     */
-    public ContactPerson(String names, String lastNames, Array<String> phones) {
-        super(names, lastNames, phones);
+    public ContactPerson(String id, String names, String lastNames, Array<String> numbers) {
+        super(names, lastNames, numbers);
+        this.id = id;
     }
 
-    /**
-     * Constructor vacio
-     */
-    public ContactPerson() {
-        super();
+    public String getId() {
+        return id;
     }
 
-    /**
-     * Método que retorna una persona de contacto vacía
-     * @return persona de contacto vacía
-     */
-    public static ContactPerson getEmptyContactPerson() {
-        return new ContactPerson();
+    public void setId(String id) {
+        this.id = id;
     }
+
+    @Override
+    public String toString() {
+        return "ContactPerson{" +
+                "id='" + id + '\'' +
+                ", lastNames='" + lastNames + '\'' +
+                ", names='" + names + '\'' +
+                ", numbers=" + numbers +
+                '}';
+    }
+
 }

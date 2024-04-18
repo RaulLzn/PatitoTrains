@@ -1,0 +1,22 @@
+[
+  {
+    "id": "EMP001",
+    "names": "Juan",
+    "lastNames": "Perez",
+    "numbers": {
+      "elements": [
+        "564812"
+      ]
+    }
+  },
+  {
+    "id": "EMP001",
+    "names": "Juan",
+    "lastNames": "Perez",
+    "numbers": {
+      "elements": [
+        "564812"
+      ]
+    }
+  }
+]

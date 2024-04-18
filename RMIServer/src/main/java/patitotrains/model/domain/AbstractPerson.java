@@ -1,45 +1,23 @@
 package patitotrains.model.domain;
 
+
 import raul.Model.array.Array;
 
-import java.io.Serializable;
-
-/**
- * Clase abstracta que representa una persona
- */
-public abstract class AbstractPerson implements Serializable {
+public abstract class  AbstractPerson {
     protected String names;
     protected String lastNames;
-    protected Array<String> phones;
-
-    /**
-     * Constructor de la clase
-     * @param names nombres de la persona
-     * @param lastNames apellidos de la persona
-     * @param phones teléfonos de la persona
-     */
-    public AbstractPerson(String names, String lastNames, Array<String> phones) {
+    protected Array<String> numbers;
+    
+    
+    public AbstractPerson( String names, String lastNames, Array<String> numbers){
         this.names = names;
         this.lastNames = lastNames;
-        this.phones = phones;
+        this.numbers = numbers;
     }
-
-    /**
-     * Constructor vacio
-     */
-    public AbstractPerson() {
-        this.names = "";
-        this.lastNames = "";
-        this.phones = new Array<>(1);
-    }
-
-    //Getters y Setters
-    public String getNames() {
-        return names;
-    }
-
-    public void setNames(String names) {
-        this.names = names;
+    public AbstractPerson(){
+        names = "";
+        lastNames = "";
+        numbers = new Array<>(5);
     }
 
     public String getLastNames() {
@@ -50,35 +28,19 @@ public abstract class AbstractPerson implements Serializable {
         this.lastNames = lastNames;
     }
 
-    public Array<String> getPhones() {
-        return phones;
+    public String getNames() {
+        return names;
     }
 
-    public void setPhones(Array<String> phones) {
-        this.phones = phones;
+    public void setNames(String names) {
+        this.names = names;
     }
 
-    /**
-     * Método que retorna una persona vacía
-     * @return persona vacía
-     */
-    public static AbstractPerson getEmptyPerson() {
-        return new Passenger();
+    public Array<String> getNumbers() {
+        return numbers;
     }
 
-    /**
-     * Método que retorna los teléfonos de la persona como una cadena
-     * @return teléfonos de la persona como una cadena
-     */
-    public String getPhonesAsString() {
-        StringBuilder phonesString = new StringBuilder();
-        for (int i = 0; i < phones.size(); i++) {
-            phonesString.append(phones.get(i));
-            if (i < phones.size() - 1) {
-                phonesString.append(", ");
-            }
-        }
-        return phonesString.toString();
+    public void setNumbers(Array<String> numbers) {
+        this.numbers = numbers;
     }
-
 }

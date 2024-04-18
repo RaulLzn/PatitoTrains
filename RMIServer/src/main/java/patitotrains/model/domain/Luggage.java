@@ -1,31 +1,32 @@
 package patitotrains.model.domain;
 
 public class Luggage {
-    private String idLuggage;
+    private String id;
     private int weight;
-    private Ticket ticket;
+    private String ticketId;
 
-    //constructor con parametros
-    public Luggage(String idLuggage, int weight, Ticket ticket) {
-        this.idLuggage = idLuggage;
+
+
+    public Luggage(String id, int weight, String ticketId) {
+        this.id = id;
         this.weight = weight;
-        this.ticket = ticket;
+        this.ticketId = ticketId;
     }
 
-    //Constructor vacio
-    public Luggage() {
-        this.idLuggage = "";
-        this.weight = 0;
-        this.ticket = Ticket.getEmptyTicket();
+    public String getId() {
+        return id;
     }
 
-    //Getters y Setters
-    public String getIdLuggage() {
-        return idLuggage;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public void setIdLuggage(String idLuggage) {
-        this.idLuggage = idLuggage;
+    public String getTicketId() {
+        return ticketId;
+    }
+
+    public void setTicketId(String ticketId) {
+        this.ticketId = ticketId;
     }
 
     public int getWeight() {
@@ -36,16 +37,18 @@ public class Luggage {
         this.weight = weight;
     }
 
-    public Ticket getTicket() {
-        return ticket;
+    public Luggage(String id, String ticketId, int weight) {
+        this.id = id;
+        this.ticketId = ticketId;
+        this.weight = weight;
     }
 
-    public void setTicket(Ticket ticket) {
-        this.ticket = ticket;
-    }
-
-    //Devolver constructor vacio
-    public static Luggage getEmptyLuggage() {
-        return new Luggage();
+    @Override
+    public String toString() {
+        return "Luggage{" +
+                "id='" + id + '\'' +
+                ", weight=" + weight +
+                ", ticketId='" + ticketId + '\'' +
+                '}';
     }
 }

@@ -1,67 +1,28 @@
 package patitotrains.model.domain;
 
-import raul.Model.linkedlist.singly.LinkedList;
+
+
+import raul.Model.linkedlist.doubly.circular.LinkedList;
 
 import java.time.LocalDateTime;
 
 public class Route {
     private String name;
-    private String idRoute;;
+    private Train train;
     private LinkedList<Station> stations;
     private LocalDateTime departureTime;
     private LocalDateTime arrivalTime;
+    private double routeDistance;
 
-    //constructor con parametros
-    public Route(String name, String idRoute, LinkedList<Station> stations, LocalDateTime departureTime, LocalDateTime arrivalTime) {
+
+    public Route(String name, Train train, LinkedList<Station> stations, LocalDateTime departureTime,
+            LocalDateTime arrivalTime, double routeDistance) {
         this.name = name;
-        this.idRoute = idRoute;
+        this.train = train;
         this.stations = stations;
         this.departureTime = departureTime;
         this.arrivalTime = arrivalTime;
-    }
-
-    //Constructor vacio
-    public Route() {
-        this.name = "";
-        this.idRoute = "";
-        this.stations = new LinkedList<>();
-        this.departureTime = LocalDateTime.now();
-        this.arrivalTime = LocalDateTime.now();
-    }
-
-    //Getters y Setters
-
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getIdRoute() {
-        return idRoute;
-    }
-
-    public void setIdRoute(String idRoute) {
-        this.idRoute = idRoute;
-    }
-
-    public LinkedList<Station> getStations() {
-        return stations;
-    }
-
-    public void setStations(LinkedList<Station> stations) {
-        this.stations = stations;
-    }
-
-    public LocalDateTime getDepartureTime() {
-        return departureTime;
-    }
-
-    public void setDepartureTime(LocalDateTime departureTime) {
-        this.departureTime = departureTime;
+        this.routeDistance = routeDistance;
     }
 
     public LocalDateTime getArrivalTime() {
@@ -72,9 +33,55 @@ public class Route {
         this.arrivalTime = arrivalTime;
     }
 
-    //Devolver constructor vacio
-    public static Route getEmptyRoute() {
-        return new Route();
+    public LocalDateTime getDepartureTime() {
+        return departureTime;
     }
 
+    public void setDepartureTime(LocalDateTime departureTime) {
+        this.departureTime = departureTime;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public double getRouteDistance() {
+        return routeDistance;
+    }
+
+    public void setRouteDistance(double routeDistance) {
+        this.routeDistance = routeDistance;
+    }
+
+    public LinkedList<Station> getStations() {
+        return stations;
+    }
+
+    public void setStations(LinkedList<Station> stations) {
+        this.stations = stations;
+    }
+
+    public Train getTrain() {
+        return train;
+    }
+
+    public void setTrain(Train train) {
+        this.train = train;
+    }
+
+    @Override
+    public String toString() {
+        return "Route{" +
+                "name='" + name + '\'' +
+                ", train=" + train +
+                ", stations=" + stations +
+                ", departureTime=" + departureTime +
+                ", arrivalTime=" + arrivalTime +
+                ", routeDistance=" + routeDistance +
+                '}';
+    }
 }

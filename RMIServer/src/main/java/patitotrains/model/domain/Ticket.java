@@ -1,99 +1,75 @@
 package patitotrains.model.domain;
 
+
+import patitotrains.model.domain.types.SeatType;
+
 import java.time.LocalDateTime;
 
 public class Ticket {
 
-    private String idTicket;
-    private LocalDateTime purchaseDate;
+    private  String id;
+    private LocalDateTime purchasDateTime;
     private Passenger passenger;
-    private int value;
+    private double value;
     private ContactPerson contactPerson;
     private SeatType seatType;
     private Route route;
 
-    //constructor con parametros
-    public Ticket(String idTicket, LocalDateTime purchaseDate, Passenger passenger, int value, ContactPerson contactPerson, SeatType seatType, Route route) {
-        this.idTicket = idTicket;
-        this.purchaseDate = purchaseDate;
+    public Ticket(String id, Passenger passenger, double value, SeatType seatType,
+            Route route) {
+        this.id = id;
         this.passenger = passenger;
         this.value = value;
-        this.contactPerson = contactPerson;
+        this.contactPerson = passenger.getContactPerson();
         this.seatType = seatType;
         this.route = route;
+        purchasDateTime = LocalDateTime.now();
     }
-
-    //Constructor vacio
-    public Ticket() {
-        this.idTicket = "";
-        this.purchaseDate = LocalDateTime.now();
-        this.passenger = Passenger.getEmptyPassenger();
-        this.value = 0;
-        this.contactPerson = ContactPerson.getEmptyContactPerson();
-        this.seatType = SeatType.NULL;;
-        this.route = Route.getEmptyRoute();
+    public String getId() {
+        return id;
     }
-
-    //Getters y Setters
-    public String getIdTicket() {
-        return idTicket;
+    public void setId(String id) {
+        this.id = id;
     }
-
-    public void setIdTicket(String idTicket) {
-        this.idTicket = idTicket;
+    public LocalDateTime getPurchasDateTime() {
+        return purchasDateTime;
     }
-
-    public LocalDateTime getPurchaseDate() {
-        return purchaseDate;
+    public void setPurchasDateTime(LocalDateTime purchasDateTime) {
+        this.purchasDateTime = purchasDateTime;
     }
-
-    public void setPurchaseDate(LocalDateTime purchaseDate) {
-        this.purchaseDate = purchaseDate;
-    }
-
     public Passenger getPassenger() {
         return passenger;
     }
-
     public void setPassenger(Passenger passenger) {
         this.passenger = passenger;
     }
-
-    public int getValue() {
+    public double getValue() {
         return value;
     }
-
-    public void setValue(int value) {
+    public void setValue(double value) {
         this.value = value;
     }
-
     public ContactPerson getContactPerson() {
         return contactPerson;
     }
-
     public void setContactPerson(ContactPerson contactPerson) {
         this.contactPerson = contactPerson;
     }
-
     public SeatType getSeatType() {
         return seatType;
     }
-
     public void setSeatType(SeatType seatType) {
         this.seatType = seatType;
     }
-
     public Route getRoute() {
         return route;
     }
-
     public void setRoute(Route route) {
         this.route = route;
     }
+    
 
-    //Devolver constructor vacio
-    public static Ticket getEmptyTicket() {
-        return new Ticket();
-    }
+    
+
 
 }

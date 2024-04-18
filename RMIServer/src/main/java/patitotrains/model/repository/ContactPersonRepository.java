@@ -1,77 +1,158 @@
 package patitotrains.model.repository;
 
 import patitotrains.model.domain.ContactPerson;
+import patitotrains.model.repository.entity.ContactPersonEntity;
 import patitotrains.shared.jsonAdapter.FileJsonAdapter;
 
-import raul.Model.linkedlist.doubly.circular.LinkedList;
+import raul.Model.util.Iterator.Iterator;
 import raul.Model.util.list.List;
 
-
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 /**
- * Clase que se encarga de la persistencia de las personas de contacto
+ * Repositorio de personas de contacto.
  */
 public class ContactPersonRepository {
-    /**
-     * Ruta del archivo JSON para almacenar las personas de contacto
-     */
-    private static final String CONTACT_PERSON_FILE_PATH = "contactPersons.json";
 
     /**
-     * Adaptador de archivos JSON
+     * Nombre del archivo JSON.
      */
-    private final FileJsonAdapter<ContactPerson> fileJsonAdapter;
+    private final String CONTACT_PERSON_DATA_FILE = "RMIServer/src/main/java/database/ContactPerson.Json";
 
     /**
-     * Constructor de la clase
+     * Adaptador de archivos JSON.
+     */
+    private final FileJsonAdapter<ContactPersonEntity> fileJsonAdapter;
+
+    /**
+     * Constructor de la clase.
      */
     public ContactPersonRepository() {
         this.fileJsonAdapter = FileJsonAdapter.getInstance();
     }
 
     /**
-     * Método que carga las personas de contacto desde el archivo JSON
+     * Obtiene una lista de todas las personas de contacto.
      *
-     * @return Lista de personas de contacto cargadas
+     * @return Lista de personas de contacto.
      */
-    public LinkedList<ContactPerson> getContactPersons() {
-        List<ContactPerson> contactPersons = fileJsonAdapter.getObjects(CONTACT_PERSON_FILE_PATH, ContactPerson[].class);
-        return (LinkedList<ContactPerson>) contactPersons;
+    public List<ContactPerson> getAllContactPersons() {
+        List<ContactPersonEntity> contactPersonEntities = fileJsonAdapter.getObjects(CONTACT_PERSON_DATA_FILE, ContactPersonEntity[].class);
+        List<ContactPerson> contactPersons = new raul.Model.linkedlist.doubly.circular.LinkedList<>();
+
+        Iterator<ContactPersonEntity> iterator = contactPersonEntities.iterator();
+        while (iterator.hasNext()) {
+            contactPersons.add(mapToContactPerson(iterator.next()));
+        }
+
+        return contactPersons;
     }
 
     /**
-     * Método para agregar una persona de contacto al archivo JSON
+     * Guarda una persona de contacto en el archivo JSON.
      *
-     * @param newContactPerson Nueva persona de contacto a agregar
-     * @return Verdadero si la operación fue exitosa, falso en caso contrario
+     * @param contactPerson Persona de contacto.
+     * @return Verdadero si la persona de contacto se guardó correctamente, falso en caso contrario.
      */
-    public boolean addContactPerson(ContactPerson newContactPerson) {
-        try {
-            LinkedList<ContactPerson> contactPersons = getContactPersons();
-            contactPersons.add(newContactPerson);
-            return fileJsonAdapter.writeObjects(CONTACT_PERSON_FILE_PATH, contactPersons.toList());
-        } catch (Exception e) {
-            Logger.getLogger(ContactPersonRepository.class.getName()).log(Level.SEVERE, "Error adding contact person", e);
-            return false;
-        }
+    public boolean saveContactPerson(ContactPerson contactPerson) {
+        List<ContactPersonEntity> contactPersonEntities = fileJsonAdapter.getObjects(CONTACT_PERSON_DATA_FILE, ContactPersonEntity[].class);
+        contactPersonEntities.add(mapToContactPersonEntity(contactPerson));
+
+        return fileJsonAdapter.writeObjects(CONTACT_PERSON_DATA_FILE, contactPersonEntities);
+    }
+
+
+    /**
+     * Mapea un objeto de tipo ContactPersonEntity a un objeto de tipo ContactPerson.
+     *
+     * @param entity Entidad de persona de contacto.
+     * @return Objeto de persona de contacto.
+     */
+    private ContactPerson mapToContactPerson(ContactPersonEntity entity) {
+        ContactPerson contactPerson = new ContactPerson(
+                entity.getId(),
+                entity.getNames(),
+                entity.getLastNames(),
+                entity.getNumbers()
+        );
+
+        return contactPerson;
     }
 
     /**
-     * Método para agregar varias personas de contacto al archivo JSON
+     * Mapea un objeto de tipo ContactPerson a un objeto de tipo ContactPersonEntity.
      *
-     * @param newContactPersons Lista de nuevas personas de contacto a agregar
-     * @return Verdadero si la operación fue exitosa, falso en caso contrario
+     * @param contactPerson Objeto de persona de contacto.
+     * @return Entidad de persona de contacto.
      */
-    public boolean addContactPersons(LinkedList<ContactPerson> newContactPersons) {
-        try {
-            LinkedList<ContactPerson> contactPersons = getContactPersons();
-            contactPersons.add(newContactPersons);
-            return fileJsonAdapter.writeObjects(CONTACT_PERSON_FILE_PATH, contactPersons);
-        } catch (Exception e) {
-            Logger.getLogger(ContactPersonRepository.class.getName()).log(Level.SEVERE, "Error adding contact persons", e);
-            return false;
-        }
+    private ContactPersonEntity mapToContactPersonEntity(ContactPerson contactPerson) {
+        ContactPersonEntity entity = new ContactPersonEntity(
+                contactPerson.getId(),
+                contactPerson.getNames(),
+                contactPerson.getLastNames(),
+                contactPerson.getNumbers()
+        );
+
+        return entity;
     }
+
+    /**
+     * Obtiene una persona de contacto por su id.
+     *
+     * @param id Id de la persona de contacto.
+     * @return Persona de contacto.
+     */
+    public ContactPerson getContactPersonById(String id) {
+        List<ContactPersonEntity> contactPersonEntities = fileJsonAdapter.getObjects(CONTACT_PERSON_DATA_FILE, ContactPersonEntity[].class);
+        Iterator<ContactPersonEntity> iterator = contactPersonEntities.iterator();
+        while (iterator.hasNext()) {
+            ContactPersonEntity contactPersonEntity = iterator.next();
+            if (contactPersonEntity.getId().equals(id)) {
+                return mapToContactPerson(contactPersonEntity);
+            }
+        }
+
+        return null;
+    }
+
+    /**
+     * Actualiza una persona de contacto.
+     *
+     * @param contactPerson Persona de contacto.
+     * @return Verdadero si la persona de contacto se actualizó correctamente, falso en caso contrario.
+     */
+    public boolean updateContactPerson(ContactPerson contactPerson) {
+        List<ContactPersonEntity> contactPersonEntities = fileJsonAdapter.getObjects(CONTACT_PERSON_DATA_FILE, ContactPersonEntity[].class);
+        Iterator<ContactPersonEntity> iterator = contactPersonEntities.iterator();
+        while (iterator.hasNext()) {
+            ContactPersonEntity contactPersonEntity = iterator.next();
+            if (contactPersonEntity.getId().equals(contactPerson.getId())) {
+                contactPersonEntity.setNames(contactPerson.getNames());
+                contactPersonEntity.setLastNames(contactPerson.getLastNames());
+                contactPersonEntity.setNumbers(contactPerson.getNumbers());
+                return fileJsonAdapter.writeObjects(CONTACT_PERSON_DATA_FILE, contactPersonEntities);
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * Elimina una persona de contacto por su id.
+     *
+     * @param id Id de la persona de contacto.
+     * @return Verdadero si la persona de contacto se eliminó correctamente, falso en caso contrario.
+     */
+    public boolean deleteContactPerson(String id) {
+        List<ContactPersonEntity> contactPersonEntities = fileJsonAdapter.getObjects(CONTACT_PERSON_DATA_FILE, ContactPersonEntity[].class);
+        Iterator<ContactPersonEntity> iterator = contactPersonEntities.iterator();
+        while (iterator.hasNext()) {
+            ContactPersonEntity contactPersonEntity = iterator.next();
+            if (contactPersonEntity.getId().equals(id)) {
+                contactPersonEntities.remove(contactPersonEntity);
+                return fileJsonAdapter.writeObjects(CONTACT_PERSON_DATA_FILE, contactPersonEntities);
+            }
+        }
+
+        return false;
+    }
+
 }

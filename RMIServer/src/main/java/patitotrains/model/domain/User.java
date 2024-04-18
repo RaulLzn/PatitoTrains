@@ -1,54 +1,44 @@
-    package patitotrains.model.domain;
+package patitotrains.model.domain;
 
-    import java.io.Serializable;
+public class User {
+    private String id;
+    private String userName;
+    private String password;
+    private boolean disabled;
+    private AbstractPerson person;
 
-    public class User implements Serializable {
-        private String username;
-        private String password;
-        private AbstractPerson person;
-
-
-        //constructor con parametros
-        public User(String username, String password, AbstractPerson person) {
-            this.username = username;
-            this.password = password;
-            this.person = person;
-        }
-
-        //Constructor vacio
-        public User() {
-            this.username = "";
-            this.password = "";
-            this.person = AbstractPerson.getEmptyPerson();
-        }
-
-        //Getters y Setters
-        public String getUsername() {
-            return username;
-        }
-
-        public void setUsername(String username) {
-            this.username = username;
-        }
-
-        public String getPassword() {
-            return password;
-        }
-
-        public void setPassword(String password) {
-            this.password = password;
-        }
-
-        public AbstractPerson getPerson() {
-            return person;
-        }
-
-        public void setPerson(AbstractPerson person) {
-            this.person = person;
-        }
-
-        //Devolver constructor vacio
-        public static User getEmptyUser() {
-            return new User();
-        }
+    public User(String userName, String password, boolean disabled, AbstractPerson person) {
+        this.userName = userName;
+        this.password = password;
+        this.disabled = disabled;
+        this.person = person;
     }
+
+    public String getUserName() {
+        return userName;
+    }
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+    public String getPassword() {
+        return password;
+    }
+    public void setPassword(String password) {
+        this.password = password;
+    }
+    public boolean isDisabled() {
+        return disabled;
+    }
+    public void setDisabled(boolean disabled) {
+        this.disabled = disabled;
+    }
+    public AbstractPerson getPerson() {
+        return person;
+    }
+    public void setPerson(AbstractPerson person) {
+        this.person = person;
+    }
+
+    
+    
+}

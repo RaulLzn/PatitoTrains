@@ -1,0 +1,17 @@
+[
+  {
+    "id": "1",
+    "names": "Juan",
+    "lastNames": "Perez",
+    "numbers": {
+      "elements": [
+        "123456789"
+      ]
+    },
+    "address": "Calle 123",
+    "idType": {
+      "id": "1",
+      "description": "Cedula"
+    }
+  }
+]

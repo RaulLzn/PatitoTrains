@@ -1,46 +1,37 @@
 package patitotrains.model.domain;
 
+
 import raul.Model.linkedlist.doubly.circular.LinkedList;
 
-/**
- * Clase que representa un vagón contenedor
- */
-public class ContainerWagon extends AbstractWagon {
+public class ContainerWagon {
+    
+    private String id;
     private LinkedList<Luggage> luggages;
 
-    /**
-     * Constructor de la clase
-     * @param id identificación del vagon
-     * @param luggages equipajes del vagon
-     */
-    public ContainerWagon(String id, LinkedList<Luggage> luggages) {
-        super(id);
-        this.luggages = luggages;
+    public ContainerWagon(String id) {
+        this.id = id;
+        luggages = new LinkedList<>();
     }
 
-    /**
-     * Constructor vacio
-     */
-    public ContainerWagon() {
-        super();
-        this.luggages = new LinkedList<>();
+    public String getId() {
+        return id;
     }
-
-    //Getters y Setters
+    public void setId(String id) {
+        this.id = id;
+    }
     public LinkedList<Luggage> getLuggages() {
         return luggages;
     }
-
     public void setLuggages(LinkedList<Luggage> luggages) {
         this.luggages = luggages;
     }
 
-    /**
-     * Método que retorna un vagon contenedor vacío
-     * @return vagon contenedor vacío
-     */
-    public static ContainerWagon getEmptyContainerWagon() {
-        return new ContainerWagon();
-    }
 
+    @Override
+    public String toString() {
+        return "ContainerWagon{" +
+                "id='" + id + '\'' +
+                ", luggages=" + luggages +
+                '}';
+    }
 }
