@@ -68,12 +68,12 @@ public class BoardingPanelController implements Initializable{
         });
         columnTrain.setCellValueFactory(cellData -> {
            
-            return new SimpleStringProperty( cellData.getValue().getRoute().getTrain().getName());
+            return new SimpleStringProperty( cellData.getValue().getRoute().getTrains().peek().getName());
 
         });
         columnTrainId.setCellValueFactory(cellData -> {
            
-            return new SimpleStringProperty( cellData.getValue().getRoute().getTrain().getId());
+            return new SimpleStringProperty( cellData.getValue().getRoute().getTrains().peek().getId());
 
         });
 

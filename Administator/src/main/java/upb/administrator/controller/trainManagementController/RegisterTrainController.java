@@ -70,7 +70,7 @@ public class RegisterTrainController implements Initializable, RegisterTrainCont
     public void btnGoBackClicked( ActionEvent event){
         
         try {
-            searchTrainView.start(event);
+            searchTrainView.start(event, trainManager);
         } catch (Exception e) {
             e.printStackTrace();
         }

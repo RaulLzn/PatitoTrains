@@ -123,7 +123,7 @@ public class EditTrainController implements Initializable, EditTrainControllerIn
     public void btnGoBackClicked( ActionEvent event)  {
        
         try {
-            searchTrainView.start(event);
+            searchTrainView.start(event, trainManager);
         } catch (Exception e) {
             e.printStackTrace();
         }

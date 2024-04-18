@@ -171,6 +171,10 @@ public class EditUserController implements Initializable, EditUserControllerInte
             Employee employee = (Employee) user.getPerson();
             id = employee.getId();
 
+            
+            isDisabled = getStatus();
+
+
             if(!confirmPassword.equals(password)){
                 message = "Las contraseñas no coinciden.";
                 toEdit = false;
@@ -183,22 +187,13 @@ public class EditUserController implements Initializable, EditUserControllerInte
 
             if(name.equals(user.getPerson().getNames()) && lastName.equals(user.getPerson().getLastNames())
             && userName.equals(user.getUserName()) && password.equals(user.getPassword()) && confirmPassword.equals(user.getPassword()) 
-            && nmrsAreSame()){
+            && nmrsAreSame() && isDisabled == user.isDisabled() ) {
             
                 toEdit = false;
                 message = "No ha editado ningun campo.";
-                System.out.println(nmrsAreSame());
             }
 
             if(toEdit){
-
-                if(radBtnEnable.isSelected()){
-                    isDisabled = false;
-                }
-
-                else{
-                    isDisabled = true;
-                }
 
                 User userEdited = new User(userName, confirmPassword, isDisabled, 
                 new Employee(name, lastName, nmrs, id));
@@ -490,6 +485,13 @@ public class EditUserController implements Initializable, EditUserControllerInte
         }
         
         return true;
+    }
+    private boolean getStatus(){
+        if(radBtnDisable.isSelected()){
+            return true;
+        }else{
+            return false;
+        }
     }
 
     private Array<String> getArrayNumbers(){

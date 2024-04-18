@@ -22,7 +22,10 @@ public class BoardingPanelManager {
         LinkedList<Ticket> ticketList = new LinkedList<>(); // baja los datos de los json y los guarda en una lista
 
         //Simular
-        Route route = new Route("Super Ruta", new Train("100001", "Super trensito", null, 0, 0), null, null, null, 0);
+        Train train =  new Train("100001", "Super trensito", null, 0, 0);
+        LinkedList<Train> trains = new LinkedList<>();
+        trains.add(train);
+        Route route = new Route("1001","Super Ruta", trains, null, null, null, 0);
         SeatType seatType1 = new SeatType("001", "Estandar", 0);
         SeatType seatType2 = new SeatType("002", "Ejecutivo", 0);
         SeatType seatType3 = new SeatType("003", "Premium", 0);

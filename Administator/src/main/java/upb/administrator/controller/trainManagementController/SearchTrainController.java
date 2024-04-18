@@ -66,42 +66,34 @@ public class SearchTrainController implements Initializable, SearchTrainControll
     @FXML
     private TextField txtFieldSearch;
 
-    private RegisterTrainView registerView;
-
-    private EditTrainView editView;
 
     private TrainManager trainManager;
 
-    private MenuView viewMenu;
-
-
-
- 
     //Eliminar una vez se tenga conectado a base, hecho para simular el flujo mantener los datos
     public SearchTrainController(TrainManager trainManager){
         trainManager = new TrainManager();
-        editView = new EditTrainView();
         this.trainManager = trainManager;
-        registerView = new RegisterTrainView();
-        viewMenu = new MenuView();
+
+       
     }
     //------------------------------------
 
     public SearchTrainController(){
-        editView = new EditTrainView();
         trainManager = new TrainManager();
-        registerView = new RegisterTrainView();
-        viewMenu = new MenuView();
-
     }
 
     @FXML
     void btnGoBackClicked(ActionEvent event) throws Exception {
+        MenuView viewMenu;
+        viewMenu = new MenuView();
         viewMenu.start(event);
+        
     }
     @FXML
     public void btnRegisterTrainClicked( ActionEvent event) throws IOException {
-      registerView.start(event, trainManager);
+        RegisterTrainView registerView;
+        registerView = new RegisterTrainView();
+        registerView.start(event, trainManager);
     }
 
     @Override
@@ -192,6 +184,9 @@ public class SearchTrainController implements Initializable, SearchTrainControll
 
             buttonEdit.setOnAction(event -> {
                 try {
+                    
+                    EditTrainView editView;
+                    editView = new EditTrainView();
                     editView.start(event, trainManager, cellData.getValue());
                 } catch (IOException e) {
                     e.printStackTrace();
