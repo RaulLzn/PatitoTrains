@@ -350,7 +350,7 @@ public class RegisterRouteController implements Initializable{
                 TableRow<Station> row = (TableRow<Station>) buttonEdit.getParent().getParent();
                 int rowIndex = row.getIndex();
                 tableStations.getItems().remove(rowIndex);
-                stopStations.clear();
+                stopStations = new LinkedList<>();
 
                 for(int ii = 0; ii < tableStations.getItems().size(); ii++){
                     stopStations.add(tableStations.getItems().get(ii));

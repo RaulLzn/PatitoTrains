@@ -1,6 +1,7 @@
 package upb.administrator.model.Managers;
 
 import java.time.*;
+import java.util.function.Predicate;
 
 import com.edu.upb.array.Array;
 import com.edu.upb.linkedList.doubly.LinkedList;
@@ -148,7 +149,8 @@ public class RouteManager {
 
         for(int ii = 0; ii < arrayStations.size() -1; ii++){
 
-            if(arrayStations.get(ii).equals(arrayStations.get( + 1))){
+            if(arrayStations.get(ii).equals(arrayStations.get( ii + 1))){
+                
                 return false;
             }
 
@@ -200,6 +202,20 @@ public class RouteManager {
 
         return false;
     }
+
+    public boolean editRoute(Route oldUser, Route editedUSer){
+
+        return routesList.replace(oldUser, editedUSer, new Predicate<Route>() {
+
+            @Override
+            public boolean test(Route t) {
+                return true;
+            }
+            
+        });
+    }
+
+
     public boolean addRoute(Route route){
         try{
             sumRouteId();

@@ -175,9 +175,9 @@ public class UserManager {
        
     
     }
-    public boolean editUser(User oldUser, User editedUSer){
+    public boolean editUser(User oldRoute, User editedRoute){
 
-        return userList.replace(oldUser, editedUSer, new Predicate<User>() {
+        return userList.replace(oldRoute, editedRoute, new Predicate<User>() {
 
             @Override
             public boolean test(User t) {
@@ -185,8 +185,6 @@ public class UserManager {
             }
             
         });
-       
-
     }
     public int getEmployeeIdCounter() {
         return employeeIdCounter;

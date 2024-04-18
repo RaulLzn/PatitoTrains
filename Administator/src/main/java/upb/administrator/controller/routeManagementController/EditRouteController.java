@@ -252,17 +252,21 @@ public class EditRouteController implements Initializable{
             }
 
             if(toEdit){
-                Route route = routeManager.constructRoute(name, train, departureHour, departureMinute, tempStations);
-                if(routeManager.addRoute(route)){
+                Route newRoute = routeManager.constructRoute(name, train, departureHour, departureMinute, tempStations);
+                newRoute.setId(route.getId());
+
+                if(routeManager.editRoute(route, newRoute)){
+                    route = newRoute;
                     String dataMessage = "ID: " + route.getId() + " Hora de llegada: " + 
                     route.getArrivalTime().toString() + " Distancia:"  + route.getRouteDistance();
 
                     lblAssignedData.setText(dataMessage);
-                    message = "Ruta " + route.getName() + " exitosamente registrada.";
-                    
+                    message = "Ruta " + route.getName() + " exitosamente editada.";
+                    noEditMode();
+                    setValues();
 
                 }else{
-                    message = "No fue posible añadir la ruta";
+                    message = "No fue posible editar la ruta";
                 }
             }
             labelMessage.setText(message);
@@ -339,6 +343,8 @@ public class EditRouteController implements Initializable{
 
 
     private void setValues(){
+        tempStations = new LinkedList<>();
+        tempStations.add(route.getStations());
         lblFieldId.setText(route.getId());
         txtFieldName.setText(route.getName());
         txtFieldDepartureHour.setText(Integer.toString(route.getDepartureTime().getHour()));
@@ -406,8 +412,7 @@ public class EditRouteController implements Initializable{
         tableStations.getItems().clear();
         ObservableList<Station> stationsObservableList;
         stationsObservableList = FXCollections.observableArrayList();
-        stationsObservableList.setAll(routeManager.stationsArray(route.getStations()));
-        System.out.println(route.getStations());
+        stationsObservableList.setAll(routeManager.stationsArray(tempStations));
         tableStations.setItems(stationsObservableList);
 
         columnId.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -423,7 +428,7 @@ public class EditRouteController implements Initializable{
                 TableRow<Station> row = (TableRow<Station>) buttonEdit.getParent().getParent();
                 int rowIndex = row.getIndex();
                 tableStations.getItems().remove(rowIndex);
-                tempStations.clear();
+                tempStations = new LinkedList<>();
 
                 for(int ii = 0; ii < tableStations.getItems().size(); ii++){
                     tempStations.add(tableStations.getItems().get(ii));
