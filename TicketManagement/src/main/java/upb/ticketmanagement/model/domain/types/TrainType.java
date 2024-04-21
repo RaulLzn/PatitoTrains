@@ -15,5 +15,7 @@ public class TrainType extends AbstractType{
     public void setCargoCapacity(int cargoCapacity) {
         this.cargoCapacity = cargoCapacity;
     }
+    
+
   
 }

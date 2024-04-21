@@ -17,7 +17,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import upb.administrator.controller.userManagementController.interfaces.EditUserControllerInterface;
 import upb.administrator.model.Managers.UserManager;
-import upb.administrator.model.domain.Employee;
 import upb.administrator.model.domain.User;
 import upb.administrator.view.userManagementViews.SearchUserView;
 
@@ -101,12 +100,11 @@ public class EditUserController implements Initializable, EditUserControllerInte
 
     private UserManager userManager;
 
-    private SearchUserView searchUserView;
+
 
     public EditUserController(User user, UserManager userManager){
         this.user = user;
         this.userManager = userManager;
-        searchUserView = new SearchUserView();
 
 
     }
@@ -168,8 +166,7 @@ public class EditUserController implements Initializable, EditUserControllerInte
             password = txtFieldPassword.getText();
             confirmPassword = txtFieldConfirmPassword.getText();
             nmrs = getArrayNumbers();
-            Employee employee = (Employee) user.getPerson();
-            id = employee.getId();
+            id = user.getId();
 
             
             isDisabled = getStatus();
@@ -185,7 +182,7 @@ public class EditUserController implements Initializable, EditUserControllerInte
                 toEdit = false;
             }
 
-            if(name.equals(user.getPerson().getNames()) && lastName.equals(user.getPerson().getLastNames())
+            if(name.equals(user.getNames()) && lastName.equals(user.getLastNames())
             && userName.equals(user.getUserName()) && password.equals(user.getPassword()) && confirmPassword.equals(user.getPassword()) 
             && nmrsAreSame() && isDisabled == user.isDisabled() ) {
             
@@ -195,8 +192,7 @@ public class EditUserController implements Initializable, EditUserControllerInte
 
             if(toEdit){
 
-                User userEdited = new User(userName, confirmPassword, isDisabled, 
-                new Employee(name, lastName, nmrs, id));
+                User userEdited = new User(name, lastName, nmrs, id, userName, password, isDisabled);
 
                 if(userManager.editUser(user, userEdited)){
 
@@ -234,6 +230,7 @@ public class EditUserController implements Initializable, EditUserControllerInte
     @FXML
     public
     void btnGoBackClicked(ActionEvent event) throws IOException {
+         SearchUserView searchUserView = new SearchUserView();
         searchUserView.start(event, userManager);
     }
 
@@ -258,7 +255,7 @@ public class EditUserController implements Initializable, EditUserControllerInte
 
     private boolean nmrsAreSame(){
 
-            Array<String> nmrs = user.getPerson().getNumbers();
+            Array<String> nmrs = user.getNumbers();
 
             if(!txtFieldNmrOne.getText().equals(nmrs.get(0))){
 
@@ -309,12 +306,10 @@ public class EditUserController implements Initializable, EditUserControllerInte
     
 
     private void setValues(){
-        Employee employee = (Employee) user.getPerson();
        
-
-        lblFieldId.setText(employee.getId());
-        txtFieldName.setText(user.getPerson().getNames());
-        txtFieldLastName.setText(user.getPerson().getLastNames());
+        lblFieldId.setText(user.getId());
+        txtFieldName.setText(user.getNames());
+        txtFieldLastName.setText(user.getLastNames());
         setNmrsValue();
 
         txtFieldUser.setText(user.getUserName());
@@ -383,7 +378,7 @@ public class EditUserController implements Initializable, EditUserControllerInte
     }
         
     private void setNmrsValue(){
-        Array<String> nmr = user.getPerson().getNumbers();
+        Array<String> nmr = user.getNumbers();
 
         txtFieldNmrOne.setText("");
         txtFieldNmrTwo.setText("");

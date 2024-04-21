@@ -1,18 +1,23 @@
 package upb.administrator.model.domain;
 
-public class User {
+import com.edu.upb.array.Array;
+
+public class User extends AbstractPerson {
+    private String id;
     private String userName;
     private String password;
     private boolean disabled;
-    private AbstractPerson person;
 
-    public User(String userName, String password, boolean disabled, AbstractPerson person) {
+
+    public User(String names, String lastNames, Array<String> numbers, String id, String userName, String password,
+            boolean disabled) {
+        super(names, lastNames, numbers);
+        this.id = id;
         this.userName = userName;
         this.password = password;
         this.disabled = disabled;
-        this.person = person;
     }
-
+  
     public String getUserName() {
         return userName;
     }
@@ -31,11 +36,13 @@ public class User {
     public void setDisabled(boolean disabled) {
         this.disabled = disabled;
     }
-    public AbstractPerson getPerson() {
-        return person;
+
+    public String getId() {
+        return id;
     }
-    public void setPerson(AbstractPerson person) {
-        this.person = person;
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     

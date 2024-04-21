@@ -30,6 +30,7 @@ public class RouteManager {
     public void pullData(){
         Train train1 = new Train("100001", "SuperTrain", null, 0, 0);
         Train train2 = new Train("100002", "EpicTrain", null, 0, 0);
+        train2.setOnJourney(true);
         Train train3 = new Train("100003", "NoEscogidoTrain", null, 0, 0);
         Train train4 = new Train("100004", "TrenDesabilitado", null, 0, 0);
         Train train5 = new Train("100005", "TrenJejeje", null, 0, 0);
@@ -39,6 +40,7 @@ public class RouteManager {
 
         LinkedList<Train> trains2 = new LinkedList<>();
         trains2.add(train2);
+        
 
         train4.setDisabled(true);
         trainList.add(train1);

@@ -10,7 +10,7 @@ module upb.train {
     opens upb.administrator.controller.menuController to javafx.fxml;
     opens upb.administrator.controller.routeManagementController to javafx.fxml;
     opens upb.administrator.controller.boardingPanelController to javafx.fxml;
-
+    opens upb.administrator.controller.loginController to javafx.fxml;
     opens upb.administrator.model.domain to javafx.base;
     
     exports upb.administrator.view.trainManagementViews;
@@ -18,6 +18,7 @@ module upb.train {
     exports upb.administrator.view.menuViews;
     exports upb.administrator.view.boardingPanelView;
     exports upb.administrator.view.routeManagementView;
+    opens upb.administrator.view.loginView to javafx.fxml;
     exports upb.administrator;
     
     

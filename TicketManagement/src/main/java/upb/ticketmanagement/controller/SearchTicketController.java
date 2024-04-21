@@ -1,6 +1,5 @@
 package upb.ticketmanagement.controller;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -13,21 +12,19 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Stage;
 import upb.ticketmanagement.controller.interfaces.SearchTicketControllerInterface;
 import upb.ticketmanagement.model.domain.Ticket;
 import upb.ticketmanagement.model.domain.TicketManager;
+import upb.ticketmanagement.view.ViewMoreView;
+import upb.ticketmanagement.view.loginView.LoginView;
 
 public class SearchTicketController implements Initializable, SearchTicketControllerInterface {
 
@@ -61,6 +58,10 @@ public class SearchTicketController implements Initializable, SearchTicketContro
     @FXML
     private TextField txtFieldSearch;
 
+    @FXML
+    private Button btnBack;
+
+
     private TicketManager ticketManager;
 
     public SearchTicketController(@SuppressWarnings("exports") TicketManager ticketManager){
@@ -71,6 +72,15 @@ public class SearchTicketController implements Initializable, SearchTicketContro
 
 
     }
+
+    @FXML
+    void btnBackClicked(ActionEvent event) throws Exception {
+        LoginView loginView = new LoginView();
+        loginView.start(event);
+        
+
+    }
+
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
@@ -92,8 +102,6 @@ public class SearchTicketController implements Initializable, SearchTicketContro
             }
         });
 
-        ticketObservableList.setAll(ticketManager.ticketArray());
-        tableTickets.setItems(ticketObservableList);
         setColumnsValues();
 
     }
@@ -130,7 +138,7 @@ public class SearchTicketController implements Initializable, SearchTicketContro
         });
 
         columnTrainId.setCellValueFactory(cellData -> {
-            String type = cellData.getValue().getRoute().getTrain().getId();
+            String type = cellData.getValue().getRoute().getTrains().peek().getId();
 
             return new SimpleStringProperty(type);
 
@@ -150,24 +158,13 @@ public class SearchTicketController implements Initializable, SearchTicketContro
             buttonView.setText("Ver Mas");
 
             buttonView.setOnAction(event -> {
-                
-
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/ViewMore.fxml"));
-                loader.setControllerFactory(controllerClass -> new ViewMoreController(cellData.getValue(),  ticketManager));
-                Parent root;
+                ViewMoreView viewMoreView = new ViewMoreView();
                 try {
-                    Scene sceneView;
-                    root = loader.load();
-                    sceneView = new Scene(root);
-                    Stage stageView;
-                    stageView = (Stage) ((Node)event.getSource()).getScene().getWindow();
-                    stageView.setScene(sceneView);
-                    stageView.setMaximized(false);
-                    stageView.setMaximized(true);
-                    stageView.show();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }  
+                    viewMoreView.start(event, cellData.getValue(), ticketManager);
+                } catch (Exception e) {
+                  
+                }
+
             });
 
             return new SimpleObjectProperty<Button>(buttonView);

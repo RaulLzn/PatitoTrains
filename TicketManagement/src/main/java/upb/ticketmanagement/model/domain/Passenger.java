@@ -2,7 +2,7 @@ package upb.ticketmanagement.model.domain;
 
 import com.edu.upb.array.Array;
 
-import upb.ticketmanagement.model.domain.types.IdType;
+import  upb.ticketmanagement.model.domain.types.IdType;
 
 public class Passenger extends AbstractPerson {
     private String id;
@@ -18,6 +18,7 @@ public class Passenger extends AbstractPerson {
         this.address = address;
         this.contactPerson = contactPerson;
     }
+ 
     public IdType getIdType() {
         return idType;
     }

@@ -1,6 +1,6 @@
 package upb.ticketmanagement.model.domain;
 
-import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 import com.edu.upb.array.Array;
 import com.edu.upb.linkedList.doubly.LinkedList;
@@ -30,9 +30,23 @@ public class TicketManager implements TicketManagerInterface{
         TrainType arnold = new TrainType("001", "Arnold", 32);
         TrainType mercedes = new TrainType("002", "Mercedes", 28);
 
+        
+
         Train train1 = new Train("06530", "Tren Amarillo", arnold, 10, 5);
         Train train2 = new Train("06545", "Tren Azul", mercedes, 8, 4);
         Train train3 = new Train("09378", "Tren Rojo", arnold, 12, 6);
+
+        LinkedList<Train> trains1 = new LinkedList<>();
+        trains1.add(train1);
+
+        LinkedList<Train> trains2 = new LinkedList<>();
+        trains2.add(train2);
+
+
+        LinkedList<Train> trains3 = new LinkedList<>();
+        trains3.add(train3);
+
+
 
         Lugagge lugagge1 = new Lugagge("0003", 60, "1a00000000000000000000000000000");
         Lugagge lugagge2 = new Lugagge("0002", 68, "1a00000000000000000000000000000");
@@ -55,13 +69,15 @@ public class TicketManager implements TicketManagerInterface{
         stations2.add(station2);
         stations2.add(station3);
         stations2.add(station4);
+        
+        
 
-        Route route1 = new Route("Ruta del Sol", train1, stations1,
-                LocalDateTime.of(2024, 9, 26, 8, 0, 0), LocalDateTime.of(2024, 9, 26, 10, 0, 0), 100);
-        Route route2 = new Route("Ruta de Luna", train2, stations2,
-                LocalDateTime.of(2024, 9, 26, 7, 0, 0), LocalDateTime.of(2024, 9, 26, 10, 0, 0), 50);
-        Route route3 = new Route("Ruta de Luna", train3, stations2,
-                LocalDateTime.of(2024, 9, 26, 7, 0, 0), LocalDateTime.of(2024, 9, 26, 10, 0, 0), 50);
+        Route route1 = new Route("10001","Ruta del Sol", trains1, stations1,
+                 LocalTime.of(10, 10), LocalTime.of(12, 10), 100);
+        Route route2 = new Route("10002","Ruta de luna", trains2, stations2,
+                 LocalTime.of(9, 10), LocalTime.of(10, 10), 100);
+        Route route3 = new Route("10003","Ruta del god", trains3, stations2,
+                 LocalTime.of(18, 10), LocalTime.of(20, 10), 100);
 
         Array<String> numbers = new Array<>(5);
         numbers.add("300102301");
@@ -226,7 +242,7 @@ ticketList.add(new Ticket("100000000000000000000000000030",
     }
     public  Array<Lugagge> getLugaggeFromTicket(Ticket ticket){
         Array<Lugagge> lugaggeArray = new Array<>(2);
-        Train train = ticket.getRoute().getTrain();
+        Train train = ticket.getRoute().getTrains().peek();
         Array<ContainerWagon> containerArray = train.getLuggageWagons();
 
         for(int ii = 0; ii < containerArray.size(); ii++){
@@ -276,7 +292,7 @@ ticketList.add(new Ticket("100000000000000000000000000030",
         boolean finded;
 
         if (strLen < 4){
-            return ticketList;
+            return new  LinkedList<>();
         }
 
         Iterator<Ticket> iter = ticketList.iterator();

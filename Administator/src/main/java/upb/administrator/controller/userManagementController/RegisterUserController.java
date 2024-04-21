@@ -16,7 +16,6 @@ import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextField;
 import upb.administrator.controller.userManagementController.interfaces.RegisterUserControllerInterface;
 import upb.administrator.model.Managers.UserManager;
-import upb.administrator.model.domain.Employee;
 import upb.administrator.model.domain.User;
 import upb.administrator.view.userManagementViews.SearchUserView;
 
@@ -70,11 +69,11 @@ public class RegisterUserController implements Initializable, RegisterUserContro
 
     private UserManager userManager;
 
-    private SearchUserView searchUserView;
+
 
     public RegisterUserController(UserManager userManager){
         this.userManager = userManager;
-        searchUserView  = new SearchUserView();
+        
     }
 
     @Override
@@ -153,8 +152,7 @@ public class RegisterUserController implements Initializable, RegisterUserContro
 
 
             if(toAdd){
-                User userToAdd = new User(user, confirmPassword, false, 
-                new Employee(name, lastName, nmrs, id));
+                User userToAdd = new User(name, lastName, nmrs, id, user, password, false);
 
                 if(userManager.addUser(userToAdd)){
 
@@ -178,6 +176,7 @@ public class RegisterUserController implements Initializable, RegisterUserContro
     @FXML
     public void btnGoBackClicked(ActionEvent event) {
         try {
+            SearchUserView searchUserView = new SearchUserView();
             searchUserView.start(event, userManager);
         } catch (IOException e) {
             e.printStackTrace();

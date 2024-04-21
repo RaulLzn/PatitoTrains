@@ -1,5 +1,4 @@
 package upb.ticketmanagement.model.domain;
-
 import com.edu.upb.array.Array;
 
 public abstract class  AbstractPerson {

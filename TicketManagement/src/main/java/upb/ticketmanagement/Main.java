@@ -4,10 +4,10 @@ import java.io.IOException;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
-import upb.ticketmanagement.view.SearchTicketView;
+import upb.ticketmanagement.view.loginView.LoginView;
 
 public class Main extends Application{
-    SearchTicketView app = new SearchTicketView();
+    LoginView app = new LoginView();
     public static void main(String[] args) throws IOException {
         
         Application.launch(args);

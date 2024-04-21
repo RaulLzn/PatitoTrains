@@ -1,25 +1,20 @@
 package upb.ticketmanagement.controller;
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.time.LocalDateTime;
 import com.edu.upb.array.Array;
-import javafx.scene.Node;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextArea;
-import javafx.stage.Stage;
 import upb.ticketmanagement.controller.interfaces.ViewMoreControllerInterface;
 import upb.ticketmanagement.model.domain.Lugagge;
 import upb.ticketmanagement.model.domain.Ticket;
 import upb.ticketmanagement.model.domain.TicketManager;
+import upb.ticketmanagement.view.SearchTicketView;
 
 public class ViewMoreController implements Initializable, ViewMoreControllerInterface {
     
@@ -103,24 +98,13 @@ public class ViewMoreController implements Initializable, ViewMoreControllerInte
     TicketManager ticketManager;
 
     @FXML
-    public void btnGoBackClicked(@SuppressWarnings("exports") ActionEvent event) throws IOException {
-        Stage stageBack;
-        Scene sceneBack;
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/SearchTicket.fxml"));
-        //CAMBIAR UNA VEZ SE CONECTE EL MODULO A LA BASE
-                // Se le pasa al contructor del controlador la trainList para simular el flujo a lo largo de el modulo
-                // de tal manera que si se hacen cambios en un tren estos se ven reflejados
-                // Sin embargo una vez se conecte el modulo a la base no se le pasara la lista al constructor
-        loader.setControllerFactory(controllerClass -> new SearchTicketController( ticketManager));
-        Parent root;
-        
-            root = loader.load();
-            stageBack = (Stage) ((Node)event.getSource()).getScene().getWindow();
-            sceneBack = new Scene(root);
-            stageBack.setScene(sceneBack);
-            stageBack.setMaximized(false);
-            stageBack.setMaximized(true);
-            stageBack.show();
+    public void btnGoBackClicked(@SuppressWarnings("exports") ActionEvent event) {
+       SearchTicketView searchTicketView = new SearchTicketView();
+       try {
+        searchTicketView.start(event);
+    } catch (Exception e) {
+     
+    }
        
         
     }
@@ -142,15 +126,15 @@ public class ViewMoreController implements Initializable, ViewMoreControllerInte
 
     private void setValues(){
 
-        lblArrivalTime.setText(localDateTimeFormat( ticket.getRoute().getArrivalTime()));
+        lblArrivalTime.setText(ticket.getRoute().getArrivalTime().toString());
         lblPurchaseDate.setText(localDateTimeFormat(ticket.getPurchasDateTime()));
-        lblDepartureTime.setText(localDateTimeFormat(ticket.getRoute().getDepartureTime()));
+        lblDepartureTime.setText(ticket.getRoute().getDepartureTime().toString());
         
         lblContactLastName.setText(ticket.getPassenger().getContactPerson().getLastNames());
         lblContactName.setText(ticket.getPassenger().getContactPerson().getNames());
         lblDestiny.setText(ticket.getRoute().getStations().peek().getName());
         lblId.setText(ticket.getId());
-        lblIdTrain.setText(ticket.getRoute().getTrain().getId());
+        lblIdTrain.setText(ticket.getRoute().getTrains().peek().getId());
         lblPassengerAddress.setText(ticket.getPassenger().getAddress());
         lblPassengerId.setText(ticket.getPassenger().getId());
         lblPassengerIdType.setText(ticket.getSeatType().getDescription());
@@ -164,14 +148,14 @@ public class ViewMoreController implements Initializable, ViewMoreControllerInte
         Array<Lugagge> lugagge = ticketManager.getLugaggeFromTicket(ticket);
         if(lugagge.get(0) != null){
             lblLuggageOneId.setText(lugagge.get(0).getId());
-            lblLuggageOneWeight.setText(Integer.toString(lugagge.get(0).getWeight()));
-            lblLuggageOneContainerId.setText(ticketManager.getWagonIdFromLugagge(lugagge.get(0), ticket.getRoute().getTrain()));
+            lblLuggageOneWeight.setText(Double.toString(lugagge.get(0).getWeight()));
+            lblLuggageOneContainerId.setText(ticketManager.getWagonIdFromLugagge(lugagge.get(0), ticket.getRoute().getTrains().peek()));
         }
 
         if(lugagge.get(1) != null){
             lblLuggageTwoId.setText(lugagge.get(1).getId());
-            lblLuggageTwoWeight.setText(Integer.toString(lugagge.get(1).getWeight()));
-            lblLuggageTwoContainerId.setText(ticketManager.getWagonIdFromLugagge(lugagge.get(1), ticket.getRoute().getTrain()));
+            lblLuggageTwoWeight.setText(Double.toString(lugagge.get(1).getWeight()));
+            lblLuggageTwoContainerId.setText(ticketManager.getWagonIdFromLugagge(lugagge.get(1), ticket.getRoute().getTrains().peek()));
         }
         
         String passengerNmrs = "";
@@ -184,7 +168,7 @@ public class ViewMoreController implements Initializable, ViewMoreControllerInte
         String contactNmrs = "";
 
         for(int ii = 0; ii < ticket.getPassenger().getNumbers().size(); ii++){
-            contactNmrs += ticket.getContactPerson().getNumbers().get(ii) + "\n";
+            contactNmrs += ticket.getPassenger().getContactPerson().getNumbers().get(ii) + "\n";
         }
         txtAreaContactNumbers.setText(contactNmrs);
 

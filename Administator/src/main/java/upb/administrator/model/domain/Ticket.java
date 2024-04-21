@@ -10,7 +10,6 @@ public class Ticket {
     private LocalDateTime purchasDateTime;
     private Passenger passenger;
     private double value;
-    private ContactPerson contactPerson;
     private SeatType seatType;
     private Route route;
 
@@ -19,7 +18,6 @@ public class Ticket {
         this.id = id;
         this.passenger = passenger;
         this.value = value;
-        this.contactPerson = passenger.getContactPerson();
         this.seatType = seatType;
         this.route = route;
         purchasDateTime = LocalDateTime.now();
@@ -47,12 +45,6 @@ public class Ticket {
     }
     public void setValue(double value) {
         this.value = value;
-    }
-    public ContactPerson getContactPerson() {
-        return contactPerson;
-    }
-    public void setContactPerson(ContactPerson contactPerson) {
-        this.contactPerson = contactPerson;
     }
     public SeatType getSeatType() {
         return seatType;

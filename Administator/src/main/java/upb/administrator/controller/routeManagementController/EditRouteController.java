@@ -254,11 +254,12 @@ public class EditRouteController implements Initializable{
             if(toEdit){
                 Route newRoute = routeManager.constructRoute(name, train, departureHour, departureMinute, tempStations);
                 newRoute.setId(route.getId());
+                newRoute.setDisabled(status);
 
                 if(routeManager.editRoute(route, newRoute)){
                     route = newRoute;
                     String dataMessage = "ID: " + route.getId() + " Hora de llegada: " + 
-                    route.getArrivalTime().toString() + " Distancia:"  + route.getRouteDistance();
+                    route.getArrivalTime().toString() + " Distancia:"  + route.getRouteDistance() + " km";
 
                     lblAssignedData.setText(dataMessage);
                     message = "Ruta " + route.getName() + " exitosamente editada.";
@@ -285,7 +286,13 @@ public class EditRouteController implements Initializable{
 
     @FXML
     void btnEditClicked(ActionEvent event) {
-        editMode();
+        if(route.getTrains().peek().isOnJourney()){
+            labelMessage.setText("No puede editar la ruta, puesto que en estos momentos esta en viaje.");
+        }else{
+            editMode();
+        }
+
+        
     }
 
     @FXML

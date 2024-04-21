@@ -2,7 +2,7 @@ package upb.ticketmanagement.model.domain;
 
 public class Lugagge {
     private String id;
-    private int weight;
+    private double weight;
     private String ticketId;
 
     
@@ -19,10 +19,10 @@ public class Lugagge {
     public void setId(String id) {
         this.id = id;
     }
-    public int getWeight() {
+    public double getWeight() {
         return weight;
     }
-    public void setWeight(int weight) {
+    public void setWeight(double weight) {
         this.weight = weight;
     }
     public String getTicketId() {

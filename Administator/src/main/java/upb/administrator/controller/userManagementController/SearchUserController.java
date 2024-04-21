@@ -20,7 +20,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import upb.administrator.controller.userManagementController.interfaces.SearchUserControllerInterface;
 import upb.administrator.model.Managers.UserManager;
-import upb.administrator.model.domain.Employee;
 import upb.administrator.model.domain.User;
 import upb.administrator.view.menuViews.MenuView;
 import upb.administrator.view.userManagementViews.EditUserView;
@@ -60,28 +59,23 @@ public class SearchUserController implements Initializable, SearchUserController
 
     private UserManager userManager;
 
-    private MenuView menuView;
-
-    private EditUserView editUserView;
 
     private RegisterUserView registerUserView;
 
     public SearchUserController( UserManager userManager){
         this.userManager = userManager;
-        menuView = new MenuView();
-        editUserView = new EditUserView();
         registerUserView = new RegisterUserView();
     }
 
     public SearchUserController(){
         userManager = new UserManager();
-        menuView = new MenuView();
-        editUserView = new EditUserView();
+      
         registerUserView = new RegisterUserView();
     }
 
     @FXML
     void btnGoBackClicked(ActionEvent event) throws Exception {
+        MenuView menuView = new MenuView();
         menuView.start( event);
     }
 
@@ -93,9 +87,9 @@ public class SearchUserController implements Initializable, SearchUserController
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
 
-        ObservableList<User> userObservableList;
+            ObservableList<User> userObservableList;
 
-        userObservableList = FXCollections.observableArrayList();
+            userObservableList = FXCollections.observableArrayList();
 
         txtFieldSearch.textProperty().addListener(new ChangeListener<String>() {
 
@@ -118,21 +112,20 @@ public class SearchUserController implements Initializable, SearchUserController
 
     private void setColumnsValues(){
         columnId.setCellValueFactory(cellData -> {
-            Employee type = (Employee) cellData.getValue().getPerson();
 
-            return new SimpleStringProperty(type.getId());
+            return new SimpleStringProperty(cellData.getValue().getId());
 
         });
 
         columnName.setCellValueFactory(cellData -> {
-            String type = cellData.getValue().getPerson().getNames();
+            String type = cellData.getValue().getNames();
 
             return new SimpleStringProperty(type);
 
         });
 
         columnLastName.setCellValueFactory(cellData -> {
-            String type = cellData.getValue().getPerson().getLastNames();
+            String type = cellData.getValue().getLastNames();
 
             return new SimpleStringProperty(type);
 
@@ -166,6 +159,7 @@ public class SearchUserController implements Initializable, SearchUserController
 
             buttonView.setOnAction(event -> {
                 try {
+                    EditUserView editUserView = new EditUserView();
                     editUserView.start(event,  cellData.getValue(), userManager);
                 } catch (IOException e) {
                 }

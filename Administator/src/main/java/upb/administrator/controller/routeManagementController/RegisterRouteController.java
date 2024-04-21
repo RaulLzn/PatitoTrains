@@ -158,7 +158,7 @@ public class RegisterRouteController implements Initializable{
                 Route route = routeManager.constructRoute(name, train, departureHour, departureMinute, stopStations);
                 if(routeManager.addRoute(route)){
                     String dataMessage = "ID: " + route.getId() + " Hora de llegada: " + 
-                    route.getArrivalTime().toString() + " Distancia:"  + route.getRouteDistance();
+                    route.getArrivalTime().toString() + " Distancia:"  + route.getRouteDistance() + " km";
 
                     lblAssignedData.setText(dataMessage);
                     message = "Ruta " + route.getName() + " exitosamente registrada.";

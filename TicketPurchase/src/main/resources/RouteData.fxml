@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="upb.ticketpurchase.controller.RouteDataController">
+   <top>
+      <BorderPane prefHeight="80.0" prefWidth="800.0" style="-fx-background-color: #2174d4;" BorderPane.alignment="CENTER">
+         <left>
+            <BorderPane prefHeight="80.0" prefWidth="300.0" BorderPane.alignment="CENTER">
+               <center>
+                  <Label id="brandName" prefHeight="47.0" prefWidth="250.0" text="PatitoTrains" textFill="WHITE" BorderPane.alignment="CENTER">
+                     <font>
+                        <Font size="42.0" />
+                     </font>
+                  </Label>
+               </center>
+               <bottom>
+                  <Label prefHeight="20.0" prefWidth="252.0" text="Compra tu boleto" textFill="WHITE" BorderPane.alignment="CENTER">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+               </bottom>
+            </BorderPane>
+         </left>
+      </BorderPane>
+   </top>
+   <center>
+      <BorderPane BorderPane.alignment="CENTER">
+         <top>
+            <BorderPane prefHeight="42.0" prefWidth="396.0" BorderPane.alignment="CENTER">
+               <center>
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="27.0" prefWidth="394.0" text="Ingrese los siguientes datos de su ruta a tomar:" textAlignment="CENTER" BorderPane.alignment="CENTER">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+               </center>
+               <left>
+                  <AnchorPane BorderPane.alignment="CENTER">
+                     <children>
+                        <Button fx:id="btnGoBack" layoutY="0.8" mnemonicParsing="false" onAction="#btnGoBackClicked" prefHeight="41.0" prefWidth="44.0" text="&lt;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="1.0" />
+                     </children>
+                  </AnchorPane>
+               </left>
+            </BorderPane>
+         </top>
+         <center>
+            <SplitPane fx:id="spl1" accessibleRole="IMAGE_VIEW" dividerPositions="0.05, 0.1, 0.15" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" orientation="VERTICAL" prefHeight="375.0" prefWidth="494.0" BorderPane.alignment="CENTER">
+               <items>
+                  <SplitPane dividerPositions="0.5" prefHeight="55.0" prefWidth="394.0">
+                     <items>
+                        <Label alignment="CENTER" prefHeight="18.0" prefWidth="90.0" text="Tipo">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <SplitPane dividerPositions="0.5" prefHeight="200.0" prefWidth="200.0">
+                           <items>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                 <children>
+                                    <RadioButton fx:id="radBtnPreRoute" mnemonicParsing="false" onAction="#radBtnPreRouteClicked" prefHeight="31.2" prefWidth="203.2" text="Ruta predeterminada" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                 <children>
+                                    <RadioButton fx:id="radBtnPersoRoute" mnemonicParsing="false" onAction="#radBtnPersoRouteClicked" prefHeight="31.2" prefWidth="203.2" text="Ruta personalizada" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                 </children>
+                              </AnchorPane>
+                           </items>
+                        </SplitPane>
+                     </items>
+                  </SplitPane>
+                  <SplitPane fx:id="splActions" dividerPositions="0.33, 0.5" prefHeight="69.0" prefWidth="414.0">
+                     <items>
+                        <SplitPane fx:id="splRoute" dividerPositions="0.5" prefHeight="100.0" prefWidth="400.0">
+                           <items>
+                              <Label alignment="CENTER" prefHeight="18.0" prefWidth="90.0" text="Ruta">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <BorderPane>
+                                 <center>
+                                    <ComboBox fx:id="cmbBoxRoute" prefHeight="25.6" prefWidth="275.2" />
+                                 </center>
+                              </BorderPane>
+                           </items>
+                        </SplitPane>
+                        <SplitPane fx:id="splDeparture" dividerPositions="0.6" prefHeight="100.0" prefWidth="400.0">
+                           <items>
+                              <Label alignment="CENTER" prefHeight="20.0" prefWidth="190.0" text="Estación de partida">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <BorderPane prefHeight="26.0" prefWidth="96.0">
+                                 <center>
+                                    <ComboBox fx:id="cmbBoxDepartureStation" prefHeight="25.6" prefWidth="275.2" />
+                                 </center>
+                              </BorderPane>
+                           </items>
+                        </SplitPane>
+                        <SplitPane fx:id="splArrival" dividerPositions="0.6" prefHeight="100.0" prefWidth="400.0">
+                           <items>
+                              <Label alignment="CENTER" prefHeight="20.0" prefWidth="171.0" text="Estación de llegada">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <BorderPane>
+                                 <center>
+                                    <ComboBox fx:id="cmbBoxArrivalStation" prefHeight="25.6" prefWidth="275.2" />
+                                 </center>
+                              </BorderPane>
+                           </items>
+                        </SplitPane>
+                     </items>
+                  </SplitPane>
+                  <SplitPane dividerPositions="0.5" prefHeight="69.0" prefWidth="414.0">
+                     <items>
+                        <SplitPane dividerPositions="0.5" prefHeight="100.0" prefWidth="400.0">
+                           <items>
+                              <Label alignment="CENTER" prefHeight="20.0" prefWidth="120.0" text="Tipo de asiento">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <BorderPane>
+                                 <center>
+                                    <ComboBox fx:id="cmbBoxSeatType" prefHeight="25.6" prefWidth="244.8" />
+                                 </center>
+                              </BorderPane>
+                           </items>
+                        </SplitPane>
+                        <SplitPane dividerPositions="0.6" prefHeight="26.0" prefWidth="254.0">
+                           <items>
+                              <Label alignment="CENTER" prefHeight="26.0" prefWidth="149.0" text="Precio" SplitPane.resizableWithParent="false">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <BorderPane>
+                                 <left>
+                                    <Label fx:id="lblValue" contentDisplay="CENTER" BorderPane.alignment="CENTER">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                       <BorderPane.margin>
+                                          <Insets left="10.0" />
+                                       </BorderPane.margin>
+                                    </Label>
+                                 </left>
+                                 <right>
+                                    <Button fx:id="btnCalculate" mnemonicParsing="false" onAction="#btnCalculateClicked" prefHeight="26.0" prefWidth="108.0" text="Calcular" BorderPane.alignment="CENTER">
+                                       <BorderPane.margin>
+                                          <Insets right="20.0" />
+                                       </BorderPane.margin>
+                                    </Button>
+                                 </right>
+                              </BorderPane>
+                           </items>
+                        </SplitPane>
+                     </items>
+                  </SplitPane>
+                  <BorderPane>
+                     <center>
+                        <SplitPane dividerPositions="0.5" prefHeight="160.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                          <items>
+                              <ListView fx:id="listStations" prefHeight="200.0" prefWidth="200.0" />
+                              <ListView fx:id="listTrains" prefHeight="200.0" prefWidth="200.0" />
+                          </items>
+                        </SplitPane>
+                     </center>
+                     <top>
+                        <SplitPane dividerPositions="0.5" prefHeight="28.0" prefWidth="749.0" BorderPane.alignment="CENTER">
+                          <items>
+                              <BorderPane>
+                                 <left>
+                                    <Label text="Estaciones" BorderPane.alignment="CENTER">
+                                       <BorderPane.margin>
+                                          <Insets left="10.0" />
+                                       </BorderPane.margin></Label>
+                                 </left>
+                              </BorderPane>
+                              <BorderPane>
+                                 <left>
+                                    <Label text="Trene a tomar en estación" BorderPane.alignment="CENTER">
+                                       <BorderPane.margin>
+                                          <Insets left="10.0" />
+                                       </BorderPane.margin></Label>
+                                 </left>
+                              </BorderPane>
+                          </items>
+                        </SplitPane>
+                     </top>
+                  </BorderPane>
+               </items>
+               <BorderPane.margin>
+                  <Insets />
+               </BorderPane.margin>
+            </SplitPane>
+         </center>
+         <BorderPane.margin>
+            <Insets bottom="25.0" left="25.0" right="25.0" />
+         </BorderPane.margin>
+         <bottom>
+            <BorderPane BorderPane.alignment="CENTER">
+               <BorderPane.margin>
+                  <Insets top="10.0" />
+               </BorderPane.margin>
+               <right>
+                  <Button fx:id="btnGenerateTicket" mnemonicParsing="false" onAction="#btnGenerateTicketClicked" prefHeight="35.0" prefWidth="144.0" text="Generar boleto" BorderPane.alignment="CENTER" />
+               </right>
+               <left>
+                  <Label fx:id="lblMessage" BorderPane.alignment="CENTER">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+               </left>
+            </BorderPane>
+         </bottom>
+      </BorderPane>
+   </center>
+</BorderPane>

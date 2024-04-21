@@ -1,13 +1,19 @@
 package upb.administrator.controller.menuController;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import upb.administrator.view.loginView.LoginView;
 import upb.administrator.view.routeManagementView.SearchRouteView;
 import upb.administrator.view.trainManagementViews.SearchTrainView;
 import upb.administrator.view.userManagementViews.SearchUserView;
 
 public class MenuController {
+
+    @FXML
+    private Button btnBack;
 
     @FXML
     private AnchorPane paneTrainManagement;
@@ -20,6 +26,14 @@ public class MenuController {
 
     public MenuController(){
     }
+
+    
+    @FXML
+    void btnBackClicked(ActionEvent event) throws Exception {
+        LoginView loginView = new LoginView();
+        loginView.start(event);
+    }
+
 
     @FXML
     void panelRouteManagementClicked(MouseEvent event) throws Exception {
