@@ -1,0 +1,16 @@
+[
+  {
+    "id": "001",
+    "userName": "john_doe",
+    "password": "password123",
+    "disabled": true,
+    "names": "John",
+    "lastNames": "Doe",
+    "numbers": {
+      "elements": [
+        "32154",
+        "25455"
+      ]
+    }
+  }
+]

@@ -9,7 +9,7 @@ import raul.Model.util.list.List;
 
 public class UserRepository {
 
-    private final String USER_DATA_FILE = "path/to/user/data.json"; // Ruta del archivo JSON
+    private final String USER_DATA_FILE = "RMIServer/src/main/java/database/User.Json"; // Ruta del archivo JSON
     private final FileJsonAdapter<UserEntity> fileJsonAdapter; // Adaptador de archivos JSON
 
     public UserRepository() {
@@ -124,5 +124,24 @@ public class UserRepository {
     private UserEntity mapToUserEntity(User user) {
         // Mapear los datos del objeto User a una entidad UserEntity
         return new UserEntity(user.getId(), user.getUserName(), user.getPassword(), user.isDisabled(), user.getNames(), user.getLastNames(), user.getNumbers());
+    }
+
+    /**
+     * Verifica si un usuario existe en el archivo JSON.
+     *
+     * @param userName Nombre de usuario.
+     * @param password Contraseña.
+     * @return Verdadero si el usuario existe, falso en caso contrario.
+     */
+    public boolean verifyUser(String userName, String password){
+        List<UserEntity> userEntities = fileJsonAdapter.getObjects(USER_DATA_FILE, UserEntity[].class);
+        Iterator<UserEntity> iterator = userEntities.iterator();
+        while (iterator.hasNext()) {
+            UserEntity userEntity = iterator.next();
+            if (userEntity.getUserName().equals(userName) && userEntity.getPassword().equals(password)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

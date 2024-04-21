@@ -5,7 +5,6 @@ import patitotrains.model.domain.PassengerWagon;
 import patitotrains.model.domain.Train;
 import patitotrains.model.repository.entity.TrainEntity;
 import patitotrains.shared.jsonAdapter.FileJsonAdapter;
-
 import raul.Model.array.Array;
 import raul.Model.linkedlist.doubly.circular.LinkedList;
 import raul.Model.util.Iterator.Iterator;
@@ -217,4 +216,25 @@ public class TrainRepository {
         }
         return trains;
     }
+
+    /**
+     * Elimina un tren del archivo JSON.
+     *
+     * @param id ID del tren a eliminar.
+     * @return Verdadero si el tren se eliminó correctamente, falso en caso contrario.
+     */
+    public boolean deleteTrain(String id) {
+        List<TrainEntity> trainEntities = jsonAdapter.getObjects(FILE_PATH, TrainEntity[].class);
+        Iterator<TrainEntity> iterator = trainEntities.iterator();
+        while (iterator.hasNext()) {
+            TrainEntity trainEntity = iterator.next();
+            if (trainEntity.getId().equals(id)) {
+                trainEntities.remove(trainEntity);
+                return jsonAdapter.writeObjects(FILE_PATH, trainEntities);
+            }
+        }
+
+        return false; // Train not found
+    }
+
 }

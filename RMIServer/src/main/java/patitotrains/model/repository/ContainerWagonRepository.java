@@ -2,6 +2,7 @@ package patitotrains.model.repository;
 
 import patitotrains.model.domain.ContainerWagon;
 import patitotrains.model.domain.Luggage;
+import patitotrains.model.remote.interfaces.ContainerWagonServiceRemote;
 import patitotrains.model.repository.entity.ContainerWagonEntity;
 import patitotrains.model.repository.entity.LuggageEntity;
 import patitotrains.shared.jsonAdapter.FileJsonAdapter;
@@ -10,7 +11,9 @@ import raul.Model.linkedlist.doubly.circular.LinkedList;
 import raul.Model.util.Iterator.Iterator;
 import raul.Model.util.list.List;
 
-public class ContainerWagonRepository {
+import java.rmi.RemoteException;
+
+public class ContainerWagonRepository implements ContainerWagonServiceRemote {
     private static final String FILE_PATH = "RMIServer/src/main/java/database/ContainerWagon.Json";
     private final FileJsonAdapter<ContainerWagonEntity> jsonAdapter;
 
@@ -123,6 +126,25 @@ public class ContainerWagonRepository {
             ContainerWagonEntity containerWagonEntity = iterator.next();
             if (containerWagonEntity.getId().equals(id)) {
                 containerWagonEntities.remove(containerWagonEntity);
+                return jsonAdapter.writeObjects(FILE_PATH, containerWagonEntities);
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public boolean updateContainerWagon(ContainerWagon containerWagon) throws RemoteException {
+        List<ContainerWagonEntity> containerWagonEntities = jsonAdapter.getObjects(FILE_PATH, ContainerWagonEntity[].class);
+        Iterator<ContainerWagonEntity> iterator = containerWagonEntities.iterator();
+        while (iterator.hasNext()) {
+            ContainerWagonEntity containerWagonEntity = iterator.next();
+            if (containerWagonEntity.getId().equals(containerWagon.getId())) {
+                containerWagonEntity.setLuggages(new LuggageEntity[containerWagon.getLuggages().size()]);
+                Iterator<Luggage> luggageIterator = containerWagon.getLuggages().iterator();
+                int index = 0;
+                while (luggageIterator.hasNext()) {
+                    containerWagonEntity.getLuggages()[index++] = new LuggageEntity(luggageIterator.next());
+                }
                 return jsonAdapter.writeObjects(FILE_PATH, containerWagonEntities);
             }
         }
