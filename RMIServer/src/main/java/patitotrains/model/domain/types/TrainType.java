@@ -1,6 +1,8 @@
 package patitotrains.model.domain.types;
 
-public class TrainType extends AbstractType{
+import java.io.Serializable;
+
+public class TrainType extends AbstractType implements Serializable {
     private int cargoCapacity;
 
     public TrainType(String id, String description, int cargoCapacity) {

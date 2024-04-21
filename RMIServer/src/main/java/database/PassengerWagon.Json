@@ -1,0 +1,400 @@
+[
+  {
+    "id": "001",
+    "premiumPassengers": [],
+    "executivePassengers": [],
+    "standardPassengers": [],
+    "firstWagon": true
+  },
+  {
+    "id": "002",
+    "premiumPassengers": [],
+    "executivePassengers": [],
+    "standardPassengers": [],
+    "firstWagon": false
+  },
+  {
+    "id": "001",
+    "premiumPassengers": [
+      {
+        "id": "12345678",
+        "idType": {
+          "id": "001",
+          "description": "DNI"
+        },
+        "address": "Calle 1",
+        "contactPerson": {
+          "names": "Maria",
+          "lastNames": "Perez",
+          "numbers": {
+            "elements": [
+              "2135455",
+              "545555"
+            ]
+          }
+        },
+        "names": "001",
+        "lastNames": "Juan",
+        "numbers": {
+          "elements": [
+            "2135455",
+            "545555"
+          ]
+        }
+      }
+    ],
+    "executivePassengers": [
+      {
+        "id": "87654321",
+        "idType": {
+          "id": "001",
+          "description": "DNI"
+        },
+        "address": "Calle 2",
+        "contactPerson": {
+          "names": "Ana",
+          "lastNames": "Gomez",
+          "numbers": {
+            "elements": [
+              "2135455",
+              "545555"
+            ]
+          }
+        },
+        "names": "002",
+        "lastNames": "Pedro",
+        "numbers": {
+          "elements": [
+            "2135455",
+            "545555"
+          ]
+        }
+      }
+    ],
+    "standardPassengers": [],
+    "firstWagon": true
+  },
+  {
+    "id": "002",
+    "premiumPassengers": [
+      {
+        "id": "12345678",
+        "idType": {
+          "id": "001",
+          "description": "DNI"
+        },
+        "address": "Calle 3",
+        "contactPerson": {
+          "names": "Juan",
+          "lastNames": "Garcia",
+          "numbers": {
+            "elements": [
+              "2135455",
+              "545555"
+            ]
+          }
+        },
+        "names": "003",
+        "lastNames": "Maria",
+        "numbers": {
+          "elements": [
+            "2135455",
+            "545555"
+          ]
+        }
+      }
+    ],
+    "executivePassengers": [],
+    "standardPassengers": [
+      {
+        "id": "87654321",
+        "idType": {
+          "id": "001",
+          "description": "DNI"
+        },
+        "address": "Calle 4",
+        "contactPerson": {
+          "names": "Pedro",
+          "lastNames": "Gomez",
+          "numbers": {
+            "elements": [
+              "2135455",
+              "545555"
+            ]
+          }
+        },
+        "names": "004",
+        "lastNames": "Ana",
+        "numbers": {
+          "elements": [
+            "2135455",
+            "545555"
+          ]
+        }
+      }
+    ],
+    "firstWagon": false
+  },
+  {
+    "id": "001",
+    "premiumPassengers": [],
+    "executivePassengers": [],
+    "standardPassengers": [],
+    "firstWagon": true
+  },
+  {
+    "id": "002",
+    "premiumPassengers": [],
+    "executivePassengers": [],
+    "standardPassengers": [],
+    "firstWagon": false
+  },
+  {
+    "id": "001",
+    "premiumPassengers": [
+      {
+        "id": "12345678",
+        "idType": {
+          "id": "001",
+          "description": "DNI"
+        },
+        "address": "Calle 1",
+        "contactPerson": {
+          "names": "Maria",
+          "lastNames": "Perez",
+          "numbers": {
+            "elements": [
+              "2135455",
+              "545555"
+            ]
+          }
+        },
+        "names": "001",
+        "lastNames": "Juan",
+        "numbers": {
+          "elements": [
+            "2135455",
+            "545555"
+          ]
+        }
+      }
+    ],
+    "executivePassengers": [
+      {
+        "id": "87654321",
+        "idType": {
+          "id": "001",
+          "description": "DNI"
+        },
+        "address": "Calle 2",
+        "contactPerson": {
+          "names": "Ana",
+          "lastNames": "Gomez",
+          "numbers": {
+            "elements": [
+              "2135455",
+              "545555"
+            ]
+          }
+        },
+        "names": "002",
+        "lastNames": "Pedro",
+        "numbers": {
+          "elements": [
+            "2135455",
+            "545555"
+          ]
+        }
+      }
+    ],
+    "standardPassengers": [],
+    "firstWagon": true
+  },
+  {
+    "id": "002",
+    "premiumPassengers": [
+      {
+        "id": "12345678",
+        "idType": {
+          "id": "001",
+          "description": "DNI"
+        },
+        "address": "Calle 3",
+        "contactPerson": {
+          "names": "Juan",
+          "lastNames": "Garcia",
+          "numbers": {
+            "elements": [
+              "2135455",
+              "545555"
+            ]
+          }
+        },
+        "names": "003",
+        "lastNames": "Maria",
+        "numbers": {
+          "elements": [
+            "2135455",
+            "545555"
+          ]
+        }
+      }
+    ],
+    "executivePassengers": [],
+    "standardPassengers": [
+      {
+        "id": "87654321",
+        "idType": {
+          "id": "001",
+          "description": "DNI"
+        },
+        "address": "Calle 4",
+        "contactPerson": {
+          "names": "Pedro",
+          "lastNames": "Gomez",
+          "numbers": {
+            "elements": [
+              "2135455",
+              "545555"
+            ]
+          }
+        },
+        "names": "004",
+        "lastNames": "Ana",
+        "numbers": {
+          "elements": [
+            "2135455",
+            "545555"
+          ]
+        }
+      }
+    ],
+    "firstWagon": false
+  },
+  {
+    "id": "P001",
+    "premiumPassengers": [],
+    "executivePassengers": [],
+    "standardPassengers": [],
+    "firstWagon": true
+  },
+  {
+    "id": "P002",
+    "premiumPassengers": [],
+    "executivePassengers": [],
+    "standardPassengers": [],
+    "firstWagon": false
+  },
+  {
+    "id": "P001",
+    "premiumPassengers": [],
+    "executivePassengers": [],
+    "standardPassengers": [],
+    "firstWagon": true
+  },
+  {
+    "id": "P002",
+    "premiumPassengers": [],
+    "executivePassengers": [],
+    "standardPassengers": [],
+    "firstWagon": false
+  },
+  {
+    "id": "P001",
+    "premiumPassengers": [],
+    "executivePassengers": [],
+    "standardPassengers": [],
+    "firstWagon": true
+  },
+  {
+    "id": "P002",
+    "premiumPassengers": [],
+    "executivePassengers": [],
+    "standardPassengers": [],
+    "firstWagon": false
+  },
+  {
+    "id": "P001",
+    "premiumPassengers": [],
+    "executivePassengers": [],
+    "standardPassengers": [],
+    "firstWagon": true
+  },
+  {
+    "id": "P002",
+    "premiumPassengers": [],
+    "executivePassengers": [],
+    "standardPassengers": [],
+    "firstWagon": false
+  },
+  {
+    "id": "P001",
+    "premiumPassengers": [],
+    "executivePassengers": [],
+    "standardPassengers": [],
+    "firstWagon": true
+  },
+  {
+    "id": "P002",
+    "premiumPassengers": [],
+    "executivePassengers": [],
+    "standardPassengers": [],
+    "firstWagon": false
+  },
+  {
+    "id": "P001",
+    "premiumPassengers": [],
+    "executivePassengers": [],
+    "standardPassengers": [],
+    "firstWagon": true
+  },
+  {
+    "id": "P002",
+    "premiumPassengers": [],
+    "executivePassengers": [],
+    "standardPassengers": [],
+    "firstWagon": false
+  },
+  {
+    "id": "P001",
+    "premiumPassengers": [],
+    "executivePassengers": [],
+    "standardPassengers": [],
+    "firstWagon": true
+  },
+  {
+    "id": "P002",
+    "premiumPassengers": [],
+    "executivePassengers": [],
+    "standardPassengers": [],
+    "firstWagon": false
+  },
+  {
+    "id": "P001",
+    "premiumPassengers": [],
+    "executivePassengers": [],
+    "standardPassengers": [],
+    "firstWagon": true
+  },
+  {
+    "id": "P002",
+    "premiumPassengers": [],
+    "executivePassengers": [],
+    "standardPassengers": [],
+    "firstWagon": false
+  },
+  {
+    "id": "P001",
+    "premiumPassengers": [],
+    "executivePassengers": [],
+    "standardPassengers": [],
+    "firstWagon": true
+  },
+  {
+    "id": "P002",
+    "premiumPassengers": [],
+    "executivePassengers": [],
+    "standardPassengers": [],
+    "firstWagon": false
+  }
+]

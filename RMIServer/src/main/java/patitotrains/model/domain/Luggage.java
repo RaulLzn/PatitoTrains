@@ -1,6 +1,8 @@
 package patitotrains.model.domain;
 
-public class Luggage {
+import java.io.Serializable;
+
+public class Luggage implements Serializable {
     private String id;
     private int weight;
     private String ticketId;

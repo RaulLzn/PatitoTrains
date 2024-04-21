@@ -1,0 +1,162 @@
+[
+  {
+    "id": "789012",
+    "name": "Expresso",
+    "mileage": 1000.0,
+    "type": {
+      "cargoCapacity": 20,
+      "id": "210",
+      "description": "big"
+    },
+    "passengerWagonIds": [
+      "P001",
+      "P002"
+    ],
+    "luggageWagonIds": [
+      "C001",
+      "C002"
+    ],
+    "onJourney": false,
+    "disabled": false
+  },
+  {
+    "id": "T1",
+    "name": "Expreso del Sol",
+    "mileage": 0.0,
+    "type": {
+      "cargoCapacity": 200,
+      "id": "Tren de pasajeros",
+      "description": "100.0"
+    },
+    "passengerWagonIds": [],
+    "luggageWagonIds": [],
+    "onJourney": false,
+    "disabled": false
+  },
+  {
+    "id": "T1",
+    "name": "Expreso del Sol",
+    "mileage": 0.0,
+    "type": {
+      "cargoCapacity": 200,
+      "id": "Tren de pasajeros",
+      "description": "100.0"
+    },
+    "passengerWagonIds": [],
+    "luggageWagonIds": [],
+    "onJourney": false,
+    "disabled": false
+  },
+  {
+    "id": "T1",
+    "name": "Expreso del Sol",
+    "mileage": 0.0,
+    "type": {
+      "cargoCapacity": 200,
+      "id": "Tren de pasajeros",
+      "description": "100.0"
+    },
+    "passengerWagonIds": [],
+    "luggageWagonIds": [],
+    "onJourney": false,
+    "disabled": false
+  },
+  {
+    "id": "T1",
+    "name": "Expreso del Sol",
+    "mileage": 0.0,
+    "type": {
+      "cargoCapacity": 200,
+      "id": "Tren de pasajeros",
+      "description": "100.0"
+    },
+    "passengerWagonIds": [],
+    "luggageWagonIds": [],
+    "onJourney": false,
+    "disabled": false
+  },
+  {
+    "id": "T1",
+    "name": "Expreso del Sol",
+    "mileage": 0.0,
+    "type": {
+      "cargoCapacity": 200,
+      "id": "Tren de pasajeros",
+      "description": "100.0"
+    },
+    "passengerWagonIds": [],
+    "luggageWagonIds": [],
+    "onJourney": false,
+    "disabled": false
+  },
+  {
+    "id": "T1",
+    "name": "Expreso del Sol",
+    "mileage": 0.0,
+    "type": {
+      "cargoCapacity": 200,
+      "id": "Tren de pasajeros",
+      "description": "100.0"
+    },
+    "passengerWagonIds": [],
+    "luggageWagonIds": [],
+    "onJourney": false,
+    "disabled": false
+  },
+  {
+    "id": "T1",
+    "name": "Expreso del Sol",
+    "mileage": 0.0,
+    "type": {
+      "cargoCapacity": 200,
+      "id": "Tren de pasajeros",
+      "description": "100.0"
+    },
+    "passengerWagonIds": [],
+    "luggageWagonIds": [],
+    "onJourney": false,
+    "disabled": false
+  },
+  {
+    "id": "T1",
+    "name": "Expreso del Sol",
+    "mileage": 0.0,
+    "type": {
+      "cargoCapacity": 200,
+      "id": "Tren de pasajeros",
+      "description": "100.0"
+    },
+    "passengerWagonIds": [],
+    "luggageWagonIds": [],
+    "onJourney": false,
+    "disabled": false
+  },
+  {
+    "id": "T1",
+    "name": "Expreso del Sol",
+    "mileage": 0.0,
+    "type": {
+      "cargoCapacity": 200,
+      "id": "Tren de pasajeros",
+      "description": "100.0"
+    },
+    "passengerWagonIds": [],
+    "luggageWagonIds": [],
+    "onJourney": false,
+    "disabled": false
+  },
+  {
+    "id": "T1",
+    "name": "Expreso del Sol",
+    "mileage": 0.0,
+    "type": {
+      "cargoCapacity": 200,
+      "id": "Tren de pasajeros",
+      "description": "100.0"
+    },
+    "passengerWagonIds": [],
+    "luggageWagonIds": [],
+    "onJourney": false,
+    "disabled": false
+  }
+]

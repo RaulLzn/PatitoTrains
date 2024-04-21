@@ -1,0 +1,51 @@
+[
+  {
+    "id": "PW001",
+    "premiumPassengers": {
+      "head": {
+        "element": {
+          "id": "P001",
+          "idType": {
+            "id": "DNI",
+            "description": "Documento Nacional de Identidad"
+          },
+          "address": "123 Main St",
+          "names": "John",
+          "lastNames": "Doe",
+          "numbers": {
+            "elements": [
+              "1234567",
+              "7654321"
+            ]
+          }
+        }
+      },
+      "size": 1
+    },
+    "executivePassengers": {
+      "head": {
+        "element": {
+          "id": "P002",
+          "idType": {
+            "id": "DNI",
+            "description": "Documento Nacional de Identidad"
+          },
+          "address": "456 Elm St",
+          "names": "Jane",
+          "lastNames": "Smith",
+          "numbers": {
+            "elements": [
+              "1234567",
+              "7654321"
+            ]
+          }
+        }
+      },
+      "size": 1
+    },
+    "standardPassengers": {
+      "size": 0
+    },
+    "firstWagon": true
+  }
+]

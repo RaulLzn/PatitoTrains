@@ -1,29 +1,37 @@
 package patitotrains.model.repository.entity;
 
+import patitotrains.model.domain.Ticket;
+import patitotrains.model.domain.types.SeatType;
+
 import java.time.LocalDateTime;
 
 public class TicketEntity {
     private String id;
-    private LocalDateTime purchasDateTime;
-    private String passengerId;
+    private String purchaseDateTime;
+    private String[] passengerIds;
     private double value;
-    private String contactPersonId;
-    private String seatTypeId;
-    private String routeId;
+    private SeatType seatType;
+    private String[] routeIds;
 
-    // Constructor con todos los atributos
-    public TicketEntity(String id, LocalDateTime purchasDateTime, String passengerId, double value,
-                        String contactPersonId, String seatTypeId, String routeId) {
+    public TicketEntity(String id, String[] passengerIds, double value, SeatType seatType, String[] routeIds) {
         this.id = id;
-        this.purchasDateTime = purchasDateTime;
-        this.passengerId = passengerId;
+        this.passengerIds = passengerIds;
         this.value = value;
-        this.contactPersonId = contactPersonId;
-        this.seatTypeId = seatTypeId;
-        this.routeId = routeId;
+        this.seatType = seatType;
+        this.routeIds = routeIds;
+        this.purchaseDateTime = LocalDateTime.now().toString();
     }
 
-    // Getters y setters
+    //constructor para la conversion de un objeto Ticket a TicketEntity
+    public TicketEntity(Ticket ticket) {
+        this.id = ticket.getId();
+        this.passengerIds = new String[]{ticket.getPassenger().getId()};
+        this.value = ticket.getValue();
+        this.seatType = ticket.getSeatType();
+        this.routeIds = new String[]{ticket.getRoute().getId()};
+        this.purchaseDateTime = ticket.getPurchasDateTime().toString();
+    }
+
     public String getId() {
         return id;
     }
@@ -32,20 +40,20 @@ public class TicketEntity {
         this.id = id;
     }
 
-    public LocalDateTime getPurchasDateTime() {
-        return purchasDateTime;
+    public String getPurchaseDateTime() {
+        return purchaseDateTime;
     }
 
-    public void setPurchasDateTime(LocalDateTime purchasDateTime) {
-        this.purchasDateTime = purchasDateTime;
+    public void setPurchaseDateTime(String purchaseDateTime) {
+        this.purchaseDateTime = purchaseDateTime;
     }
 
-    public String getPassengerId() {
-        return passengerId;
+    public String[] getPassengerIds() {
+        return passengerIds;
     }
 
-    public void setPassengerId(String passengerId) {
-        this.passengerId = passengerId;
+    public void setPassengerIds(String[] passengerIds) {
+        this.passengerIds = passengerIds;
     }
 
     public double getValue() {
@@ -56,27 +64,48 @@ public class TicketEntity {
         this.value = value;
     }
 
-    public String getContactPersonId() {
-        return contactPersonId;
+    public SeatType getSeatType() {
+        return seatType;
     }
 
-    public void setContactPersonId(String contactPersonId) {
-        this.contactPersonId = contactPersonId;
+    public void setSeatType(SeatType seatType) {
+        this.seatType = seatType;
     }
 
-    public String getSeatTypeId() {
-        return seatTypeId;
+    public String[] getRouteIds() {
+        return routeIds;
     }
 
-    public void setSeatTypeId(String seatTypeId) {
-        this.seatTypeId = seatTypeId;
+    public void setRouteIds(String[] routeIds) {
+        this.routeIds = routeIds;
     }
 
-    public String getRouteId() {
-        return routeId;
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("TicketEntity{");
+        sb.append("id='").append(id).append('\'');
+        sb.append(", purchaseDateTime=").append(purchaseDateTime);
+        sb.append(", passengerIds=[");
+        if (passengerIds.length > 0) {
+            sb.append(passengerIds[0]);
+            for (int i = 1; i < passengerIds.length; i++) {
+                sb.append(", ").append(passengerIds[i]);
+            }
+        }
+        sb.append("]");
+        sb.append(", value=").append(value);
+        sb.append(", seatType=").append(seatType);
+        sb.append(", routeIds=[");
+        if (routeIds.length > 0) {
+            sb.append(routeIds[0]);
+            for (int i = 1; i < routeIds.length; i++) {
+                sb.append(", ").append(routeIds[i]);
+            }
+        }
+        sb.append("]");
+        sb.append('}');
+        return sb.toString();
     }
 
-    public void setRouteId(String routeId) {
-        this.routeId = routeId;
-    }
 }

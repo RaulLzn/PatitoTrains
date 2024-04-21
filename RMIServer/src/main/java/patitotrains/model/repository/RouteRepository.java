@@ -1,5 +1,7 @@
 package patitotrains.model.repository;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import patitotrains.model.domain.Route;
 import patitotrains.model.domain.Station;
 import patitotrains.model.domain.Train;
@@ -9,62 +11,106 @@ import raul.Model.linkedlist.doubly.circular.LinkedList;
 import raul.Model.util.Iterator.Iterator;
 import raul.Model.util.list.List;
 
-import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 /**
- * Repositorio de rutas
+ * Repositorio para rutas.
  */
 public class RouteRepository {
-
-    private final String ROUTE_DATA_FILE = "ruta/hacia/el/archivo.json"; // Ruta del archivo JSON
-    private final FileJsonAdapter<RouteEntity> fileJsonAdapter; // Adaptador de archivos JSON
+    private static final String FILE_PATH = "RMIServer/src/main/java/database/Route.Json";
+    private final FileJsonAdapter<RouteEntity> jsonAdapter;
+    private Gson gson;
 
     public RouteRepository() {
-        this.fileJsonAdapter = FileJsonAdapter.getInstance();
+        this.jsonAdapter = FileJsonAdapter.getInstance();
+        this.gson = new GsonBuilder()
+                .registerTypeAdapter(LocalTime.class, new LocalTimeAdapter())
+                .create();
     }
 
     /**
-     * Método para obtener todas las rutas
-     * @return Lista de rutas
+     * Obtiene todas las rutas.
+     *
+     * @return Lista de rutas.
      */
     public List<Route> getAllRoutes() {
+        List<RouteEntity> routeEntities = jsonAdapter.getObjects(FILE_PATH, RouteEntity[].class);
         List<Route> routes = new LinkedList<>();
-        List<RouteEntity> routeEntities = fileJsonAdapter.getObjects(ROUTE_DATA_FILE, RouteEntity[].class);
-        Iterator<RouteEntity> iterator = routeEntities.iterator();
 
+        Iterator<RouteEntity> iterator = routeEntities.iterator();
         while (iterator.hasNext()) {
-            RouteEntity routeEntity = iterator.next();
-            Route route = mapToRoute(routeEntity);
-            routes.add(route);
+            routes.add(mapToRoute(iterator.next()));
         }
 
         return routes;
     }
 
     /**
-     * Método para guardar una ruta
-     * @param route Ruta a guardar
-     * @return True si la ruta se guardó exitosamente, false en caso contrario
+     * Guarda una ruta en el archivo JSON.
+     *
+     * @param route Ruta a guardar.
+     * @return Verdadero si la ruta se guardó correctamente, falso en caso contrario.
      */
     public boolean saveRoute(Route route) {
-        RouteEntity routeEntity = mapToRouteEntity(route);
-        List<RouteEntity> routeEntities = fileJsonAdapter.getObjects(ROUTE_DATA_FILE, RouteEntity[].class);
-        routeEntities.add(routeEntity);
-        return fileJsonAdapter.writeObjects(ROUTE_DATA_FILE, routeEntities);
+        List<RouteEntity> routeEntities = jsonAdapter.getObjects(FILE_PATH, RouteEntity[].class);
+        RouteEntity entity = mapToRouteEntity(route);
+        routeEntities.add(entity);
+        return jsonAdapter.writeObjects(FILE_PATH, routeEntities);
     }
 
     /**
-     * Método para obtener una ruta por su nombre
-     * @param name Nombre de la ruta
-     * @return Ruta
+     * Actualiza una ruta en el archivo JSON.
+     *
+     * @param route Ruta a actualizar.
+     * @return Verdadero si la ruta se actualizó correctamente, falso en caso contrario.
      */
-    public Route getRouteByName(String name) {
-        List<RouteEntity> routeEntities = fileJsonAdapter.getObjects(ROUTE_DATA_FILE, RouteEntity[].class);
+    public boolean updateRoute(Route route) {
+        List<RouteEntity> routeEntities = jsonAdapter.getObjects(FILE_PATH, RouteEntity[].class);
+        RouteEntity entity = mapToRouteEntity(route);
         Iterator<RouteEntity> iterator = routeEntities.iterator();
-
         while (iterator.hasNext()) {
             RouteEntity routeEntity = iterator.next();
-            if (routeEntity.getName().equals(name)) {
+            if (routeEntity.getId().equals(route.getId())) {
+                routeEntities.remove(routeEntity);
+                routeEntities.add(entity);
+                return jsonAdapter.writeObjects(FILE_PATH, routeEntities);
+            }
+        }
+        return false; // Route not found
+    }
+
+    /**
+     * Elimina una ruta del archivo JSON.
+     *
+     * @param id ID de la ruta a eliminar.
+     * @return Verdadero si la ruta se eliminó correctamente, falso en caso contrario.
+     */
+    public boolean deleteRoute(String id) {
+        List<RouteEntity> routeEntities = jsonAdapter.getObjects(FILE_PATH, RouteEntity[].class);
+        Iterator<RouteEntity> iterator = routeEntities.iterator();
+        while (iterator.hasNext()) {
+            RouteEntity routeEntity = iterator.next();
+            if (routeEntity.getId().equals(id)) {
+                routeEntities.remove(routeEntity);
+                return jsonAdapter.writeObjects(FILE_PATH, routeEntities);
+            }
+        }
+
+        return false; // Route not found
+    }
+
+    /**
+     * Obtiene una ruta por su ID.
+     *
+     * @param id ID de la ruta.
+     * @return Ruta.
+     */
+    public Route getRouteById(String id) {
+        List<RouteEntity> routeEntities = jsonAdapter.getObjects(FILE_PATH, RouteEntity[].class);
+        Iterator<RouteEntity> iterator = routeEntities.iterator();
+        while (iterator.hasNext()) {
+            RouteEntity routeEntity = iterator.next();
+            if (routeEntity.getId().equals(id)) {
                 return mapToRoute(routeEntity);
             }
         }
@@ -72,76 +118,86 @@ public class RouteRepository {
         return null;
     }
 
-    /**
-     * Método para actualizar una ruta
-     * @param route Ruta a actualizar
-     * @return True si la ruta se actualizó exitosamente, false en caso contrario
-     */
-    public boolean updateRoute(Route route) {
-        List<RouteEntity> routeEntities = fileJsonAdapter.getObjects(ROUTE_DATA_FILE, RouteEntity[].class);
-        Iterator<RouteEntity> iterator = routeEntities.iterator();
-
-        while (iterator.hasNext()) {
-            RouteEntity routeEntity = iterator.next();
-            if (routeEntity.getName().equals(route.getName())) {
-                routeEntities.remove(routeEntity);
-                routeEntities.add(mapToRouteEntity(route));
-                return fileJsonAdapter.writeObjects(ROUTE_DATA_FILE, routeEntities);
-            }
-        }
-
-        return false;
-    }
-
-    /**
-     * Método para eliminar una ruta
-     * @param name Nombre de la ruta
-     * @return True si la ruta se eliminó exitosamente, false en caso contrario
-     */
-    public boolean deleteRoute(String name) {
-        List<RouteEntity> routeEntities = fileJsonAdapter.getObjects(ROUTE_DATA_FILE, RouteEntity[].class);
-        Iterator<RouteEntity> iterator = routeEntities.iterator();
-
-        while (iterator.hasNext()) {
-            RouteEntity routeEntity = iterator.next();
-            if (routeEntity.getName().equals(name)) {
-                routeEntities.remove(routeEntity);
-                return fileJsonAdapter.writeObjects(ROUTE_DATA_FILE, routeEntities);
-            }
-        }
-
-        return false;
-    }
-
-    /**
-     * Método para mapear una entidad de ruta a una ruta
-     * @param entity Entidad de ruta
-     * @return Ruta
-     */
     private Route mapToRoute(RouteEntity entity) {
-        TrainRepository trainRepository = new TrainRepository();
-        Train train = trainRepository.getTrainById(entity.getTrainId());
+        LinkedList<Train> trains = new LinkedList<>();
         LinkedList<Station> stations = new LinkedList<>();
-        LocalDateTime departureTime = entity.getDepartureTime();
-        LocalDateTime arrivalTime = entity.getArrivalTime();
-        double routeDistance = entity.getRouteDistance();
 
-        return new Route(entity.getName(), train, stations, departureTime, arrivalTime, routeDistance);
+        // Lógica para obtener los objetos de tren y estación basados en sus IDs
+        TrainRepository trainRepository = new TrainRepository();
+        StationRepository stationRepository = new StationRepository();
+
+        for (String trainId : entity.getTrainIds()) {
+            Train train = trainRepository.getTrainById(trainId);
+            if (train != null) {
+                trains.add(train);
+            } else {
+                throw new RuntimeException("Train not found"); // Manejar el caso en el que no se encuentre un tren con el ID dado
+            }
+        }
+
+        for (String stationId : entity.getStationIds()) {
+            Station station = stationRepository.getStationById(stationId);
+            if (station != null) {
+                stations.add(station);
+            } else {
+                throw new RuntimeException("Station not found"); // Manejar el caso en el que no se encuentre una estación con el ID dado
+            }
+        }
+
+        LocalTime departureTime = LocalTime.parse(entity.getDepartureTime());
+        LocalTime arrivalTime = LocalTime.parse(entity.getArrivalTime());
+
+        // Se crea la instancia de Route con las listas de trenes y estaciones obtenidas
+        return new Route(entity.getId(), entity.getName(), trains, stations, departureTime, arrivalTime, entity.getRouteDistance());
     }
 
-    /**
-     * Método para mapear una ruta a una entidad de ruta
-     * @param route Ruta
-     * @return Entidad de ruta
-     */
     private RouteEntity mapToRouteEntity(Route route) {
-        String trainId = route.getTrain().getId();
-        LinkedList<String> stationIds = new LinkedList<>();
-        LocalDateTime departureTime = route.getDepartureTime();
-        LocalDateTime arrivalTime = route.getArrivalTime();
-        double routeDistance = route.getRouteDistance();
+        RouteEntity entity = new RouteEntity(route.getId(), route.getName(), null, null, route.getDepartureTime().toString(), route.getArrivalTime().toString(), route.getRouteDistance(), route.isDisabled());
 
-        return new RouteEntity(route.getName(), trainId, stationIds, departureTime, arrivalTime, routeDistance);
+        // Mapear los IDs de los trenes
+        entity.setTrainIds(new String[route.getTrains().size()]);
+        Iterator<Train> trainIterator = route.getTrains().iterator();
+        for (int i = 0; trainIterator.hasNext(); i++) {
+            entity.getTrainIds()[i] = trainIterator.next().getId();
+        }
+
+        // Mapear los IDs de las estaciones
+        entity.setStationIds(new String[route.getStations().size()]);
+        Iterator<Station> stationIterator = route.getStations().iterator();
+        for (int i = 0; stationIterator.hasNext(); i++) {
+            entity.getStationIds()[i] = stationIterator.next().getId();
+        }
+
+        return entity;
     }
+
+    public boolean disableRoute(String id) {
+        List<RouteEntity> routeEntities = jsonAdapter.getObjects(FILE_PATH, RouteEntity[].class);
+        Iterator<RouteEntity> iterator = routeEntities.iterator();
+        while (iterator.hasNext()) {
+            RouteEntity routeEntity = iterator.next();
+            if (routeEntity.getId().equals(id)) {
+                routeEntity.setDisabled(true);
+                return jsonAdapter.writeObjects(FILE_PATH, routeEntities);
+            }
+        }
+
+        return false; // Route not found
+    }
+
+    public boolean enableRoute(String id) {
+        List<RouteEntity> routeEntities = jsonAdapter.getObjects(FILE_PATH, RouteEntity[].class);
+        Iterator<RouteEntity> iterator = routeEntities.iterator();
+        while (iterator.hasNext()) {
+            RouteEntity routeEntity = iterator.next();
+            if (routeEntity.getId().equals(id)) {
+                routeEntity.setDisabled(false);
+                return jsonAdapter.writeObjects(FILE_PATH, routeEntities);
+            }
+        }
+
+        return false; // Route not found
+    }
+
 
 }

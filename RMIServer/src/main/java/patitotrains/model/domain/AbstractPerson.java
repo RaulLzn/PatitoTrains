@@ -3,7 +3,9 @@ package patitotrains.model.domain;
 
 import raul.Model.array.Array;
 
-public abstract class  AbstractPerson {
+import java.io.Serializable;
+
+public abstract class  AbstractPerson implements Serializable {
     protected String names;
     protected String lastNames;
     protected Array<String> numbers;

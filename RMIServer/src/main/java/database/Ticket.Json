@@ -1,0 +1,18 @@
+[
+  {
+    "id": "1",
+    "purchaseDateTime": "2024-04-21T08:30:36.502428779",
+    "passengerIds": [
+      "24"
+    ],
+    "value": 50.0,
+    "seatType": {
+      "costPerKm": 12.2,
+      "id": "12",
+      "description": "Standard"
+    },
+    "routeIds": [
+      "1"
+    ]
+  }
+]

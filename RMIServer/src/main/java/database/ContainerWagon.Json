@@ -1,8 +1,89 @@
 [
   {
-    "id": "CW002"
+    "id": "CW001",
+    "luggages": [
+      {
+        "id": "L002",
+        "weight": 15,
+        "ticketId": "T002"
+      },
+      {
+        "id": "L003",
+        "weight": 25,
+        "ticketId": "T003"
+      }
+    ]
   },
   {
-    "id": "CW002"
+    "id": "C001",
+    "luggages": []
+  },
+  {
+    "id": "C002",
+    "luggages": []
+  },
+  {
+    "id": "C001",
+    "luggages": []
+  },
+  {
+    "id": "C002",
+    "luggages": []
+  },
+  {
+    "id": "C001",
+    "luggages": []
+  },
+  {
+    "id": "C002",
+    "luggages": []
+  },
+  {
+    "id": "C001",
+    "luggages": []
+  },
+  {
+    "id": "C002",
+    "luggages": []
+  },
+  {
+    "id": "C001",
+    "luggages": []
+  },
+  {
+    "id": "C002",
+    "luggages": []
+  },
+  {
+    "id": "C001",
+    "luggages": []
+  },
+  {
+    "id": "C002",
+    "luggages": []
+  },
+  {
+    "id": "C001",
+    "luggages": []
+  },
+  {
+    "id": "C002",
+    "luggages": []
+  },
+  {
+    "id": "C001",
+    "luggages": []
+  },
+  {
+    "id": "C002",
+    "luggages": []
+  },
+  {
+    "id": "C001",
+    "luggages": []
+  },
+  {
+    "id": "C002",
+    "luggages": []
   }
 ]

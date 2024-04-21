@@ -1,41 +1,26 @@
 package patitotrains.model.repository;
 
 import patitotrains.model.domain.ContainerWagon;
+import patitotrains.model.domain.Luggage;
 import patitotrains.model.repository.entity.ContainerWagonEntity;
+import patitotrains.model.repository.entity.LuggageEntity;
 import patitotrains.shared.jsonAdapter.FileJsonAdapter;
+import raul.Model.array.Array;
+import raul.Model.linkedlist.doubly.circular.LinkedList;
 import raul.Model.util.Iterator.Iterator;
 import raul.Model.util.list.List;
 
-/**
- * Repositorio de vagones contenedores.
- */
 public class ContainerWagonRepository {
+    private static final String FILE_PATH = "RMIServer/src/main/java/database/ContainerWagon.Json";
+    private final FileJsonAdapter<ContainerWagonEntity> jsonAdapter;
 
-    /**
-     * Nombre del archivo JSON.
-     */
-    private final String CONTAINER_WAGON_DATA_FILE = "RMIServer/src/main/java/database/ContainerWagon.Json";
-
-    /**
-     * Adaptador de archivos JSON.
-     */
-    private final FileJsonAdapter<ContainerWagonEntity> fileJsonAdapter;
-
-    /**
-     * Constructor de la clase.
-     */
     public ContainerWagonRepository() {
-        this.fileJsonAdapter = FileJsonAdapter.getInstance();
+        this.jsonAdapter = FileJsonAdapter.getInstance();
     }
 
-    /**
-     * Obtiene una lista de todos los vagones contenedores.
-     *
-     * @return Lista de vagones contenedores.
-     */
     public List<ContainerWagon> getAllContainerWagons() {
-        List<ContainerWagonEntity> containerWagonEntities = fileJsonAdapter.getObjects(CONTAINER_WAGON_DATA_FILE, ContainerWagonEntity[].class);
-        List<ContainerWagon> containerWagons = new raul.Model.linkedlist.doubly.circular.LinkedList<>();
+        List<ContainerWagonEntity> containerWagonEntities = jsonAdapter.getObjects(FILE_PATH, ContainerWagonEntity[].class);
+        List<ContainerWagon> containerWagons = new LinkedList<>();
 
         Iterator<ContainerWagonEntity> iterator = containerWagonEntities.iterator();
         while (iterator.hasNext()) {
@@ -45,48 +30,46 @@ public class ContainerWagonRepository {
         return containerWagons;
     }
 
-    /**
-     * Guarda un vagon contenedor en el archivo JSON.
-     *
-     * @param containerWagon Vagon contenedor.
-     * @return Verdadero si el vagon contenedor se guardó correctamente, falso en caso contrario.
-     */
     public boolean saveContainerWagon(ContainerWagon containerWagon) {
-        List<ContainerWagonEntity> containerWagonEntities = fileJsonAdapter.getObjects(CONTAINER_WAGON_DATA_FILE, ContainerWagonEntity[].class);
+        List<ContainerWagonEntity> containerWagonEntities = jsonAdapter.getObjects(FILE_PATH, ContainerWagonEntity[].class);
         ContainerWagonEntity entity = mapToContainerWagonEntity(containerWagon);
         containerWagonEntities.add(entity);
 
-        return fileJsonAdapter.writeObjects(CONTAINER_WAGON_DATA_FILE, containerWagonEntities);
+        return jsonAdapter.writeObjects(FILE_PATH, containerWagonEntities);
     }
 
-    /**
-     * Mapea un objeto de tipo ContainerWagonEntity a un objeto de tipo ContainerWagon.
-     *
-     * @param entity Entidad de vagon contenedor.
-     * @return Objeto de vagon contenedor.
-     */
     private ContainerWagon mapToContainerWagon(ContainerWagonEntity entity) {
-        return new ContainerWagon(entity.getId());
+        ContainerWagon containerWagon = new ContainerWagon(entity.getId());
+        LuggageEntity[] luggages = entity.getLuggages();
+        Iterator<LuggageEntity> iterator = new Array<>(luggages).iterator();
+        while (iterator.hasNext()) {
+            containerWagon.getLuggages().add(mapToLuggage(iterator.next()));
+        }
+        return containerWagon;
     }
 
-    /**
-     * Mapea un objeto de tipo ContainerWagon a un objeto de tipo ContainerWagonEntity.
-     *
-     * @param containerWagon Objeto de vagon contenedor.
-     * @return Entidad de vagon contenedor.
-     */
     private ContainerWagonEntity mapToContainerWagonEntity(ContainerWagon containerWagon) {
-        return new ContainerWagonEntity(containerWagon.getId());
+        ContainerWagonEntity entity = new ContainerWagonEntity(containerWagon.getId());
+        Iterator<Luggage> iterator = containerWagon.getLuggages().iterator();
+        LuggageEntity[] luggages = new LuggageEntity[containerWagon.getLuggages().size()];
+        int index = 0; // Mantener un índice para insertar elementos en el arreglo
+        while (iterator.hasNext()) {
+            luggages[index++] = new LuggageEntity(iterator.next());
+        }
+        entity.setLuggages(luggages); // Aquí se asignan los luggages al objeto ContainerWagonEntity
+        return entity;
     }
 
-    /**
-     * Obtiene un vagon contenedor por su id.
-     *
-     * @param id Id del vagon contenedor.
-     * @return Vagon contenedor.
-     */
+    private Luggage mapToLuggage(LuggageEntity entity) {
+        return new Luggage(entity.getId(), entity.getWeight(), entity.getTicketId());
+    }
+
+    private LuggageEntity mapToLuggageEntity(Luggage luggage) {
+        return new LuggageEntity(luggage.getId(), luggage.getWeight(), luggage.getTicketId());
+    }
+
     public ContainerWagon getContainerWagonById(String id) {
-        List<ContainerWagonEntity> containerWagonEntities = fileJsonAdapter.getObjects(CONTAINER_WAGON_DATA_FILE, ContainerWagonEntity[].class);
+        List<ContainerWagonEntity> containerWagonEntities = jsonAdapter.getObjects(FILE_PATH, ContainerWagonEntity[].class);
         Iterator<ContainerWagonEntity> iterator = containerWagonEntities.iterator();
         while (iterator.hasNext()) {
             ContainerWagonEntity containerWagonEntity = iterator.next();
@@ -97,22 +80,75 @@ public class ContainerWagonRepository {
         return null;
     }
 
-    /**
-     * Elimina un vagon contenedor por su id.
-     *
-     * @param id Id del vagon contenedor.
-     * @return Verdadero si el vagon contenedor se eliminó correctamente, falso en caso contrario.
-     */
+    public List<ContainerWagon> getContainerWagonsByIds(Array<String> ids) {
+        List<ContainerWagonEntity> containerWagonEntities = jsonAdapter.getObjects(FILE_PATH, ContainerWagonEntity[].class);
+        List<ContainerWagon> containerWagons = new LinkedList<>();
+        Iterator<String> iterator = ids.iterator();
+        while (iterator.hasNext()) {
+            String id = iterator.next();
+            Iterator<ContainerWagonEntity> containerWagonIterator = containerWagonEntities.iterator();
+            while (containerWagonIterator.hasNext()) {
+                ContainerWagonEntity containerWagonEntity = containerWagonIterator.next();
+                if (containerWagonEntity.getId().equals(id)) {
+                    containerWagons.add(mapToContainerWagon(containerWagonEntity));
+                }
+            }
+        }
+        return containerWagons;
+    }
+
+    public boolean addLuggageToContainerWagon(String containerWagonId, Luggage luggage) {
+        List<ContainerWagonEntity> containerWagonEntities = jsonAdapter.getObjects(FILE_PATH, ContainerWagonEntity[].class);
+        Iterator<ContainerWagonEntity> iterator = containerWagonEntities.iterator();
+        while (iterator.hasNext()) {
+            ContainerWagonEntity containerWagonEntity = iterator.next();
+            if (containerWagonEntity.getId().equals(containerWagonId)) {
+                LuggageEntity[] luggages = containerWagonEntity.getLuggages();
+                LuggageEntity[] newLuggages = new LuggageEntity[luggages.length + 1];
+                for (int i = 0; i < luggages.length; i++) {
+                    newLuggages[i] = luggages[i];
+                }
+                newLuggages[luggages.length] = mapToLuggageEntity(luggage);
+                containerWagonEntity.setLuggages(newLuggages);
+                return jsonAdapter.writeObjects(FILE_PATH, containerWagonEntities);
+            }
+        }
+        return false;
+    }
+
     public boolean deleteContainerWagon(String id) {
-        List<ContainerWagonEntity> containerWagonEntities = fileJsonAdapter.getObjects(CONTAINER_WAGON_DATA_FILE, ContainerWagonEntity[].class);
+        List<ContainerWagonEntity> containerWagonEntities = jsonAdapter.getObjects(FILE_PATH, ContainerWagonEntity[].class);
         Iterator<ContainerWagonEntity> iterator = containerWagonEntities.iterator();
         while (iterator.hasNext()) {
             ContainerWagonEntity containerWagonEntity = iterator.next();
             if (containerWagonEntity.getId().equals(id)) {
                 containerWagonEntities.remove(containerWagonEntity);
-                return fileJsonAdapter.writeObjects(CONTAINER_WAGON_DATA_FILE, containerWagonEntities);
+                return jsonAdapter.writeObjects(FILE_PATH, containerWagonEntities);
             }
         }
         return false;
     }
+
+    public boolean deleteLuggageFromContainerWagon(String containerWagonId, String luggageId) {
+        List<ContainerWagonEntity> containerWagonEntities = jsonAdapter.getObjects(FILE_PATH, ContainerWagonEntity[].class);
+        Iterator<ContainerWagonEntity> iterator = containerWagonEntities.iterator();
+        while (iterator.hasNext()) {
+            ContainerWagonEntity containerWagonEntity = iterator.next();
+            if (containerWagonEntity.getId().equals(containerWagonId)) {
+                LuggageEntity[] luggages = containerWagonEntity.getLuggages();
+                LuggageEntity[] newLuggages = new LuggageEntity[luggages.length - 1];
+                int index = 0;
+                for (int i = 0; i < luggages.length; i++) {
+                    if (!luggages[i].getId().equals(luggageId)) {
+                        newLuggages[index++] = luggages[i];
+                    }
+                }
+                containerWagonEntity.setLuggages(newLuggages);
+                return jsonAdapter.writeObjects(FILE_PATH, containerWagonEntities);
+            }
+        }
+        return false;
+    }
+
+
 }

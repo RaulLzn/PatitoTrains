@@ -1,67 +1,46 @@
 package patitotrains.model.repository.entity;
 
+import patitotrains.model.domain.ContactPerson;
 import patitotrains.model.domain.Passenger;
 import patitotrains.model.domain.types.IdType;
-import patitotrains.model.repository.entity.typesEntity.IdTypeEntity;
 import raul.Model.array.Array;
-import raul.Model.util.Iterator.Iterator;
 
-/**
- * Clase PassengerEntity
- */
-public class PassengerEntity {
+public class PassengerEntity extends AbstractPersonEntity {
     private String id;
-    private String names;
-    private String lastNames;
-    private Array<String> numbers;
+    private IdType idType;
     private String address;
-    private IdTypeEntity idType; // Cambiado a IdTypeEntity
-    private String contactPersonId;
+    private ContactPerson contactPerson;
 
     /**
-     * Constructor de la clase PassengerEntity
-     * @param id
-     * @param names
-     * @param lastNames
-     * @param numbers
-     * @param address
-     * @param idType
-     * @param contactPersonId
+     * Creates a new passenger entity.
+     *
+     * @param names         the passenger's names
+     * @param lastNames     the passenger's last names
+     * @param numbers       the passenger's numbers
+     * @param id            the passenger's id
+     * @param idType        the passenger's id type
+     * @param address       the passenger's address
+     * @param contactPerson the passenger's contact person
      */
-    public PassengerEntity(String id, String names, String lastNames, Array<String> numbers, String address, IdTypeEntity idType, String contactPersonId) {
+    public PassengerEntity(String names, String lastNames, Array<String> numbers, String id, IdType idType, String address, ContactPerson contactPerson) {
+        super(names, lastNames, numbers);
         this.id = id;
-        this.names = names;
-        this.lastNames = lastNames;
-        this.numbers = numbers;
+        this.idType = idType;
         this.address = address;
-        this.idType = idType; // Actualizado a IdTypeEntity
-        this.contactPersonId = contactPersonId;
+        this.contactPerson = contactPerson;
     }
 
     /**
-     * Constructor de la clase PassengerEntity
-     * @param passenger
+     * Creates a new passenger entity.
+     *
+     * @param passenger the passenger domain object
      */
     public PassengerEntity(Passenger passenger) {
+        super(passenger.getNames(), passenger.getLastNames(), passenger.getNumbers());
         this.id = passenger.getId();
-        this.names = passenger.getNames();
-        this.lastNames = passenger.getLastNames();
+        this.idType = passenger.getIdType();
         this.address = passenger.getAddress();
-        this.contactPersonId = passenger.getContactPerson().getId();
-
-        // Inicializar la lista de números correctamente
-        if (passenger.getNumbers() != null) {
-            this.numbers = new Array<>(2);
-            Iterator<String> iterator = passenger.getNumbers().iterator();
-            while (iterator.hasNext()) {
-                this.numbers.add(iterator.next());
-            }
-        } else {
-            this.numbers = new Array<>(2);
-        }
-
-        IdType idType = passenger.getIdType();
-        this.idType = new IdTypeEntity(idType.getId(), idType.getDescription());
+        this.contactPerson = passenger.getContactPerson();
     }
 
 
@@ -73,12 +52,12 @@ public class PassengerEntity {
         this.address = address;
     }
 
-    public String getContactPersonId() {
-        return contactPersonId;
+    public ContactPerson getContactPerson() {
+        return contactPerson;
     }
 
-    public void setContactPersonId(String contactPersonId) {
-        this.contactPersonId = contactPersonId;
+    public void setContactPerson(ContactPerson contactPerson) {
+        this.contactPerson = contactPerson;
     }
 
     public String getId() {
@@ -89,35 +68,29 @@ public class PassengerEntity {
         this.id = id;
     }
 
-    public IdTypeEntity getIdType() {
+    public IdType getIdType() {
         return idType;
     }
 
-    public void setIdType(IdTypeEntity idType) {
+    public void setIdType(IdType idType) {
         this.idType = idType;
     }
 
-    public String getLastNames() {
-        return lastNames;
-    }
-
-    public void setLastNames(String lastNames) {
-        this.lastNames = lastNames;
-    }
-
-    public String getNames() {
-        return names;
-    }
-
-    public void setNames(String names) {
-        this.names = names;
-    }
-
-    public Array<String> getNumbers() {
-        return numbers;
-    }
-
-    public void setNumbers(Array<String> numbers) {
-        this.numbers = numbers;
+    /**
+     * Converts this entity to a domain object.
+     *
+     * @return the domain object
+     */
+    @Override
+    public String toString() {
+        return "PassengerEntity{" +
+                "id='" + id + '\'' +
+                ", idType=" + idType +
+                ", address='" + address + '\'' +
+                ", contactPerson=" + contactPerson +
+                ", lastNames='" + getLastNames() + '\'' +
+                ", names='" + getNames() + '\'' +
+                ", numbers=" + getNumbers() +
+                '}';
     }
 }

@@ -3,7 +3,9 @@ package patitotrains.model.domain;
 
 import raul.Model.linkedlist.doubly.circular.LinkedList;
 
-public class PassengerWagon {
+import java.io.Serializable;
+
+public class PassengerWagon implements Serializable {
     private String id;
     private LinkedList<Passenger> premiumPassengers;
     private LinkedList<Passenger> executivePassengers;

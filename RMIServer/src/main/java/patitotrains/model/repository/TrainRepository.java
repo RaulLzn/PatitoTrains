@@ -1,155 +1,220 @@
 package patitotrains.model.repository;
 
+import patitotrains.model.domain.ContainerWagon;
+import patitotrains.model.domain.PassengerWagon;
 import patitotrains.model.domain.Train;
-import patitotrains.model.domain.types.TrainType;
 import patitotrains.model.repository.entity.TrainEntity;
 import patitotrains.shared.jsonAdapter.FileJsonAdapter;
 
+import raul.Model.array.Array;
 import raul.Model.linkedlist.doubly.circular.LinkedList;
 import raul.Model.util.Iterator.Iterator;
 import raul.Model.util.list.List;
 
-/**
- * Clase que representa un repositorio de trenes
- */
+import java.util.Arrays;
+
 public class TrainRepository {
+    private static final String FILE_PATH = "RMIServer/src/main/java/database/Train.Json";
+    private final FileJsonAdapter<TrainEntity> jsonAdapter;
 
-
-    private final String TRAIN_DATA_FILE = "ruta/hacia/el/archivo.json"; // Ruta del archivo JSON
-    private final FileJsonAdapter<TrainEntity> fileJsonAdapter; // Adaptador de archivos JSON
-
-    /**
-     * Constructor de la clase
-     */
     public TrainRepository() {
-        this.fileJsonAdapter = FileJsonAdapter.getInstance();
+        this.jsonAdapter = FileJsonAdapter.getInstance();
     }
 
     /**
-     * Método que obtiene todos los trenes del archivo JSON
-     * @return Lista de trenes
+     * Obtiene todos los trenes.
+     *
+     * @return Lista de trenes.
      */
     public List<Train> getAllTrains() {
+        List<TrainEntity> trainEntities = jsonAdapter.getObjects(FILE_PATH, TrainEntity[].class);
         List<Train> trains = new LinkedList<>();
-        List<TrainEntity> trainEntities = fileJsonAdapter.getObjects(TRAIN_DATA_FILE, TrainEntity[].class);
-        Iterator<TrainEntity> iterator = trainEntities.iterator();
 
+        Iterator<TrainEntity> iterator = trainEntities.iterator();
         while (iterator.hasNext()) {
-            TrainEntity trainEntity = iterator.next();
-            Train train = mapToTrain(trainEntity);
-            trains.add(train);
+            trains.add(mapToTrain(iterator.next()));
         }
 
         return trains;
     }
 
     /**
-     * Método que guarda un tren en el archivo JSON
-     * @param train Tren a guardar
-     * @return true si se guardó correctamente, false en caso contrario
+     * Guarda un tren en el archivo JSON.
+     *
+     * @param train Tren a guardar.
+     * @return Verdadero si el tren se guardó correctamente, falso en caso contrario.
      */
     public boolean saveTrain(Train train) {
-        TrainEntity trainEntity = mapToTrainEntity(train);
-        List<TrainEntity> trainEntities = fileJsonAdapter.getObjects(TRAIN_DATA_FILE, TrainEntity[].class);
-        trainEntities.add(trainEntity);
-        return fileJsonAdapter.writeObjects(TRAIN_DATA_FILE, trainEntities);
+        List<TrainEntity> trainEntities = jsonAdapter.getObjects(FILE_PATH, TrainEntity[].class);
+        TrainEntity entity = mapToTrainEntity(train);
+        trainEntities.add(entity);
+        return jsonAdapter.writeObjects(FILE_PATH, trainEntities);
     }
 
     /**
-     * Método que obtiene un tren por su id
-     * @param id Id del tren
-     * @return Tren
+     * Obtiene un tren por su ID.
+     *
+     * @param id ID del tren.
+     * @return Tren con el ID especificado, o nulo si no se encontró.
      */
     public Train getTrainById(String id) {
-        List<TrainEntity> trainEntities = fileJsonAdapter.getObjects(TRAIN_DATA_FILE, TrainEntity[].class);
+        List<TrainEntity> trainEntities = jsonAdapter.getObjects(FILE_PATH, TrainEntity[].class);
         Iterator<TrainEntity> iterator = trainEntities.iterator();
-
         while (iterator.hasNext()) {
-            TrainEntity trainEntity = iterator.next();
-            if (trainEntity.getId().equals(id)) {
-                return mapToTrain(trainEntity);
+            TrainEntity entity = iterator.next();
+            if (entity.getId().equals(id)) {
+                return mapToTrain(entity);
             }
         }
-
         return null;
     }
 
     /**
-     * Método que actualiza un tren en el archivo JSON
-     * @param train Tren a actualizar
-     * @return true si se actualizó correctamente, false en caso contrario
-     */
-    public boolean updateTrain(Train train) {
-        List<TrainEntity> trainEntities = fileJsonAdapter.getObjects(TRAIN_DATA_FILE, TrainEntity[].class);
-        Iterator<TrainEntity> iterator = trainEntities.iterator();
-
-        while (iterator.hasNext()) {
-            TrainEntity trainEntity = iterator.next();
-            if (trainEntity.getId().equals(train.getId())) {
-                trainEntities.remove(trainEntity);
-                trainEntities.add(mapToTrainEntity(train));
-                return fileJsonAdapter.writeObjects(TRAIN_DATA_FILE, trainEntities);
-            }
-        }
-
-        return false;
-    }
-
-    /**
-     * Método que elimina un tren del archivo JSON
-     * @param id Id del tren
-     * @return true si se eliminó correctamente, false en caso contrario
-     */
-    public boolean deleteTrain(String id) {
-        List<TrainEntity> trainEntities = fileJsonAdapter.getObjects(TRAIN_DATA_FILE, TrainEntity[].class);
-        Iterator<TrainEntity> iterator = trainEntities.iterator();
-
-        while (iterator.hasNext()) {
-            TrainEntity trainEntity = iterator.next();
-            if (trainEntity.getId().equals(id)) {
-                trainEntities.remove(trainEntity);
-                return fileJsonAdapter.writeObjects(TRAIN_DATA_FILE, trainEntities);
-            }
-        }
-
-        return false;
-    }
-
-    /**
-     * Método que mapea un objeto TrainEntity a Train
-     * @param entity Objeto TrainEntity
-     * @return Objeto Train
+     * Obtiene un tren por su nombre.
+     *
+     * @param entity Nombre del tren.
+     * @return Tren con el nombre especificado, o nulo si no se encontró.
      */
     private Train mapToTrain(TrainEntity entity) {
-        TrainType type = getTrainTypeFromString(entity.getType());
-        Train train = new Train(entity.getId(), entity.getName(), type,
-                entity.getAmtPassengerWagons(), entity.getAmtLuggageWagons());
-        train.setMileage(entity.getMileage());
-        train.setOnJourney(entity.isOnJourney());
-        train.setDisabled(entity.isDisabled());
+        Train train = new Train(entity.getId(), entity.getName(), entity.getMileage(), entity.getType(),
+                new Array<>(entity.getPassengerWagonIds().length), new Array<>(entity.getLuggageWagonIds().length),
+                entity.isOnJourney(), entity.isDisabled());
+
+        PassengerWagonRepository passengerWagonRepository = new PassengerWagonRepository();
+        List<PassengerWagon> passengerWagons = passengerWagonRepository.getPassengerWagonsByIds(new Array<>(entity.getPassengerWagonIds()));
+        Iterator<PassengerWagon> passengerWagonIterator = passengerWagons.iterator();
+        while (passengerWagonIterator.hasNext()) {
+            train.getPassengerWagons().add(passengerWagonIterator.next());
+        }
+
+        ContainerWagonRepository containerWagonRepository = new ContainerWagonRepository();
+        List<ContainerWagon> containerWagons = containerWagonRepository.getContainerWagonsByIds(new Array<>(entity.getLuggageWagonIds()));
+        Iterator<ContainerWagon> containerWagonIterator = containerWagons.iterator();
+        while (containerWagonIterator.hasNext()) {
+            train.getLuggageWagons().add(containerWagonIterator.next());
+        }
+
         return train;
     }
 
     /**
-     * Método que obtiene un objeto TrainType a partir de un String
-     * @param typeString String del tipo de tren
-     * @return Objeto TrainType
+     * Mapea un objeto Train a un objeto TrainEntity.
+     *
+     * @param train Tren a mapear.
+     * @return Entidad TrainEntity mapeada.
      */
-    private TrainType getTrainTypeFromString(String typeString) {
-        return new TrainType("", typeString, 0);
+    private TrainEntity mapToTrainEntity(Train train) {
+        TrainEntity entity = new TrainEntity(train.getId(), train.getName(), train.getMileage(), train.getType(),
+                new String[train.getPassengerWagons().size()], new String[train.getLuggageWagons().size()],
+                train.isOnJourney(), train.isDisabled());
+
+        // Lógica para mapear los IDs de los vagones de pasajeros
+        for (int i = 0; i < train.getPassengerWagons().size(); i++) {
+            entity.getPassengerWagonIds()[i] = train.getPassengerWagons().get(i).getId();
+        }
+
+        // Lógica para mapear los IDs de los vagones de equipaje
+        for (int i = 0; i < train.getLuggageWagons().size(); i++) {
+            entity.getLuggageWagonIds()[i] = train.getLuggageWagons().get(i).getId();
+        }
+
+        return entity;
     }
 
     /**
-     * Método que mapea un objeto Train a TrainEntity
-     * @param train Objeto Train
-     * @return Objeto TrainEntity
+     * Actualiza un tren en el archivo JSON.
+     *
+     * @param train Tren a actualizar.
+     * @return Verdadero si el tren se actualizó correctamente, falso en caso contrario.
      */
-    private TrainEntity mapToTrainEntity(Train train) {
-        String type = train.getType().toString();
-        TrainEntity trainEntity = new TrainEntity(train.getId(), train.getName(), train.getMileage(),
-                type, train.getPassengerWagons().size(),
-                train.getLuggageWagons().size(),
-                train.isOnJourney(), train.isDisabled());
-        return trainEntity;
+    public boolean updateTrain(Train train) {
+        List<TrainEntity> trainEntities = jsonAdapter.getObjects(FILE_PATH, TrainEntity[].class);
+        Iterator<TrainEntity> iterator = trainEntities.iterator();
+        while (iterator.hasNext()) {
+            TrainEntity entity = iterator.next();
+            if (entity.getId().equals(train.getId())) {
+                entity.setName(train.getName());
+                entity.setMileage(train.getMileage());
+                entity.setType(train.getType());
+                entity.setPassengerWagonIds(new String[train.getPassengerWagons().size()]);
+                entity.setLuggageWagonIds(new String[train.getLuggageWagons().size()]);
+                entity.setOnJourney(train.isOnJourney());
+                entity.setDisabled(train.isDisabled());
+
+                // Lógica para mapear los IDs de los vagones de pasajeros
+                for (int i = 0; i < train.getPassengerWagons().size(); i++) {
+                    entity.getPassengerWagonIds()[i] = train.getPassengerWagons().get(i).getId();
+                }
+
+                // Lógica para mapear los IDs de los vagones de equipaje
+                for (int i = 0; i < train.getLuggageWagons().size(); i++) {
+                    entity.getLuggageWagonIds()[i] = train.getLuggageWagons().get(i).getId();
+                }
+
+                return jsonAdapter.writeObjects(FILE_PATH, trainEntities);
+            }
+        }
+        return false;
+    }
+
+    public boolean addPassengerWagonToTrain(String trainId, PassengerWagon passengerWagon) {
+        List<TrainEntity> trainEntities = jsonAdapter.getObjects(FILE_PATH, TrainEntity[].class);
+        Iterator<TrainEntity> iterator = trainEntities.iterator();
+        while (iterator.hasNext()) {
+            TrainEntity entity = iterator.next();
+            if (entity.getId().equals(trainId)) {
+                entity.setPassengerWagonIds(Arrays.copyOf(entity.getPassengerWagonIds(), entity.getPassengerWagonIds().length + 1));
+                entity.getPassengerWagonIds()[entity.getPassengerWagonIds().length - 1] = passengerWagon.getId();
+
+                return jsonAdapter.writeObjects(FILE_PATH, trainEntities);
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Agrega un vagón de equipaje a un tren.
+     *
+     * @param trainId ID del tren.
+     * @param containerWagon Vagón de equipaje a agregar.
+     * @return Verdadero si el vagón de equipaje se agregó correctamente, falso en caso contrario.
+     */
+    public boolean addContainerWagonToTrain(String trainId, ContainerWagon containerWagon) {
+        List<TrainEntity> trainEntities = jsonAdapter.getObjects(FILE_PATH, TrainEntity[].class);
+        Iterator<TrainEntity> iterator = trainEntities.iterator();
+        while (iterator.hasNext()) {
+            TrainEntity entity = iterator.next();
+            if (entity.getId().equals(trainId)) {
+                entity.setLuggageWagonIds(Arrays.copyOf(entity.getLuggageWagonIds(), entity.getLuggageWagonIds().length + 1));
+                entity.getLuggageWagonIds()[entity.getLuggageWagonIds().length - 1] = containerWagon.getId();
+
+                return jsonAdapter.writeObjects(FILE_PATH, trainEntities);
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Obtiene una lista de trenes por sus IDs.
+     *
+     * @param ids IDs de los trenes.
+     * @return Lista de trenes.
+     */
+    public LinkedList<Train> getTrainsByIds(Array<String> ids) {
+        List<TrainEntity> trainEntities = jsonAdapter.getObjects(FILE_PATH, TrainEntity[].class);
+        LinkedList<Train> trains = new LinkedList<>();
+        Iterator<String> idIterator = ids.iterator();
+        while (idIterator.hasNext()) {
+            String id = idIterator.next();
+            Iterator<TrainEntity> iterator = trainEntities.iterator();
+            while (iterator.hasNext()) {
+                TrainEntity entity = iterator.next();
+                if (entity.getId().equals(id)) {
+                    trains.add(mapToTrain(entity));
+                    break;
+                }
+            }
+        }
+        return trains;
     }
 }

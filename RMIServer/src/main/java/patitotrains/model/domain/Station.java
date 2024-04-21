@@ -1,6 +1,8 @@
 package patitotrains.model.domain;
 
-public class Station {
+import java.io.Serializable;
+
+public class Station implements Serializable {
     private String id;
     private String name;
 

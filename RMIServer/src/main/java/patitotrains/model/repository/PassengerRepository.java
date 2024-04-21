@@ -1,17 +1,13 @@
 package patitotrains.model.repository;
 
-import patitotrains.model.domain.ContactPerson;
 import patitotrains.model.domain.Passenger;
 import patitotrains.model.domain.types.IdType;
-import patitotrains.model.repository.entity.ContactPersonEntity;
 import patitotrains.model.repository.entity.PassengerEntity;
-import patitotrains.model.repository.entity.typesEntity.IdTypeEntity;
 import patitotrains.shared.jsonAdapter.FileJsonAdapter;
-
 import raul.Model.array.Array;
+import raul.Model.linkedlist.doubly.circular.LinkedList;
 import raul.Model.util.Iterator.Iterator;
 import raul.Model.util.list.List;
-import raul.Model.linkedlist.doubly.circular.LinkedList;
 
 /**
  * Repositorio de pasajeros.
@@ -66,20 +62,31 @@ public class PassengerRepository {
      * @return Objeto Passenger.
      */
     private Passenger mapToPassenger(PassengerEntity entity) {
-        String numbers = buildNumbersString(entity.getNumbers());
+        // Obtener el tamaño de la colección de números del pasajero
+        int numbersSize = entity.getNumbers().size();
+        // Crear un array con el tamaño de la colección de números del pasajero
+        Array<String> numbers = new Array<>(numbersSize);
+        // Iterar sobre los números del pasajero y agregarlos al array
+        Iterator<String> iterator = entity.getNumbers().iterator();
+        while (iterator.hasNext()) {
+            numbers.add(iterator.next());
+        }
 
-        IdType idType = mapToIdType(entity.getIdType());
+        // Mapear el tipo de identificación del pasajero
+        IdType idType = new IdType(entity.getIdType().getId(), entity.getIdType().getDescription());
 
+        // Crear y devolver el pasajero
         return new Passenger(
                 entity.getNames(),
                 entity.getLastNames(),
-                new Array<>(numbers.split(", ")),
+                numbers,
                 entity.getId(),
                 idType,
                 entity.getAddress(),
                 null // No se maneja directamente la persona de contacto aquí para evitar una posible recursión infinita
         );
     }
+
 
     /**
      * Construye una cadena de números a partir de un arreglo de números.
@@ -99,11 +106,11 @@ public class PassengerRepository {
     /**
      * Mapea un objeto IdTypeEntity a un objeto IdType.
      *
-     * @param idTypeEntity Objeto IdTypeEntity.
+     * @param idType Objeto IdTypeEntity.
      * @return Objeto IdType.
      */
-    private IdType mapToIdType(IdTypeEntity idTypeEntity) {
-        return new IdType(idTypeEntity.getId(), idTypeEntity.getDescription());
+    private IdType mapToIdType(IdType idType) {
+        return new IdType(idType.getId(), idType.getDescription());
     }
 
     /**
@@ -113,10 +120,8 @@ public class PassengerRepository {
      * @return Objeto PassengerEntity.
      */
     private PassengerEntity mapToPassengerEntity(Passenger passenger) {
-        // Obtener el tamaño de la colección de números del pasajero
-        int numbersSize = passenger.getNumbers().size();
-        // Crear un array con el tamaño de la colección de números del pasajero
-        Array<String> numbers = new Array<>(numbersSize);
+        // Crear un array con los números del pasajero
+        Array<String> numbers = new Array<>(passenger.getNumbers().size());
         // Iterar sobre los números del pasajero y agregarlos al array
         Iterator<String> iterator = passenger.getNumbers().iterator();
         while (iterator.hasNext()) {
@@ -124,16 +129,16 @@ public class PassengerRepository {
         }
 
         // Mapear el tipo de identificación del pasajero
-        IdTypeEntity idTypeEntity = mapToIdTypeEntity(passenger.getIdType());
+        IdType idType = new IdType(passenger.getIdType().getId(), passenger.getIdType().getDescription());
 
         // Crear y devolver la entidad del pasajero
         return new PassengerEntity(
-                passenger.getId(),
                 passenger.getNames(),
                 passenger.getLastNames(),
                 numbers,
+                passenger.getId(),
+                idType,
                 passenger.getAddress(),
-                idTypeEntity,
                 null // No se maneja directamente la persona de contacto aquí para evitar una posible recursión infinita
         );
     }
@@ -145,8 +150,8 @@ public class PassengerRepository {
      * @param idType Objeto IdType.
      * @return Objeto IdTypeEntity.
      */
-    private IdTypeEntity mapToIdTypeEntity(IdType idType) {
-        return new IdTypeEntity(idType.getId(), idType.getDescription());
+    private IdType mapToIdTypeEntity(IdType idType) {
+        return new IdType(idType.getId(), idType.getDescription());
     }
 
     /**
@@ -185,4 +190,25 @@ public class PassengerRepository {
         }
         return false;
     }
+
+    /**
+     * Actualiza un pasajero.
+     *
+     * @param passenger Pasajero.
+     * @return Verdadero si el pasajero se actualizó correctamente, falso en caso contrario.
+     */
+    public boolean updatePassenger(Passenger passenger) {
+        List<PassengerEntity> passengerEntities = fileJsonAdapter.getObjects(PASSENGER_DATA_FILE, PassengerEntity[].class);
+        Iterator<PassengerEntity> iterator = passengerEntities.iterator();
+        while (iterator.hasNext()) {
+            PassengerEntity passengerEntity = iterator.next();
+            if (passengerEntity.getId().equals(passenger.getId())) {
+                passengerEntities.remove(passengerEntity);
+                passengerEntities.add(mapToPassengerEntity(passenger));
+                return fileJsonAdapter.writeObjects(PASSENGER_DATA_FILE, passengerEntities);
+            }
+        }
+        return false;
+    }
+
 }

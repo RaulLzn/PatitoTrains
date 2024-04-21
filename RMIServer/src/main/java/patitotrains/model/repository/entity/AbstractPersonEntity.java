@@ -1,34 +1,23 @@
 package patitotrains.model.repository.entity;
 
-import patitotrains.model.domain.Employee;
+import patitotrains.model.domain.AbstractPerson;
 import raul.Model.array.Array;
 
-public class EmployeeEntity {
-    private String id;
+public class AbstractPersonEntity {
     private String names;
     private String lastNames;
     private Array<String> numbers;
 
-    public EmployeeEntity(String id, String names, String lastNames, Array<String> numbers) {
-        this.id = id;
+    public AbstractPersonEntity(String names, String lastNames, Array<String> numbers) {
         this.names = names;
         this.lastNames = lastNames;
         this.numbers = numbers;
     }
 
-    public EmployeeEntity(Employee employee) {
-        this.id = employee.getId();
-        this.names = employee.getNames();
-        this.lastNames = employee.getLastNames();
-        this.numbers = employee.getNumbers();
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
+    public AbstractPersonEntity(AbstractPerson abstractPerson) {
+        this.names = abstractPerson.getNames();
+        this.lastNames = abstractPerson.getLastNames();
+        this.numbers = abstractPerson.getNumbers();
     }
 
     public String getNames() {

@@ -1,6 +1,8 @@
 package patitotrains.model.domain.types;
 
-public abstract class AbstractType {
+import java.io.Serializable;
+
+public abstract class AbstractType implements Serializable {
     protected String id;
     protected String description;
 

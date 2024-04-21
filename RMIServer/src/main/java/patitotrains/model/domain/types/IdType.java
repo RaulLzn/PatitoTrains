@@ -1,6 +1,8 @@
 package patitotrains.model.domain.types;
 
-public class IdType extends AbstractType {
+import java.io.Serializable;
+
+public class IdType extends AbstractType implements Serializable {
 
     public IdType(String id, String description) {
         super(id, description);

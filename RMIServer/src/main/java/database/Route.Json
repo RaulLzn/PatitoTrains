@@ -1,0 +1,48 @@
+[
+  {
+    "id": "R1",
+    "name": "Ruta de prueba",
+    "trainIds": [
+      "T1"
+    ],
+    "stationIds": [
+      "S1",
+      "S2",
+      "S3"
+    ],
+    "departureTime": "08:00",
+    "arrivalTime": "12:00",
+    "routeDistance": 200.0,
+    "disabled": false
+  },
+  {
+    "id": "1",
+    "name": "Example Route",
+    "trainIds": [
+      "T1"
+    ],
+    "stationIds": [
+      "S1",
+      "S2"
+    ],
+    "departureTime": "08:28:53.593888375",
+    "arrivalTime": "01:10",
+    "routeDistance": 100.0,
+    "disabled": false
+  },
+  {
+    "id": "1",
+    "name": "Example Route",
+    "trainIds": [
+      "T1"
+    ],
+    "stationIds": [
+      "S1",
+      "S2"
+    ],
+    "departureTime": "08:30:36.497006663",
+    "arrivalTime": "01:10",
+    "routeDistance": 100.0,
+    "disabled": false
+  }
+]

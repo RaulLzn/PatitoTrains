@@ -1,6 +1,8 @@
 package patitotrains.model.domain.types;
 
-public class SeatType extends AbstractType{
+import java.io.Serializable;
+
+public class SeatType extends AbstractType implements Serializable {
     private double costPerKm;
 
     public SeatType(String id, String description, double costPerKm) {

@@ -3,7 +3,9 @@ package patitotrains.model.domain;
 
 import raul.Model.linkedlist.doubly.circular.LinkedList;
 
-public class ContainerWagon {
+import java.io.Serializable;
+
+public class ContainerWagon implements Serializable {
     
     private String id;
     private LinkedList<Luggage> luggages;
@@ -13,19 +15,23 @@ public class ContainerWagon {
         luggages = new LinkedList<>();
     }
 
+
+
     public String getId() {
         return id;
     }
+
     public void setId(String id) {
         this.id = id;
     }
+
     public LinkedList<Luggage> getLuggages() {
         return luggages;
     }
+
     public void setLuggages(LinkedList<Luggage> luggages) {
         this.luggages = luggages;
     }
-
 
     @Override
     public String toString() {

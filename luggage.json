@@ -1,0 +1,12 @@
+[
+  {
+    "id": "L001",
+    "weight": 20,
+    "ticketId": "T001"
+  },
+  {
+    "id": "L001",
+    "weight": 25,
+    "ticketId": "T001"
+  }
+]

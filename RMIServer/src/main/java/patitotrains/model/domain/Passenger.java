@@ -3,7 +3,9 @@ package patitotrains.model.domain;
 import patitotrains.model.domain.types.IdType;
 import raul.Model.array.Array;
 
-public class Passenger extends AbstractPerson {
+import java.io.Serializable;
+
+public class Passenger extends AbstractPerson implements Serializable {
     private String id;
     private IdType idType;
     private String address;
@@ -16,6 +18,8 @@ public class Passenger extends AbstractPerson {
         this.address = address;
         this.contactPerson = contactPerson;
     }
+
+
 
     public String getAddress() {
         return address;
@@ -49,15 +53,17 @@ public class Passenger extends AbstractPerson {
         this.idType = idType;
     }
 
+
     @Override
     public String toString() {
         return "Passenger{" +
-                "id='" + id + '\'' +
+                "address='" + address + '\'' +
+                ", id='" + id + '\'' +
                 ", idType=" + idType +
-                ", contactPerson=" + contactPerson +
                 ", lastNames='" + lastNames + '\'' +
                 ", names='" + names + '\'' +
-                ", numbers=" + numbers +
+                ", numbers=" + numbers + '\'' +
+                ", contactPerson=" + contactPerson +
                 '}';
     }
 }

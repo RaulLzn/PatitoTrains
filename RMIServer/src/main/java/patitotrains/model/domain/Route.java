@@ -1,87 +1,101 @@
 package patitotrains.model.domain;
 
-
-
 import raul.Model.linkedlist.doubly.circular.LinkedList;
 
-import java.time.LocalDateTime;
+import java.io.Serializable;
+import java.time.LocalTime;
 
-public class Route {
+public class Route implements Serializable {
+    private String id;
     private String name;
-    private Train train;
+    private LinkedList<Train> trains;
     private LinkedList<Station> stations;
-    private LocalDateTime departureTime;
-    private LocalDateTime arrivalTime;
+    private LocalTime departureTime;
+    private LocalTime arrivalTime;
     private double routeDistance;
+    private boolean disabled;
 
 
-    public Route(String name, Train train, LinkedList<Station> stations, LocalDateTime departureTime,
-            LocalDateTime arrivalTime, double routeDistance) {
+    public Route(String id,String name, LinkedList<Train> trains, LinkedList<Station> stations, LocalTime departureTime,
+                 LocalTime arrivalTime, double routeDistance) {
+        this.id = id;
         this.name = name;
-        this.train = train;
+        this.trains = trains;
         this.stations = stations;
         this.departureTime = departureTime;
         this.arrivalTime = arrivalTime;
         this.routeDistance = routeDistance;
+        disabled = false;
     }
 
-    public LocalDateTime getArrivalTime() {
-        return arrivalTime;
-    }
-
-    public void setArrivalTime(LocalDateTime arrivalTime) {
-        this.arrivalTime = arrivalTime;
-    }
-
-    public LocalDateTime getDepartureTime() {
-        return departureTime;
-    }
-
-    public void setDepartureTime(LocalDateTime departureTime) {
-        this.departureTime = departureTime;
-    }
 
     public String getName() {
         return name;
     }
-
     public void setName(String name) {
         this.name = name;
-    }
-
-    public double getRouteDistance() {
-        return routeDistance;
-    }
-
-    public void setRouteDistance(double routeDistance) {
-        this.routeDistance = routeDistance;
     }
 
     public LinkedList<Station> getStations() {
         return stations;
     }
-
     public void setStations(LinkedList<Station> stations) {
         this.stations = stations;
     }
-
-    public Train getTrain() {
-        return train;
+    public LocalTime getDepartureTime() {
+        return departureTime;
+    }
+    public void setDepartureTime(LocalTime departureTime) {
+        this.departureTime = departureTime;
+    }
+    public LocalTime getArrivalTime() {
+        return arrivalTime;
+    }
+    public void setArrivalTime(LocalTime arrivalTime) {
+        this.arrivalTime = arrivalTime;
+    }
+    public double getRouteDistance() {
+        return routeDistance;
+    }
+    public void setRouteDistance(double routeDistance) {
+        this.routeDistance = routeDistance;
     }
 
-    public void setTrain(Train train) {
-        this.train = train;
+
+
+    public boolean isDisabled() {
+        return disabled;
     }
 
-    @Override
-    public String toString() {
-        return "Route{" +
-                "name='" + name + '\'' +
-                ", train=" + train +
-                ", stations=" + stations +
-                ", departureTime=" + departureTime +
-                ", arrivalTime=" + arrivalTime +
-                ", routeDistance=" + routeDistance +
-                '}';
+
+
+    public void setDisabled(boolean disabled) {
+        this.disabled = disabled;
     }
+
+
+
+    public String getId() {
+        return id;
+    }
+
+
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+
+
+    public LinkedList<Train> getTrains() {
+        return trains;
+    }
+
+
+
+    public void setTrains(LinkedList<Train> trains) {
+        this.trains = trains;
+    }
+
+
 }
