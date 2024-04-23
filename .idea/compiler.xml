@@ -7,11 +7,11 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="RMIServer" />
-        <module name="demo" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="CompraBoletos" target="21" />
+      <module name="demo" target="11" />
       <module name="demo (1)" target="11" />
       <module name="demo (2)" target="11" />
       <module name="demo (3)" target="17" />
