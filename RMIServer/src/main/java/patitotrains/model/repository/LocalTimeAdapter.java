@@ -2,11 +2,12 @@ package patitotrains.model.repository;
 
 import com.google.gson.*;
 
+import java.io.Serializable;
 import java.lang.reflect.Type;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
-public class LocalTimeAdapter implements JsonSerializer<LocalTime>, JsonDeserializer<LocalTime> {
+public class LocalTimeAdapter implements JsonSerializer<LocalTime>, JsonDeserializer<LocalTime>, Serializable {
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("HH:mm:ss");
 
     @Override

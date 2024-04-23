@@ -7,7 +7,9 @@ import raul.Model.linkedlist.doubly.circular.LinkedList;
 import raul.Model.util.Iterator.Iterator;
 import raul.Model.util.list.List;
 
-public class UserRepository {
+import java.io.Serializable;
+
+public class UserRepository implements Serializable {
 
     private final String USER_DATA_FILE = "RMIServer/src/main/java/database/User.Json"; // Ruta del archivo JSON
     private final FileJsonAdapter<UserEntity> fileJsonAdapter; // Adaptador de archivos JSON
@@ -112,7 +114,7 @@ public class UserRepository {
      */
     private User mapToUser(UserEntity entity) {
         // Mapear los datos de la entidad UserEntity a un objeto User
-        return new User(entity.getNames(), entity.getLastNames(), entity.getNumbers(), entity.isDisabled(), entity.getId(), entity.getPassword(), entity.getUserName());
+        return new User(entity.getNames(), entity.getLastNames(), entity.getNumbers(), entity.isDisabled(), entity.getId(), entity.getUserName(), entity.getPassword());
     }
 
     /**
@@ -123,7 +125,7 @@ public class UserRepository {
      */
     private UserEntity mapToUserEntity(User user) {
         // Mapear los datos del objeto User a una entidad UserEntity
-        return new UserEntity(user.getId(), user.getUserName(), user.getPassword(), user.isDisabled(), user.getNames(), user.getLastNames(), user.getNumbers());
+        return new UserEntity(user.getNames(), user.getLastNames(), user.getNumbers(), user.isDisabled(), user.getId(), user.getUserName(), user.getPassword());
     }
 
     /**

@@ -2,7 +2,9 @@ package patitotrains.model.repository.entity;
 
 import patitotrains.model.domain.Station;
 
-public class StationEntity {
+import java.io.Serializable;
+
+public class StationEntity implements Serializable {
     private String id;
     private String name;
 

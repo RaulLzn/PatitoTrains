@@ -1,36 +1,39 @@
 package patitotrains.model.remote.server;
 
-import patitotrains.model.remote.interfaces.*;
-import patitotrains.model.remote.services.AdminServiceImpl;
-import patitotrains.model.remote.services.servicesRemote.AdminServiceRemote;
+import patitotrains.model.remote.services.ServiceImpl;
+import patitotrains.model.remote.services.ServiceRemote;
+import patitotrains.model.repository.*;
 
 import java.rmi.RemoteException;
-import java.rmi.registry.LocateRegistry;
-import java.rmi.registry.Registry;
 
 public class CentralizedServerAdmin {
     public static void main(String[] args) {
         try {
-            // Crear un registro RMI en el puerto 1099 (puerto predeterminado)
-            Registry registry = LocateRegistry.createRegistry(1099);
+            // Crea un objeto AdminServiceImpl
+            ContainerWagonRepository containerWagonRepository = new ContainerWagonRepository();
+            PassengerWagonRepository passengerWagonRepository = new PassengerWagonRepository();
+            ServiceRemote adminService = getServiceRemote(containerWagonRepository, passengerWagonRepository);
 
-            // Crear instancias de los servicios remotos
-            PassengerWagonServiceRemote passengerWagonService = new PassengerWagonServiceImpl();
-            ContainerWagonServiceRemote containerWagonService = new ContainerWagonServiceImpl();
-            RouteServiceRemote routeService = new RouteServiceImpl();
-            TrainServiceRemote trainService = new TrainServiceImpl();
-            UserServiceRemote userService = new UserServiceImpl();
-
-            // Crear una instancia del servicio remoto AdminService con las implementaciones de los servicios
-            AdminServiceRemote adminService = new AdminServiceImpl(passengerWagonService, containerWagonService,
-                    routeService, trainService, userService);
-
-            // Registrar el servicio remoto en el registro RMI con un nombre único
-            registry.rebind("AdminService", adminService);
-
-            System.out.println("Servicio remoto registrado en el registro RMI.");
-        } catch (RemoteException e) {
-            System.err.println("Error al registrar el servicio remoto: " + e.getMessage());
+            // Inicia el hilo para configurar y registrar el servidor RMI
+            ServerSetupThread setupThread = new ServerSetupThread(adminService);
+            setupThread.start();
+        } catch (Exception e) {
+            System.err.println("Excepción en el servidor: " + e.toString());
+            e.printStackTrace();
         }
+    }
+
+    private static ServiceRemote getServiceRemote(ContainerWagonRepository containerWagonRepository, PassengerWagonRepository passengerWagonRepository) throws RemoteException {
+        RouteRepository routeRepository = new RouteRepository();
+        UserRepository userRepository = new UserRepository();
+        TrainRepository trainRepository = new TrainRepository();
+        StationRepository stationRepository = new StationRepository();
+        LuggageRepository luggageRepository = new LuggageRepository();
+        PassengerRepository passengerRepository = new PassengerRepository();
+        TicketRepository ticketRepository = new TicketRepository();
+
+
+        ServiceRemote adminService = new ServiceImpl(containerWagonRepository, passengerWagonRepository, routeRepository, userRepository, trainRepository, stationRepository, luggageRepository, passengerRepository, ticketRepository);
+        return adminService;
     }
 }

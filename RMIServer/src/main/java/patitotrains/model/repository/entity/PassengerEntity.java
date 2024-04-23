@@ -5,7 +5,9 @@ import patitotrains.model.domain.Passenger;
 import patitotrains.model.domain.types.IdType;
 import raul.Model.array.Array;
 
-public class PassengerEntity extends AbstractPersonEntity {
+import java.io.Serializable;
+
+public class PassengerEntity extends AbstractPersonEntity implements Serializable {
     private String id;
     private IdType idType;
     private String address;

@@ -3,7 +3,9 @@ package patitotrains.model.repository.entity;
 import patitotrains.model.domain.Train;
 import patitotrains.model.domain.types.TrainType;
 
-public class TrainEntity {
+import java.io.Serializable;
+
+public class TrainEntity implements Serializable {
     private String id;
     private String name;
     private double mileage;

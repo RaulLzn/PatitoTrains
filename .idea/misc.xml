@@ -11,6 +11,14 @@
         <option value="$PROJECT_DIR$/TicketManagement/pom.xml" />
       </list>
     </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/CompraBoletos/pom.xml" />
+        <option value="$PROJECT_DIR$/TicketManagement/pom.xml" />
+        <option value="$PROJECT_DIR$/TrainManagement/pom.xml" />
+        <option value="$PROJECT_DIR$/UserManagement/pom.xml" />
+      </set>
+    </option>
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_21" default="true" project-jdk-name="21" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />

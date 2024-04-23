@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/PatitoTrains.iml" filepath="$PROJECT_DIR$/.idea/PatitoTrains.iml" />
+      <module fileurl="file://$PROJECT_DIR$/RMIServer/RMIServer.iml" filepath="$PROJECT_DIR$/RMIServer/RMIServer.iml" />
     </modules>
   </component>
 </project>

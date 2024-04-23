@@ -1,7 +1,6 @@
 package patitotrains.model.remote.services;
 
 import patitotrains.model.domain.*;
-import patitotrains.model.remote.services.servicesRemote.AdminServiceRemote;
 import patitotrains.model.repository.*;
 import raul.Model.array.Array;
 import raul.Model.linkedlist.doubly.circular.LinkedList;
@@ -10,25 +9,33 @@ import raul.Model.util.list.List;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
-public class AdminServiceImpl extends UnicastRemoteObject implements AdminServiceRemote {
+public class ServiceImpl extends UnicastRemoteObject implements ServiceRemote {
 
     private final ContainerWagonRepository containerWagonRepository;
     private final PassengerWagonRepository passengerWagonRepository;
     private final RouteRepository routeRepository;
     private final UserRepository userRepository;
     private final TrainRepository trainRepository;
+    private final StationRepository stationRepository;
+    private final LuggageRepository luggageRepository;
+    private final PassengerRepository passengerRepository;
+    private final TicketRepository ticketRepository;
 
-    public AdminServiceImpl(ContainerWagonRepository containerWagonRepository,
-                            PassengerWagonRepository passengerWagonRepository,
-                            RouteRepository routeRepository,
-                            UserRepository userRepository,
-                            TrainRepository trainRepository) throws RemoteException {
+    public ServiceImpl(ContainerWagonRepository containerWagonRepository,
+                       PassengerWagonRepository passengerWagonRepository,
+                       RouteRepository routeRepository,
+                       UserRepository userRepository,
+                       TrainRepository trainRepository, StationRepository stationRepository, LuggageRepository luggageRepository, PassengerRepository passengerRepository, TicketRepository ticketRepository) throws RemoteException {
         super();
         this.containerWagonRepository = containerWagonRepository;
         this.passengerWagonRepository = passengerWagonRepository;
         this.routeRepository = routeRepository;
         this.userRepository = userRepository;
         this.trainRepository = trainRepository;
+        this.stationRepository = stationRepository;
+        this.luggageRepository = luggageRepository;
+        this.passengerRepository = passengerRepository;
+        this.ticketRepository = ticketRepository;
     }
 
 
@@ -173,6 +180,11 @@ public class AdminServiceImpl extends UnicastRemoteObject implements AdminServic
     }
 
     @Override
+    public List<User> getAllUsers() throws RemoteException {
+        return userRepository.getAllUsers();
+    }
+
+    @Override
     public User getUserById(String id) throws RemoteException {
         return userRepository.getUserById(id);
     }
@@ -195,6 +207,121 @@ public class AdminServiceImpl extends UnicastRemoteObject implements AdminServic
     @Override
     public boolean verifyUser(String userName, String password) throws RemoteException {
         return userRepository.verifyUser(userName, password);
+    }
+
+    @Override
+    public List<Luggage> getAllLuggage() throws RemoteException {
+        return luggageRepository.getAllLuggage();
+    }
+
+    @Override
+    public boolean saveLuggage(Luggage luggage) throws RemoteException {
+        return luggageRepository.saveLuggage(luggage);
+    }
+
+    @Override
+    public boolean updateLuggage(Luggage luggage) throws RemoteException {
+        return luggageRepository.updateLuggage(luggage);
+    }
+
+    @Override
+    public boolean deleteLuggage(String id) throws RemoteException {
+        return luggageRepository.deleteLuggage(id);
+    }
+
+    @Override
+    public Luggage getLuggageById(String id) throws RemoteException {
+        return luggageRepository.getLuggageById(id);
+    }
+
+    @Override
+    public List<Passenger> getAllPassengers() throws RemoteException {
+        return passengerRepository.getAllPassengers();
+    }
+
+    @Override
+    public boolean savePassenger(Passenger passenger) throws RemoteException {
+        return passengerRepository.savePassenger(passenger);
+    }
+
+    @Override
+    public Passenger getPassengerById(String id) throws RemoteException {
+        return passengerRepository.getPassengerById(id);
+    }
+
+    @Override
+    public boolean deletePassenger(String id) throws RemoteException {
+        return passengerRepository.deletePassenger(id);
+    }
+
+    @Override
+    public boolean updatePassenger(Passenger passenger) throws RemoteException {
+        return passengerRepository.updatePassenger(passenger);
+    }
+
+    @Override
+    public Station getStationById(String id) throws RemoteException {
+        return stationRepository.getStationById(id);
+    }
+
+    @Override
+    public LinkedList<Station> getStationsByIds(Array<String> ids) throws RemoteException {
+        return stationRepository.getStationsByIds(ids);
+    }
+
+    @Override
+    public boolean saveStation(Station station) throws RemoteException {
+        return stationRepository.saveStation(station);
+    }
+
+    @Override
+    public boolean updateStation(Station station) throws RemoteException {
+        return stationRepository.updateStation(station);
+    }
+
+    @Override
+    public boolean deleteStation(String id) throws RemoteException {
+        return stationRepository.deleteStation(id);
+    }
+
+    @Override
+    public List<Station> getAllStations() throws RemoteException {
+        return stationRepository.getAllStations();
+    }
+
+    @Override
+    public Ticket getTicketById(String id) throws RemoteException {
+        return ticketRepository.getTicketById(id);
+    }
+
+    @Override
+    public boolean saveTicket(Ticket ticket) throws RemoteException {
+        return ticketRepository.saveTicket(ticket);
+    }
+
+    @Override
+    public boolean updateTicket(Ticket ticket) throws RemoteException {
+        return ticketRepository.updateTicket(ticket);
+    }
+
+    @Override
+    public boolean deleteTicket(String id) throws RemoteException {
+        return ticketRepository.deleteTicket(id);
+    }
+
+    @Override
+    public List<Ticket> getAllTickets() throws RemoteException {
+        return ticketRepository.getAllTickets();
+    }
+
+    @Override
+    public List<Ticket> getTicketsByPassengerId(String passengerId) throws RemoteException {
+        return ticketRepository.getTicketsByPassengerId(passengerId);
+    }
+
+    @Override
+    public boolean deleteTicketsByPassengerId(String passengerId) throws RemoteException {
+        return ticketRepository.deleteTicketsByPassengerId(passengerId);
     }
 }
 

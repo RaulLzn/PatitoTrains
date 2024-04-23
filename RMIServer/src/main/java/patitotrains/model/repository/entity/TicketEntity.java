@@ -3,9 +3,10 @@ package patitotrains.model.repository.entity;
 import patitotrains.model.domain.Ticket;
 import patitotrains.model.domain.types.SeatType;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public class TicketEntity {
+public class TicketEntity implements Serializable {
     private String id;
     private String purchaseDateTime;
     private String[] passengerIds;

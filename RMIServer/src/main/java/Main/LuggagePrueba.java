@@ -10,8 +10,8 @@ public class LuggagePrueba {
         LuggageRepository repository = new LuggageRepository();
 
         // Crear objetos de equipaje
-        Luggage luggage1 = new Luggage("L001", 20, "T001");
-        Luggage luggage2 = new Luggage("L002", 15, "T002");
+        Luggage luggage1 = new Luggage("L001", 20, "10001");
+        Luggage luggage2 = new Luggage("L002", 15, "10001");
 
         // Probar el método saveLuggage
         System.out.println("Guardando equipaje...");
@@ -31,10 +31,6 @@ public class LuggagePrueba {
         luggage1.setWeight(25);
         System.out.println("Equipaje actualizado correctamente: " + repository.updateLuggage(luggage1));
         System.out.println("Nuevo equipaje 1: " + repository.getLuggageById("L001"));
-
-        // Probar el método deleteLuggage
-        System.out.println("\nEliminando equipaje...");
-        System.out.println("Equipaje eliminado correctamente: " + repository.deleteLuggage("L002"));
 
         // Verificar nuevamente el equipaje después de eliminar uno
         System.out.println("\nObteniendo todo el equipaje después de eliminar uno...");

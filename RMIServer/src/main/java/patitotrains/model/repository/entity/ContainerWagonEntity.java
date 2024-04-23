@@ -6,7 +6,9 @@ import patitotrains.model.domain.Luggage;
 import raul.Model.linkedlist.doubly.circular.LinkedList;
 import raul.Model.util.Iterator.Iterator;
 
-public class ContainerWagonEntity {
+import java.io.Serializable;
+
+public class ContainerWagonEntity implements Serializable {
     private String id;
     private LuggageEntity[] luggages;
 

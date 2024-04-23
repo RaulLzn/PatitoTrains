@@ -57,12 +57,12 @@ public class Passenger extends AbstractPerson implements Serializable {
     @Override
     public String toString() {
         return "Passenger{" +
-                "address='" + address + '\'' +
+                "names='" + names + '\'' +
+                ", lastNames='" + lastNames + '\'' +
+                ", numbers=" + numbers + '\'' +
                 ", id='" + id + '\'' +
                 ", idType=" + idType +
-                ", lastNames='" + lastNames + '\'' +
-                ", names='" + names + '\'' +
-                ", numbers=" + numbers + '\'' +
+                ", address='" + address + '\'' +
                 ", contactPerson=" + contactPerson +
                 '}';
     }

@@ -3,7 +3,9 @@ package patitotrains.model.repository.entity;
 import patitotrains.model.domain.AbstractPerson;
 import raul.Model.array.Array;
 
-public class AbstractPersonEntity {
+import java.io.Serializable;
+
+public class AbstractPersonEntity implements Serializable {
     private String names;
     private String lastNames;
     private Array<String> numbers;

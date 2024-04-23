@@ -9,10 +9,12 @@ import raul.Model.linkedlist.doubly.circular.LinkedList;
 import raul.Model.util.Iterator.Iterator;
 import raul.Model.util.list.List;
 
+import java.io.Serializable;
+
 /**
  * Repositorio para estaciones.
  */
-public class StationRepository {
+public class StationRepository implements Serializable {
     private static final String FILE_PATH = "RMIServer/src/main/java/database/Station.Json";
     private final FileJsonAdapter<StationEntity> jsonAdapter;
 

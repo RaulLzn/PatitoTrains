@@ -6,7 +6,9 @@ import patitotrains.model.domain.Train;
 import raul.Model.linkedlist.doubly.circular.LinkedList;
 import raul.Model.util.Iterator.Iterator;
 
-public class RouteEntity {
+import java.io.Serializable;
+
+public class RouteEntity implements Serializable {
     private String id;
     private String name;
     private String[] trainIds;

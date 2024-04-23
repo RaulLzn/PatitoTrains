@@ -12,12 +12,13 @@ import raul.Model.linkedlist.doubly.circular.LinkedList;
 import raul.Model.util.Iterator.Iterator;
 import raul.Model.util.list.List;
 
+import java.io.Serializable;
 import java.time.LocalTime;
 
 /**
  * Repositorio para rutas.
  */
-public class RouteRepository {
+public class RouteRepository implements Serializable {
     private static final String FILE_PATH = "RMIServer/src/main/java/database/Route.Json";
     private final FileJsonAdapter<RouteEntity> jsonAdapter;
     private Gson gson;
@@ -149,7 +150,11 @@ public class RouteRepository {
         LocalTime arrivalTime = LocalTime.parse(entity.getArrivalTime());
 
         // Se crea la instancia de Route con las listas de trenes y estaciones obtenidas
-        return new Route(entity.getId(), entity.getName(), trains, stations, departureTime, arrivalTime, entity.getRouteDistance());
+
+        Route route = new Route(entity.getId(), entity.getName(), trains, stations, departureTime, arrivalTime, entity.getRouteDistance());
+        route.setDisabled(entity.isDisabled());
+
+        return route;
     }
 
     private RouteEntity mapToRouteEntity(Route route) {

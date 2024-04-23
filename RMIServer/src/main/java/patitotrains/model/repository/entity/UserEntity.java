@@ -3,34 +3,36 @@ package patitotrains.model.repository.entity;
 import patitotrains.model.domain.User;
 import raul.Model.array.Array;
 
-public class UserEntity {
-    private String id;
-    private String userName;
-    private String password;
-    private boolean disabled;
+import java.io.Serializable;
+
+public class UserEntity implements Serializable {
     private String names;
     private String lastNames;
     private Array<String> numbers;
+    private boolean disabled;
+    private String id;
+    private String password;
+    private String userName;
 
-    public UserEntity(String id, String userName, String password, boolean disabled, String names, String lastNames, Array<String> numbers) {
-        this.id = id;
-        this.userName = userName;
-        this.password = password;
-        this.disabled = disabled;
+    public UserEntity(String names, String lastNames, Array<String> numbers, boolean disabled, String id, String userName, String password) {
         this.names = names;
         this.lastNames = lastNames;
         this.numbers = numbers;
+        this.disabled = disabled;
+        this.id = id;
+        this.userName = userName;
+        this.password = password;
     }
 
     // Constructor para la conversión de un objeto User a UserEntity
     public UserEntity(User user) {
-        this.id = user.getId();
-        this.userName = user.getUserName();
-        this.password = user.getPassword();
-        this.disabled = user.isDisabled();
         this.names = user.getNames();
         this.lastNames = user.getLastNames();
         this.numbers = user.getNumbers();
+        this.disabled = user.isDisabled();
+        this.id = user.getId();
+        this.userName = user.getUserName();
+        this.password = user.getPassword();
     }
 
     public boolean isDisabled() {
@@ -92,13 +94,13 @@ public class UserEntity {
     @Override
     public String toString() {
         return "UserEntity{" +
-                "id='" + id + '\'' +
-                ", userName='" + userName + '\'' +
-                ", password='" + password + '\'' +
-                ", disabled=" + disabled +
-                ", names='" + names + '\'' +
+                "names='" + names + '\'' +
                 ", lastNames='" + lastNames + '\'' +
                 ", numbers=" + numbers +
+                ", disabled=" + disabled +
+                ", id='" + id + '\'' +
+                ", password='" + password + '\'' +
+                ", userName='" + userName + '\'' +
                 '}';
     }
 }

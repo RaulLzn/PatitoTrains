@@ -12,11 +12,8 @@ public class UserPrueba {
         UserRepository userRepository = new UserRepository();
 
         // Crear y guardar usuarios
-        User user1 = new User("John", "Doe", new Array<>(new String[]{"32154", "25455"}), false, "001", "password123", "john_doe");
+        User user1 = new User("John", "Doe", new Array<>(new String[]{"32154", "25455"}), false, "001", "jon", "password123");
         userRepository.saveUser(user1);
-
-        User user2 = new User("Jane", "Smith", new Array<>(new String[]{"2455122"}), false, "002", "password456", "jane_smith");
-        userRepository.saveUser(user2);
 
         // Obtener todos los usuarios y mostrarlos
         System.out.println("Todos los usuarios:");
@@ -36,16 +33,6 @@ public class UserPrueba {
         userRepository.updateUser(user1);
         System.out.println("\nUsuario actualizado:");
         System.out.println(userRepository.getUserById(user1.getId()));
-
-        // Eliminar un usuario y mostrar si se eliminó correctamente
-        String userToDeleteId = "002";
-        System.out.println("\nEliminando usuario con ID " + userToDeleteId + "...");
-        boolean deleteSuccess = userRepository.deleteUser(userToDeleteId);
-        if (deleteSuccess) {
-            System.out.println("Usuario eliminado correctamente.");
-        } else {
-            System.out.println("No se pudo eliminar el usuario.");
-        }
 
         //verificar si el usuario existe
 

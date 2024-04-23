@@ -18,8 +18,8 @@ public class PassengerWagonPrueba {
         PassengerWagon passengerWagon = new PassengerWagon("PW001", true);
 
         // Crear objetos de pasajeros
-        Passenger passenger1 = new Passenger("John", "Doe", new Array<>(new String[]{"1234567", "7654321"}), "P001", new IdType("DNI", "Documento Nacional de Identidad"), "123 Main St", new ContactPerson("125", "Jane", "Doe", new Array<>(new String[]{"1234567", "7654321"})));
-        Passenger passenger2 = new Passenger("Jane", "Smith", new Array<>(new String[]{"1234567", "7654321"}), "P002", new IdType("DNI", "Documento Nacional de Identidad"), "456 Elm St", new ContactPerson("343", "John", "Smith", new Array<>(new String[]{"1234567", "7654321"})));
+        Passenger passenger1 = new Passenger("John", "Doe", new Array<>(new String[]{"1234567", "7654321"}), "P001", new IdType("DNI", "Documento Nacional de Identidad"), "123 Main St", new ContactPerson( "Jane", "Doe", new Array<>(new String[]{"1234567", "7654321"})));
+        Passenger passenger2 = new Passenger("Jane", "Smith", new Array<>(new String[]{"1234567", "7654321"}), "P002", new IdType("DNI", "Documento Nacional de Identidad"), "456 Elm St", new ContactPerson("John", "Smith", new Array<>(new String[]{"1234567", "7654321"})));
 
         // Agregar pasajeros al vagón de pasajeros
         passengerWagon.getPremiumPassengers().add(passenger1);

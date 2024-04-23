@@ -3,7 +3,6 @@ package Main;
 import patitotrains.model.domain.Route;
 import patitotrains.model.domain.Station;
 import patitotrains.model.domain.Train;
-import patitotrains.model.domain.types.TrainType;
 import patitotrains.model.repository.RouteRepository;
 import patitotrains.model.repository.StationRepository;
 import patitotrains.model.repository.TrainRepository;
@@ -15,25 +14,12 @@ import java.time.LocalTime;
 
 public class RoutePrueba {
     public static void main(String[] args) {
-        // Creamos algunos objetos de tren y estación
-        Train train1 = new Train("T1", "Expreso del Sol", new TrainType("Tren de pasajeros", "100.0", 200), 20, 14 );
 
-        //guadamos train1 en el archivo
-        TrainRepository trainRepository = new TrainRepository();
-        trainRepository.saveTrain(train1);
-
-        Station station1 = new Station("S1", "Estación Central");
-        Station station2 = new Station("S2", "Estación Norte");
-        Station station3 = new Station("S3", "Estación Sur");
-
-        //guarmos las estaciones en el archivo
-        StationRepository stationRepository = new StationRepository();
-        stationRepository.saveStation(station1);
-        stationRepository.saveStation(station2);
-        stationRepository.saveStation(station3);
 
         // Creamos una instancia del repositorio de rutas
         RouteRepository routeRepository = new RouteRepository();
+        TrainRepository trainRepository = new TrainRepository();
+        StationRepository stationRepository = new StationRepository();
 
 
         LocalTime departureTime = LocalTime.of(8, 0);
@@ -41,12 +27,12 @@ public class RoutePrueba {
 
         //obtenemos los trenes y estaciones usando los repositorios
         LinkedList<Train> trains = new LinkedList<>();
-        trains.add(trainRepository.getTrainById("T1"));
+        trains.add(trainRepository.getTrainById("1002"));
 
         LinkedList<Station> stations = new LinkedList<>();
-        stations.add(stationRepository.getStationById("S1"));
-        stations.add(stationRepository.getStationById("S2"));
-        stations.add(stationRepository.getStationById("S3"));
+        stations.add(stationRepository.getStationById("001"));
+        stations.add(stationRepository.getStationById("002"));
+        stations.add(stationRepository.getStationById("005"));
 
         Route newRoute = new Route("R1", "Ruta de prueba", trains, stations, departureTime, arrivalTime, 200.0);
 

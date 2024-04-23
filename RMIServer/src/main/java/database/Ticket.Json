@@ -1,18 +1,18 @@
 [
   {
-    "id": "1",
-    "purchaseDateTime": "2024-04-21T08:30:36.502428779",
+    "id": "1000000000000000000000000000001",
+    "purchaseDateTime": "2024-04-23T01:38:58.419385685",
     "passengerIds": [
-      "24"
+      "125430365"
     ],
-    "value": 50.0,
+    "value": 270000.0,
     "seatType": {
-      "costPerKm": 12.2,
-      "id": "12",
-      "description": "Standard"
+      "costPerKm": 1200.0,
+      "id": "1002",
+      "description": "Ejecutivo"
     },
     "routeIds": [
-      "1"
+      "100004"
     ]
   }
 ]

@@ -10,7 +10,9 @@ import raul.Model.linkedlist.doubly.circular.LinkedList;
 import raul.Model.util.Iterator.Iterator;
 import raul.Model.util.list.List;
 
-public class TicketRepository {
+import java.io.Serializable;
+
+public class TicketRepository implements Serializable {
     private static final String FILE_PATH = "RMIServer/src/main/java/database/Ticket.Json"; // Especifica la ruta correcta
 
     private final FileJsonAdapter<TicketEntity> jsonAdapter;

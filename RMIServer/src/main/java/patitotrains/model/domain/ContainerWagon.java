@@ -1,6 +1,5 @@
 package patitotrains.model.domain;
 
-
 import raul.Model.linkedlist.doubly.circular.LinkedList;
 
 import java.io.Serializable;

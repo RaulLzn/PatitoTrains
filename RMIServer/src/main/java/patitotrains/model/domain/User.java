@@ -10,12 +10,12 @@ public class User extends AbstractPerson implements Serializable {
     private String password;
     private boolean disabled;
 
-    public User(String names, String lastNames, Array<String> numbers, boolean disabled, String id, String password, String userName) {
+    public User(String names, String lastNames, Array<String> numbers, boolean disabled, String id, String userName, String password) {
         super(names, lastNames, numbers);
         this.disabled = disabled;
         this.id = id;
-        this.password = password;
         this.userName = userName;
+        this.password = password;
     }
 
     public boolean isDisabled() {

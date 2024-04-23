@@ -1,18 +1,46 @@
 [
   {
-    "id": "S1",
-    "name": "Estación Central"
+    "id": "001",
+    "name": "A"
   },
   {
-    "id": "S2",
-    "name": "Estación Norte"
+    "id": "002",
+    "name": "B"
   },
   {
-    "id": "S3",
-    "name": "Estación Sur"
+    "id": "003",
+    "name": "C"
   },
   {
-    "id": "1",
-    "name": "Estación 1"
+    "id": "004",
+    "name": "D"
+  },
+  {
+    "id": "005",
+    "name": "E"
+  },
+  {
+    "id": "006",
+    "name": "F"
+  },
+  {
+    "id": "007",
+    "name": "G"
+  },
+  {
+    "id": "008",
+    "name": "H"
+  },
+  {
+    "id": "009",
+    "name": "I"
+  },
+  {
+    "id": "010",
+    "name": "J"
+  },
+  {
+    "id": "011",
+    "name": "K"
   }
 ]

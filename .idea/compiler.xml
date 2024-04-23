@@ -6,12 +6,15 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="CompraBoletos" />
-        <module name="demo (2)" />
         <module name="RMIServer" />
         <module name="demo" />
-        <module name="demo (1)" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="CompraBoletos" target="21" />
+      <module name="demo (1)" target="11" />
+      <module name="demo (2)" target="11" />
+      <module name="demo (3)" target="17" />
+    </bytecodeTargetLevel>
   </component>
 </project>

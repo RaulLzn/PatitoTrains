@@ -8,11 +8,13 @@ import raul.Model.linkedlist.doubly.circular.LinkedList;
 import raul.Model.util.Iterator.Iterator;
 import raul.Model.util.list.List;
 
+import java.io.Serializable;
+
 /**
  * Repository for luggage.
  */
-public class LuggageRepository {
-    private static final String FILE_PATH = "luggage.json";
+public class LuggageRepository implements Serializable {
+    private static final String FILE_PATH = "RMIServer/src/main/java/database/Luggage.Json";
     private final FileJsonAdapter<LuggageEntity> jsonAdapter;
 
     public LuggageRepository() {

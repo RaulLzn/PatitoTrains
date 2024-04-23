@@ -6,9 +6,10 @@ import patitotrains.model.domain.PassengerWagon;
 import raul.Model.linkedlist.doubly.circular.LinkedList;
 import raul.Model.util.Iterator.Iterator;
 
+import java.io.Serializable;
 
 
-public class PassengerWagonEntity {
+public class PassengerWagonEntity implements Serializable {
     private String id;
     private PassengerEntity[] premiumPassengers;
     private PassengerEntity[] executivePassengers;

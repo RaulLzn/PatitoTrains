@@ -2,7 +2,9 @@ package patitotrains.model.repository.entity;
 
 import patitotrains.model.domain.Luggage;
 
-public class LuggageEntity {
+import java.io.Serializable;
+
+public class LuggageEntity implements Serializable {
     private String id;
     private int weight;
     private String ticketId;

@@ -11,10 +11,12 @@ import raul.Model.linkedlist.doubly.circular.LinkedList;
 import raul.Model.util.Iterator.Iterator;
 import raul.Model.util.list.List;
 
+import java.io.Serializable;
+
 /**
  * Repositorio para vagones de pasajeros.
  */
-public class PassengerWagonRepository {
+public class PassengerWagonRepository implements Serializable {
     private static final String FILE_PATH = "RMIServer/src/main/java/database/PassengerWagon.Json";
     private final FileJsonAdapter<PassengerWagonEntity> jsonAdapter;
 
@@ -326,10 +328,10 @@ public class PassengerWagonRepository {
                     case "Premium":
                         passengers = passengerWagonEntity.getPremiumPassengers();
                         break;
-                    case "Executive":
+                    case "Ejecutivo":
                         passengers = passengerWagonEntity.getExecutivePassengers();
                         break;
-                    case "Standard":
+                    case "Estandar":
                         passengers = passengerWagonEntity.getStandardPassengers();
                         break;
                 }

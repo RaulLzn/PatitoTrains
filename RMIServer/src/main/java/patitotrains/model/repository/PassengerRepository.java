@@ -1,5 +1,6 @@
 package patitotrains.model.repository;
 
+import patitotrains.model.domain.ContactPerson;
 import patitotrains.model.domain.Passenger;
 import patitotrains.model.domain.types.IdType;
 import patitotrains.model.repository.entity.PassengerEntity;
@@ -9,10 +10,12 @@ import raul.Model.linkedlist.doubly.circular.LinkedList;
 import raul.Model.util.Iterator.Iterator;
 import raul.Model.util.list.List;
 
+import java.io.Serializable;
+
 /**
  * Repositorio de pasajeros.
  */
-public class PassengerRepository {
+public class PassengerRepository implements Serializable {
 
     private final String PASSENGER_DATA_FILE = "RMIServer/src/main/java/database/Passenger.Json"; // Nombre del archivo JSON
     private final FileJsonAdapter<PassengerEntity> fileJsonAdapter; // Adaptador de archivos JSON
@@ -83,7 +86,7 @@ public class PassengerRepository {
                 entity.getId(),
                 idType,
                 entity.getAddress(),
-                null // No se maneja directamente la persona de contacto aquí para evitar una posible recursión infinita
+                entity.getContactPerson()
         );
     }
 
@@ -121,27 +124,42 @@ public class PassengerRepository {
      */
     private PassengerEntity mapToPassengerEntity(Passenger passenger) {
         // Crear un array con los números del pasajero
-        Array<String> numbers = new Array<>(passenger.getNumbers().size());
-        // Iterar sobre los números del pasajero y agregarlos al array
-        Iterator<String> iterator = passenger.getNumbers().iterator();
-        while (iterator.hasNext()) {
-            numbers.add(iterator.next());
+        Array<String> passengerNumbers = new Array<>(passenger.getNumbers().size());
+        Iterator<String> passengerIterator = passenger.getNumbers().iterator();
+        while (passengerIterator.hasNext()) {
+            passengerNumbers.add(passengerIterator.next());
+        }
+
+        // Crear un array con los números de la persona de contacto
+        Array<String> contactNumbers = new Array<>(passenger.getContactPerson().getNumbers().size());
+        Iterator<String> contactIterator = passenger.getContactPerson().getNumbers().iterator();
+        while (contactIterator.hasNext()) {
+            contactNumbers.add(contactIterator.next());
         }
 
         // Mapear el tipo de identificación del pasajero
         IdType idType = new IdType(passenger.getIdType().getId(), passenger.getIdType().getDescription());
 
+        // Mapear el contacto de la persona
+        ContactPerson contactPerson = passenger.getContactPerson();
+        ContactPerson contactPersonEntity = new ContactPerson(
+                contactPerson.getNames(),
+                contactPerson.getLastNames(),
+                contactNumbers
+                );
+
         // Crear y devolver la entidad del pasajero
         return new PassengerEntity(
                 passenger.getNames(),
                 passenger.getLastNames(),
-                numbers,
+                passengerNumbers,
                 passenger.getId(),
                 idType,
                 passenger.getAddress(),
-                null // No se maneja directamente la persona de contacto aquí para evitar una posible recursión infinita
+                contactPersonEntity
         );
     }
+
 
 
     /**

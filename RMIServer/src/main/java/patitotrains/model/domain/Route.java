@@ -97,5 +97,17 @@ public class Route implements Serializable {
         this.trains = trains;
     }
 
-
+    @Override
+    public String toString() {
+        return "Route{" +
+                "arrivalTime=" + arrivalTime +
+                ", id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", trains=" + trains +
+                ", stations=" + stations +
+                ", departureTime=" + departureTime +
+                ", routeDistance=" + routeDistance +
+                ", disabled=" + disabled +
+                '}';
+    }
 }

@@ -1,5 +1,6 @@
 package Main;
 
+import patitotrains.model.domain.ContactPerson;
 import patitotrains.model.domain.Passenger;
 import patitotrains.model.domain.types.IdType;
 import patitotrains.model.repository.PassengerRepository;
@@ -12,8 +13,8 @@ public class PassengerAndContactPersonPrueba {
         PassengerRepository repository = new PassengerRepository();
 
         // Crear objetos de pasajeros
-        Passenger passenger1 = new Passenger("John", "Doe", new Array<>(new String[]{"1234567", "7654321"}), "ID001", new IdType("DNI", "Documento Nacional de Identidad"), "123 Main St", null);
-        Passenger passenger2 = new Passenger("Jane", "Doe", new Array<>(new String[]{"7654321", "1234567"}), "ID002", new IdType("DNI", "Documento Nacional de Identidad"), "456 Elm St", null);
+        Passenger passenger1 = new Passenger("John", "Doe", new Array<>(new String[]{"1234567", "7654321"}), "ID001", new IdType("DNI", "Documento Nacional de Identidad"), "123 Main St", new ContactPerson("Jane", "Doe",  new Array<>(new String[]{"8765432"})));
+        Passenger passenger2 = new Passenger("Jane", "Doe", new Array<>(new String[]{"7654321", "1234567"}), "ID002", new IdType("DNI", "Documento Nacional de Identidad"), "456 Elm St", new ContactPerson("John", "Doe",  new Array<>(new String[]{"9876543"})));
 
         // Probar el método savePassenger
         System.out.println("Guardando pasajeros...");
