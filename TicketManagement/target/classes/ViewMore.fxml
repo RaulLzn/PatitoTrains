@@ -1,0 +1,515 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="patitotrains.controller.ViewMoreController">
+   <top>
+      <BorderPane prefHeight="80.0" prefWidth="800.0" style="-fx-background-color: #2174d4;" BorderPane.alignment="CENTER">
+         <left>
+            <BorderPane prefHeight="80.0" prefWidth="300.0" BorderPane.alignment="CENTER">
+               <center>
+                  <Label id="brandName" prefHeight="47.0" prefWidth="250.0" text="PatitoTrains" textFill="WHITE" BorderPane.alignment="CENTER">
+                     <font>
+                        <Font size="42.0" />
+                     </font>
+                  </Label>
+               </center>
+               <bottom>
+                  <Label prefHeight="20.0" prefWidth="252.0" text="Gestión de abordaje" textFill="WHITE" BorderPane.alignment="CENTER">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+               </bottom>
+            </BorderPane>
+         </left>
+      </BorderPane>
+   </top>
+   <center>
+      <BorderPane BorderPane.alignment="CENTER">
+         <top>
+            <BorderPane prefHeight="42.0" prefWidth="396.0" BorderPane.alignment="CENTER">
+               <center>
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="27.0" prefWidth="450.0" text="Datos del boleto:" textAlignment="CENTER" BorderPane.alignment="CENTER">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+               </center>
+               <left>
+                  <AnchorPane BorderPane.alignment="CENTER">
+                     <children>
+                        <Button fx:id="btnGoBack" layoutY="0.8" mnemonicParsing="false" onAction="#btnGoBackClicked" prefHeight="41.0" prefWidth="44.0" text="&lt;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="1.0" />
+                     </children>
+                  </AnchorPane>
+               </left>
+            </BorderPane>
+         </top>
+         <center>
+            <SplitPane fx:id="spl1" accessibleRole="IMAGE_VIEW" dividerPositions="0.1, 0.2, 0.3, 0.4, 0.5, 0.5" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" orientation="VERTICAL" prefHeight="375.0" prefWidth="494.0" BorderPane.alignment="CENTER">
+               <items>
+                  <SplitPane dividerPositions="0.5" prefHeight="100.0" prefWidth="400.0">
+                     <items>
+                        <Label alignment="CENTER" prefHeight="18.0" prefWidth="90.0" text="ID">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Label>
+                        <AnchorPane>
+                           <children>
+                              <Label fx:id="lblId" contentDisplay="CENTER" prefHeight="50.0" prefWidth="200.0" text="N/A" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                           </children>
+                        </AnchorPane>
+                     </items>
+                  </SplitPane>
+                  <SplitPane dividerPositions="0.5" prefHeight="100.0" prefWidth="400.0">
+                     <items>
+                        <Label alignment="CENTER" prefHeight="18.0" prefWidth="90.0" text="Fecha de compra">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                           <children>
+                              <Label fx:id="lblPurchaseDate" prefHeight="50.0" prefWidth="200.0" text="N/A" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                           </children>
+                        </AnchorPane>
+                     </items>
+                  </SplitPane>
+                  <SplitPane dividerPositions="0.4991438356164383" prefHeight="100.0" prefWidth="400.0">
+                     <items>
+                        <SplitPane dividerPositions="0.5" prefHeight="160.0" prefWidth="200.0">
+                           <items>
+                              <Label alignment="CENTER" prefHeight="30.0" prefWidth="91.0" text="Fecha de salida">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <AnchorPane>
+                                 <children>
+                                    <Label fx:id="lblDepartureTime" prefHeight="32.0" prefWidth="123.2" text="N/A" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                 </children>
+                              </AnchorPane>
+                           </items>
+                        </SplitPane>
+                        <SplitPane dividerPositions="2.0" prefHeight="26.0" prefWidth="254.0">
+                           <items>
+                              <Label alignment="CENTER" prefHeight="30.0" prefWidth="93.0" text="Fecha de llegada" SplitPane.resizableWithParent="false">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <AnchorPane>
+                                 <children>
+                                    <Label fx:id="lblArrivalTime" prefHeight="32.0" prefWidth="123.2" text="N/A" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                 </children>
+                              </AnchorPane>
+                           </items>
+                        </SplitPane>
+                     </items>
+                  </SplitPane>
+                  <SplitPane dividerPositions="0.4991438356164383" prefHeight="100.0" prefWidth="400.0">
+                     <items>
+                        <SplitPane dividerPositions="0.5" prefHeight="160.0" prefWidth="200.0">
+                           <items>
+                              <Label alignment="CENTER" prefHeight="30.0" prefWidth="91.0" text="Precio">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <AnchorPane>
+                                 <children>
+                                    <Label fx:id="lblValue" prefHeight="32.0" prefWidth="123.2" text="N/A" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                 </children>
+                              </AnchorPane>
+                           </items>
+                        </SplitPane>
+                        <SplitPane dividerPositions="2.0" prefHeight="26.0" prefWidth="254.0">
+                           <items>
+                              <Label alignment="CENTER" prefHeight="30.0" prefWidth="93.0" text="Tipo de asiento" SplitPane.resizableWithParent="false">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <AnchorPane>
+                                 <children>
+                                    <Label fx:id="lblSeatType" prefHeight="32.0" prefWidth="123.2" text="N/A" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                 </children>
+                              </AnchorPane>
+                           </items>
+                        </SplitPane>
+                     </items>
+                  </SplitPane>
+                  <SplitPane dividerPositions="0.4991438356164383" prefHeight="100.0" prefWidth="400.0">
+                     <items>
+                        <SplitPane dividerPositions="0.5" prefHeight="160.0" prefWidth="200.0">
+                           <items>
+                              <Label alignment="CENTER" prefHeight="30.0" prefWidth="91.0" text="Id Tren">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <AnchorPane>
+                                 <children>
+                                    <Label fx:id="lblIdTrain" prefHeight="32.0" prefWidth="123.2" text="N/A" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                 </children>
+                              </AnchorPane>
+                           </items>
+                        </SplitPane>
+                        <SplitPane dividerPositions="2.0" prefHeight="26.0" prefWidth="254.0">
+                           <items>
+                              <Label alignment="CENTER" prefHeight="30.0" prefWidth="93.0" text="Destino" SplitPane.resizableWithParent="false">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <AnchorPane>
+                                 <children>
+                                    <Label fx:id="lblDestiny" prefHeight="32.0" prefWidth="123.2" text="N/A" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                 </children>
+                              </AnchorPane>
+                           </items>
+                        </SplitPane>
+                     </items>
+                  </SplitPane>
+                  <SplitPane dividerPositions="0.5" prefHeight="800.0" prefWidth="400.0">
+                     <items>
+                        <SplitPane dividerPositions="0.5, 0.5, 0.5" orientation="VERTICAL">
+                           <items>
+                              <BorderPane prefHeight="33.0" prefWidth="371.0">
+                                 <center>
+                                    <Label text="Datos pasajero" BorderPane.alignment="CENTER">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                 </center>
+                              </BorderPane>
+                              <SplitPane dividerPositions="0.4991438356164383" prefHeight="69.0" prefWidth="414.0">
+                                 <items>
+                                    <SplitPane dividerPositions="0.5" prefHeight="160.0" prefWidth="200.0">
+                                       <items>
+                                          <Label alignment="CENTER" prefHeight="30.0" prefWidth="91.0" text="Nombre">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <AnchorPane>
+                                             <children>
+                                                <Label fx:id="lblPassengerName" prefHeight="32.0" prefWidth="123.2" text="N/A" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                             </children>
+                                          </AnchorPane>
+                                       </items>
+                                    </SplitPane>
+                                    <SplitPane dividerPositions="2.0" prefHeight="26.0" prefWidth="254.0">
+                                       <items>
+                                          <Label alignment="CENTER" prefHeight="30.0" prefWidth="93.0" text="Apellido" SplitPane.resizableWithParent="false">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <AnchorPane>
+                                             <children>
+                                                <Label fx:id="lblPassengerLastName" prefHeight="32.0" prefWidth="123.2" text="N/A" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                             </children>
+                                          </AnchorPane>
+                                       </items>
+                                    </SplitPane>
+                                 </items>
+                              </SplitPane>
+                              <SplitPane dividerPositions="0.4991438356164383" prefHeight="69.0" prefWidth="414.0">
+                                 <items>
+                                    <SplitPane dividerPositions="0.5" prefHeight="160.0" prefWidth="200.0">
+                                       <items>
+                                          <Label alignment="CENTER" prefHeight="30.0" prefWidth="91.0" text="Tipo ID">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <AnchorPane>
+                                             <children>
+                                                <Label fx:id="lblPassengerIdType" prefHeight="32.0" prefWidth="123.2" text="N/A" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                             </children>
+                                          </AnchorPane>
+                                       </items>
+                                    </SplitPane>
+                                    <SplitPane dividerPositions="2.0" prefHeight="26.0" prefWidth="254.0">
+                                       <items>
+                                          <Label alignment="CENTER" prefHeight="30.0" prefWidth="93.0" text="ID" SplitPane.resizableWithParent="false">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <AnchorPane>
+                                             <children>
+                                                <Label fx:id="lblPassengerId" prefHeight="32.0" prefWidth="123.2" text="N/A" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                             </children>
+                                          </AnchorPane>
+                                       </items>
+                                    </SplitPane>
+                                 </items>
+                              </SplitPane>
+                              <SplitPane dividerPositions="0.4991438356164383" prefHeight="69.0" prefWidth="414.0">
+                                 <items>
+                                    <SplitPane dividerPositions="0.5" prefHeight="160.0" prefWidth="200.0">
+                                       <items>
+                                          <Label alignment="CENTER" prefHeight="30.0" prefWidth="91.0" text="Dirección">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <AnchorPane>
+                                             <children>
+                                                <Label fx:id="lblPassengerAddress" prefHeight="32.0" prefWidth="123.2" text="N/A" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                             </children>
+                                          </AnchorPane>
+                                       </items>
+                                    </SplitPane>
+                                    <SplitPane dividerPositions="0.5" prefHeight="26.0" prefWidth="254.0">
+                                       <items>
+                                          <Label alignment="CENTER" prefHeight="30.0" prefWidth="93.0" text="Numeros" SplitPane.resizableWithParent="false">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <AnchorPane>
+                                             <children>
+                                                <ScrollPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                   <content>
+                                                      <TextArea fx:id="txtAreaPassengerNumbers" editable="false" prefHeight="65.0" prefWidth="250.0" />
+                                                   </content>
+                                                </ScrollPane>
+                                             </children>
+                                          </AnchorPane>
+                                       </items>
+                                    </SplitPane>
+                                 </items>
+                              </SplitPane>
+                           </items>
+                        </SplitPane>
+                        <SplitPane dividerPositions="0.5, 0.5, 0.5" orientation="VERTICAL">
+                           <items>
+                              <BorderPane prefHeight="0.0" prefWidth="372.0">
+                                 <center>
+                                    <Label text="Datos persona de contacto" BorderPane.alignment="CENTER">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                 </center>
+                              </BorderPane>
+                              <SplitPane prefHeight="69.0" prefWidth="414.0">
+                                 <items>
+                                    <SplitPane dividerPositions="0.5" prefHeight="160.0" prefWidth="200.0">
+                                       <items>
+                                          <Label alignment="CENTER" prefHeight="30.0" prefWidth="91.0" text="Nombre">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <AnchorPane>
+                                             <children>
+                                                <Label fx:id="lblContactName" prefHeight="32.0" prefWidth="123.2" text="N/A" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                             </children>
+                                          </AnchorPane>
+                                       </items>
+                                    </SplitPane>
+                                 </items>
+                              </SplitPane>
+                              <SplitPane dividerPositions="2.0" prefHeight="26.0" prefWidth="254.0">
+                                 <items>
+                                    <Label alignment="CENTER" prefHeight="30.0" prefWidth="93.0" text="Apellido" SplitPane.resizableWithParent="false">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <AnchorPane>
+                                       <children>
+                                          <Label fx:id="lblContactLastName" prefHeight="32.0" prefWidth="123.2" text="N/A" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                       </children>
+                                    </AnchorPane>
+                                 </items>
+                              </SplitPane>
+                              <SplitPane prefHeight="69.0" prefWidth="414.0">
+                                 <items>
+                                    <SplitPane dividerPositions="0.5" prefHeight="26.0" prefWidth="254.0">
+                                       <items>
+                                          <Label alignment="CENTER" prefHeight="30.0" prefWidth="93.0" text="Numeros" SplitPane.resizableWithParent="false">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <AnchorPane>
+                                             <children>
+                                                <ScrollPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                   <content>
+                                                      <TextArea fx:id="txtAreaContactNumbers" editable="false" prefHeight="62.0" prefWidth="618.0" />
+                                                   </content>
+                                                </ScrollPane>
+                                             </children>
+                                          </AnchorPane>
+                                       </items>
+                                    </SplitPane>
+                                 </items>
+                              </SplitPane>
+                           </items>
+                        </SplitPane>
+                     </items>
+                  </SplitPane>
+                  <SplitPane dividerPositions="0.5" prefHeight="800.0" prefWidth="400.0">
+                     <items>
+                        <SplitPane dividerPositions="0.5, 0.5, 0.5" orientation="VERTICAL" prefHeight="800.0" prefWidth="400.0">
+                           <items>
+                              <BorderPane maxHeight="60.0" prefHeight="33.0" prefWidth="371.0">
+                                 <center>
+                                    <Label text="Maleta 1" BorderPane.alignment="CENTER">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                 </center>
+                              </BorderPane>
+                              <SplitPane prefHeight="69.0" prefWidth="414.0">
+                                 <items>
+                                    <SplitPane dividerPositions="0.5" prefHeight="160.0" prefWidth="200.0">
+                                       <items>
+                                          <Label alignment="CENTER" prefHeight="30.0" prefWidth="91.0" text="ID">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <AnchorPane>
+                                             <children>
+                                                <Label fx:id="lblLuggageOneId" prefHeight="32.0" prefWidth="123.2" text="N/A" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                             </children>
+                                          </AnchorPane>
+                                       </items>
+                                    </SplitPane>
+                                 </items>
+                              </SplitPane>
+                              <SplitPane prefHeight="69.0" prefWidth="414.0">
+                                 <items>
+                                    <SplitPane dividerPositions="0.5" prefHeight="160.0" prefWidth="200.0">
+                                       <items>
+                                          <Label alignment="CENTER" prefHeight="30.0" prefWidth="91.0" text="Peso">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <AnchorPane>
+                                             <children>
+                                                <Label fx:id="lblLuggageOneWeight" prefHeight="32.0" prefWidth="123.2" text="N/A" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                             </children>
+                                          </AnchorPane>
+                                       </items>
+                                    </SplitPane>
+                                 </items>
+                              </SplitPane>
+                              <SplitPane prefHeight="69.0" prefWidth="414.0">
+                                 <items>
+                                    <SplitPane dividerPositions="0.5" prefHeight="160.0" prefWidth="200.0">
+                                       <items>
+                                          <Label alignment="CENTER" maxHeight="60.0" prefHeight="30.0" prefWidth="91.0" text="Id de vagon">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <AnchorPane>
+                                             <children>
+                                                <Label fx:id="lblLuggageOneContainerId" maxHeight="60.0" prefHeight="32.0" prefWidth="123.2" text="N/A" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                             </children>
+                                          </AnchorPane>
+                                       </items>
+                                    </SplitPane>
+                                 </items>
+                              </SplitPane>
+                           </items>
+                        </SplitPane>
+                        <SplitPane dividerPositions="0.5, 0.5, 0.5" orientation="VERTICAL" prefHeight="800.0" prefWidth="400.0">
+                           <items>
+                              <BorderPane maxHeight="60.0" prefHeight="33.0" prefWidth="371.0">
+                                 <center>
+                                    <Label maxHeight="100.0" text="Maleta 2" BorderPane.alignment="CENTER">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                 </center>
+                              </BorderPane>
+                              <SplitPane prefHeight="69.0" prefWidth="414.0">
+                                 <items>
+                                    <SplitPane dividerPositions="0.5" prefHeight="160.0" prefWidth="200.0">
+                                       <items>
+                                          <Label alignment="CENTER" prefHeight="30.0" prefWidth="91.0" text="ID">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <AnchorPane>
+                                             <children>
+                                                <Label fx:id="lblLuggageTwoId" prefHeight="32.0" prefWidth="123.2" text="N/A" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                             </children>
+                                          </AnchorPane>
+                                       </items>
+                                    </SplitPane>
+                                 </items>
+                              </SplitPane>
+                              <SplitPane prefHeight="69.0" prefWidth="414.0">
+                                 <items>
+                                    <SplitPane dividerPositions="0.5" prefHeight="160.0" prefWidth="200.0">
+                                       <items>
+                                          <Label alignment="CENTER" prefHeight="30.0" prefWidth="91.0" text="Peso">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <AnchorPane>
+                                             <children>
+                                                <Label fx:id="lblLuggageTwoWeight" prefHeight="32.0" prefWidth="123.2" text="N/A" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                             </children>
+                                          </AnchorPane>
+                                       </items>
+                                    </SplitPane>
+                                 </items>
+                              </SplitPane>
+                              <SplitPane prefHeight="69.0" prefWidth="414.0">
+                                 <items>
+                                    <SplitPane dividerPositions="0.5" prefHeight="160.0" prefWidth="200.0">
+                                       <items>
+                                          <Label alignment="CENTER" maxHeight="60.0" prefHeight="30.0" prefWidth="91.0" text="Id de vagon">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <AnchorPane>
+                                             <children>
+                                                <Label fx:id="lblLuggageTwoContainerId" maxHeight="60.0" prefHeight="32.0" prefWidth="123.2" text="N/A" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                             </children>
+                                          </AnchorPane>
+                                       </items>
+                                    </SplitPane>
+                                 </items>
+                              </SplitPane>
+                           </items>
+                        </SplitPane>
+                     </items>
+                  </SplitPane>
+               </items>
+               <BorderPane.margin>
+                  <Insets />
+               </BorderPane.margin>
+            </SplitPane>
+         </center>
+         <BorderPane.margin>
+            <Insets bottom="25.0" left="25.0" right="25.0" />
+         </BorderPane.margin>
+      </BorderPane>
+   </center>
+</BorderPane>

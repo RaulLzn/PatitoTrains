@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="patitotrains.controller.boardingPanelController.BoardingPanelController">
+   <top>
+      <BorderPane prefHeight="80.0" prefWidth="800.0" style="-fx-background-color: #2174d4;" BorderPane.alignment="CENTER">
+         <left>
+            <BorderPane prefHeight="80.0" prefWidth="300.0" BorderPane.alignment="CENTER">
+               <center>
+                  <Label id="brandName" prefHeight="47.0" prefWidth="250.0" text="PatitoTrains" textFill="WHITE" BorderPane.alignment="CENTER">
+                     <font>
+                        <Font size="42.0" />
+                     </font>
+                  </Label>
+               </center>
+               <bottom>
+                  <Label prefHeight="20.0" prefWidth="252.0" text="Abordaje" textFill="WHITE" BorderPane.alignment="CENTER">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+               </bottom>
+            </BorderPane>
+         </left>
+      </BorderPane>
+   </top>
+   <center>
+      <BorderPane layoutX="10.0" layoutY="10.0" prefHeight="401.0" prefWidth="765.0" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets left="60.0" right="60.0" top="30.0" />
+         </BorderPane.margin>
+         <center>
+            <AnchorPane prefHeight="405.0" prefWidth="680.0" BorderPane.alignment="CENTER">
+               <children>
+                  <TableView fx:id="tableTickets" layoutY="-7.2" prefHeight="374.0" prefWidth="680.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-7.0">
+                    <columns>
+                        <TableColumn fx:id="columnId" maxWidth="400.0" prefWidth="100.0" style="-fx-alignment: CENTER;" text="Ticket Id" />
+                      <TableColumn fx:id="columnName" editable="false" maxWidth="400.0" minWidth="80.0" prefWidth="150.4000244140625" sortable="false" text="Nombre">
+    <style>
+        -fx-alignment: CENTER;
+    </style>
+</TableColumn>
+
+<TableColumn fx:id="columnLastName" editable="false" maxWidth="400.0" minWidth="60.0" prefWidth="143.20001220703125" sortable="false" text="Apellidos">
+    <style>
+        -fx-alignment: CENTER;
+    </style>
+</TableColumn>
+                        <TableColumn fx:id="columnTrain" editable="false" maxWidth="400.0" minWidth="90.0" prefWidth="133.60003662109375" sortable="false" style="&#10;        -fx-alignment: CENTER;&#10;    " text="Tren" />
+
+<TableColumn fx:id="columnTrainId" editable="false" maxWidth="250.0" minWidth="100.0" prefWidth="132.79998779296875" text="Tren ID">
+    <style>
+        -fx-alignment: CENTER;
+    </style>
+</TableColumn>
+
+<TableColumn fx:id="columnSeatType" editable="false" maxWidth="250.0" minWidth="90.0" prefWidth="124.0" sortable="false" text="Tipo de asiento">
+    <style>
+        -fx-alignment: CENTER;
+    </style>
+</TableColumn>
+                    </columns>
+                     <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy>
+                  </TableView>
+               </children>
+            </AnchorPane>
+         </center>
+      </BorderPane>
+   </center>
+</BorderPane>
