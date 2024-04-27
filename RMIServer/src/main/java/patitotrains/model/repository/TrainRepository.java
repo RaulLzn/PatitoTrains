@@ -14,7 +14,7 @@ import java.io.Serializable;
 import java.util.Arrays;
 
 public class TrainRepository implements Serializable {
-    private static final String FILE_PATH = "RMIServer/src/main/java/database/Train.Json";
+    private static final String FILE_PATH = "Train.Json";
     private final FileJsonAdapter<TrainEntity> jsonAdapter;
 
     public TrainRepository() {

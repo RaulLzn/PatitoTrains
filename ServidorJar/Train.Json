@@ -1,0 +1,202 @@
+[
+  {
+    "id": "1001",
+    "name": "PatitoTrenOriginal",
+    "mileage": 0.0,
+    "type": {
+      "cargoCapacity": 28,
+      "id": "002",
+      "description": "Mercedes"
+    },
+    "passengerWagonIds": [
+      "100100",
+      "100101",
+      "100102",
+      "100103",
+      "100104",
+      "100105",
+      "100106",
+      "100107",
+      "100108",
+      "100109",
+      "100110",
+      "100111"
+    ],
+    "luggageWagonIds": [
+      "100100",
+      "100101",
+      "100102",
+      "100103",
+      "100104",
+      "100105"
+    ],
+    "onJourney": false,
+    "disabled": false
+  },
+  {
+    "id": "1002",
+    "name": "Patito Train Volador",
+    "mileage": 0.0,
+    "type": {
+      "cargoCapacity": 32,
+      "id": "001",
+      "description": "Arnold"
+    },
+    "passengerWagonIds": [
+      "100200",
+      "100201",
+      "100202",
+      "100203",
+      "100204",
+      "100205",
+      "100206"
+    ],
+    "luggageWagonIds": [
+      "100200",
+      "100201",
+      "100202",
+      "100203"
+    ],
+    "onJourney": false,
+    "disabled": false
+  },
+  {
+    "id": "1003",
+    "name": "Patito Inservible",
+    "mileage": 0.0,
+    "type": {
+      "cargoCapacity": 28,
+      "id": "002",
+      "description": "Mercedes"
+    },
+    "passengerWagonIds": [
+      "100300",
+      "100301",
+      "100302",
+      "100303",
+      "100304",
+      "100305",
+      "100306",
+      "100307",
+      "100308"
+    ],
+    "luggageWagonIds": [
+      "100300",
+      "100301",
+      "100302",
+      "100303",
+      "100304"
+    ],
+    "onJourney": false,
+    "disabled": true
+  },
+  {
+    "id": "1004",
+    "name": "PatitoExpress",
+    "mileage": 0.0,
+    "type": {
+      "cargoCapacity": 28,
+      "id": "002",
+      "description": "Mercedes"
+    },
+    "passengerWagonIds": [
+      "100400",
+      "100401",
+      "100402",
+      "100403",
+      "100404",
+      "100405",
+      "100406",
+      "100407",
+      "100408",
+      "100409",
+      "100410",
+      "100411",
+      "100412",
+      "100413",
+      "100414"
+    ],
+    "luggageWagonIds": [
+      "100400",
+      "100401",
+      "100402",
+      "100403",
+      "100404",
+      "100405",
+      "100406",
+      "100407"
+    ],
+    "onJourney": false,
+    "disabled": false
+  },
+  {
+    "id": "1005",
+    "name": "RaulTrain",
+    "mileage": 0.0,
+    "type": {
+      "cargoCapacity": 32,
+      "id": "001",
+      "description": "Arnold"
+    },
+    "passengerWagonIds": [
+      "100500",
+      "100501",
+      "100502",
+      "100503",
+      "100504",
+      "100505",
+      "100506",
+      "100507",
+      "100508",
+      "100509"
+    ],
+    "luggageWagonIds": [
+      "100500",
+      "100501",
+      "100502",
+      "100503",
+      "100504"
+    ],
+    "onJourney": false,
+    "disabled": false
+  },
+  {
+    "id": "1006",
+    "name": "Patito",
+    "mileage": 0.0,
+    "type": {
+      "cargoCapacity": 28,
+      "id": "002",
+      "description": "Mercedes"
+    },
+    "passengerWagonIds": [
+      "100600",
+      "100601",
+      "100602",
+      "100603",
+      "100604",
+      "100605",
+      "100606",
+      "100607",
+      "100608",
+      "100609",
+      "100610",
+      "100611",
+      "100612",
+      "100613",
+      "100614"
+    ],
+    "luggageWagonIds": [
+      "100600",
+      "100601",
+      "100602",
+      "100603",
+      "100604",
+      "100605",
+      "100606",
+      "100607"
+    ],
+    "onJourney": false,
+    "disabled": true
+  }
+]

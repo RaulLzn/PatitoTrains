@@ -2,6 +2,7 @@ package patitotrains.model.remote.services;
 
 import patitotrains.model.domain.*;
 import patitotrains.model.repository.*;
+import patitotrains.model.trazabilidad.ActionLogger;
 import raul.Model.array.Array;
 import raul.Model.linkedlist.doubly.circular.LinkedList;
 import raul.Model.util.list.List;
@@ -20,12 +21,13 @@ public class ServiceImpl extends UnicastRemoteObject implements ServiceRemote {
     private final LuggageRepository luggageRepository;
     private final PassengerRepository passengerRepository;
     private final TicketRepository ticketRepository;
+    private final ActionLogger actionLogger;
 
     public ServiceImpl(ContainerWagonRepository containerWagonRepository,
                        PassengerWagonRepository passengerWagonRepository,
                        RouteRepository routeRepository,
                        UserRepository userRepository,
-                       TrainRepository trainRepository, StationRepository stationRepository, LuggageRepository luggageRepository, PassengerRepository passengerRepository, TicketRepository ticketRepository) throws RemoteException {
+                       TrainRepository trainRepository, StationRepository stationRepository, LuggageRepository luggageRepository, PassengerRepository passengerRepository, TicketRepository ticketRepository, ActionLogger actionLogger) throws RemoteException {
         super();
         this.containerWagonRepository = containerWagonRepository;
         this.passengerWagonRepository = passengerWagonRepository;
@@ -36,6 +38,7 @@ public class ServiceImpl extends UnicastRemoteObject implements ServiceRemote {
         this.luggageRepository = luggageRepository;
         this.passengerRepository = passengerRepository;
         this.ticketRepository = ticketRepository;
+        this.actionLogger = actionLogger;
     }
 
 
@@ -322,6 +325,11 @@ public class ServiceImpl extends UnicastRemoteObject implements ServiceRemote {
     @Override
     public boolean deleteTicketsByPassengerId(String passengerId) throws RemoteException {
         return ticketRepository.deleteTicketsByPassengerId(passengerId);
+    }
+
+    @Override
+    public boolean logAction(String action) {
+        return actionLogger.logAction(action);
     }
 }
 

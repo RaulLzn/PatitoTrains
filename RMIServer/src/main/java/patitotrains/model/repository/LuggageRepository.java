@@ -14,7 +14,7 @@ import java.io.Serializable;
  * Repository for luggage.
  */
 public class LuggageRepository implements Serializable {
-    private static final String FILE_PATH = "RMIServer/src/main/java/database/Luggage.Json";
+    private static final String FILE_PATH = "Luggage.Json";
     private final FileJsonAdapter<LuggageEntity> jsonAdapter;
 
     public LuggageRepository() {

@@ -19,7 +19,7 @@ import java.time.LocalTime;
  * Repositorio para rutas.
  */
 public class RouteRepository implements Serializable {
-    private static final String FILE_PATH = "RMIServer/src/main/java/database/Route.Json";
+    private static final String FILE_PATH = "Route.Json";
     private final FileJsonAdapter<RouteEntity> jsonAdapter;
     private Gson gson;
 

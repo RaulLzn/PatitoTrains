@@ -13,7 +13,7 @@ import raul.Model.util.list.List;
 import java.io.Serializable;
 
 public class TicketRepository implements Serializable {
-    private static final String FILE_PATH = "RMIServer/src/main/java/database/Ticket.Json"; // Especifica la ruta correcta
+    private static final String FILE_PATH = "Ticket.Json"; // Especifica la ruta correcta
 
     private final FileJsonAdapter<TicketEntity> jsonAdapter;
 

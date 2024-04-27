@@ -15,7 +15,7 @@ import java.io.Serializable;
 import java.rmi.RemoteException;
 
 public class ContainerWagonRepository implements ContainerWagonServiceRemote , Serializable {
-    private static final String FILE_PATH = "RMIServer/src/main/java/database/ContainerWagon.Json";
+    private static final String FILE_PATH = "ContainerWagon.Json";
     private final FileJsonAdapter<ContainerWagonEntity> jsonAdapter;
 
     public ContainerWagonRepository() {

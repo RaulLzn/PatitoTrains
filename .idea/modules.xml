@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Administator/Administator.iml" filepath="$PROJECT_DIR$/Administator/Administator.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/PatitoTrains.iml" filepath="$PROJECT_DIR$/.idea/PatitoTrains.iml" />
       <module fileurl="file://$PROJECT_DIR$/RMIServer/RMIServer.iml" filepath="$PROJECT_DIR$/RMIServer/RMIServer.iml" />
-      <module fileurl="file://$PROJECT_DIR$/TicketManagement/TicketManagement.iml" filepath="$PROJECT_DIR$/TicketManagement/TicketManagement.iml" />
-      <module fileurl="file://$PROJECT_DIR$/TicketPurchase/TicketPurchase.iml" filepath="$PROJECT_DIR$/TicketPurchase/TicketPurchase.iml" />
     </modules>
   </component>
 </project>

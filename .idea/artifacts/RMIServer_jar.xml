@@ -1,0 +1,18 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="RMIServer:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/RMIServer_jar</output-path>
+    <root id="archive" name="RMIServer.jar">
+      <element id="module-output" name="RMIServer" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../EstructuraDeDatos/Jars/EstructurasDeDatos.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/google/code/gson/gson/2.10.1/gson-2.10.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/Documentos/FX/openjfx-22_linux-aarch64_bin-sdk/javafx-sdk-22/lib/javafx-swt.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/Documentos/FX/openjfx-22_linux-aarch64_bin-sdk/javafx-sdk-22/lib/javafx.base.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/Documentos/FX/openjfx-22_linux-aarch64_bin-sdk/javafx-sdk-22/lib/javafx.controls.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/Documentos/FX/openjfx-22_linux-aarch64_bin-sdk/javafx-sdk-22/lib/javafx.fxml.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/Documentos/FX/openjfx-22_linux-aarch64_bin-sdk/javafx-sdk-22/lib/javafx.graphics.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/Documentos/FX/openjfx-22_linux-aarch64_bin-sdk/javafx-sdk-22/lib/javafx.media.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/Documentos/FX/openjfx-22_linux-aarch64_bin-sdk/javafx-sdk-22/lib/javafx.swing.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/Documentos/FX/openjfx-22_linux-aarch64_bin-sdk/javafx-sdk-22/lib/javafx.web.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

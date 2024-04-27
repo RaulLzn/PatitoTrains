@@ -17,7 +17,7 @@ import java.io.Serializable;
  */
 public class PassengerRepository implements Serializable {
 
-    private final String PASSENGER_DATA_FILE = "RMIServer/src/main/java/database/Passenger.Json"; // Nombre del archivo JSON
+    private final String PASSENGER_DATA_FILE = "Passenger.Json"; // Nombre del archivo JSON
     private final FileJsonAdapter<PassengerEntity> fileJsonAdapter; // Adaptador de archivos JSON
 
     /**

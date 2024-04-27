@@ -11,7 +11,7 @@ import java.io.Serializable;
 
 public class UserRepository implements Serializable {
 
-    private final String USER_DATA_FILE = "RMIServer/src/main/java/database/User.Json"; // Ruta del archivo JSON
+    private final String USER_DATA_FILE = "User.Json"; // Ruta del archivo JSON
     private final FileJsonAdapter<UserEntity> fileJsonAdapter; // Adaptador de archivos JSON
 
     public UserRepository() {

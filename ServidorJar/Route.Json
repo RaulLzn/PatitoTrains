@@ -1,0 +1,175 @@
+[
+  {
+    "id": "100003",
+    "name": "Ruta1",
+    "trainIds": [
+      "1001"
+    ],
+    "stationIds": [
+      "001",
+      "006",
+      "007",
+      "008"
+    ],
+    "departureTime": "00:57",
+    "arrivalTime": "02:15",
+    "routeDistance": 160.0,
+    "disabled": false
+  },
+  {
+    "id": "1002",
+    "name": "PersonalRoute",
+    "trainIds": [
+      "1001",
+      "1001",
+      "1002",
+      "1002"
+    ],
+    "stationIds": [
+      "001",
+      "006",
+      "007",
+      "009",
+      "003"
+    ],
+    "departureTime": "00:57",
+    "arrivalTime": "02:11",
+    "routeDistance": 355.0,
+    "disabled": true
+  },
+  {
+    "id": "1003",
+    "name": "PersonalRoute",
+    "trainIds": [
+      "1001",
+      "1001",
+      "1001",
+      "1001",
+      "1002",
+      "1002"
+    ],
+    "stationIds": [
+      "001",
+      "006",
+      "007",
+      "009",
+      "003"
+    ],
+    "departureTime": "00:57",
+    "arrivalTime": "02:11",
+    "routeDistance": 355.0,
+    "disabled": true
+  },
+  {
+    "id": "1004",
+    "name": "PersonalRoute",
+    "trainIds": [
+      "1001",
+      "1001",
+      "1001"
+    ],
+    "stationIds": [
+      "001",
+      "006"
+    ],
+    "departureTime": "00:57",
+    "arrivalTime": "02:15",
+    "routeDistance": 50.0,
+    "disabled": true
+  },
+  {
+    "id": "1005",
+    "name": "PersonalRoute",
+    "trainIds": [
+      "1001",
+      "1001",
+      "1001",
+      "1001",
+      "1001",
+      "1001",
+      "1001",
+      "1001",
+      "1001",
+      "1001",
+      "1001",
+      "1001"
+    ],
+    "stationIds": [
+      "001",
+      "006",
+      "007",
+      "008"
+    ],
+    "departureTime": "00:57",
+    "arrivalTime": "02:15",
+    "routeDistance": 160.0,
+    "disabled": true
+  },
+  {
+    "id": "1007",
+    "name": "Ruta4",
+    "trainIds": [
+      "1004"
+    ],
+    "stationIds": [
+      "001",
+      "004",
+      "009",
+      "004"
+    ],
+    "departureTime": "03:49",
+    "arrivalTime": "06:02",
+    "routeDistance": 390.0,
+    "disabled": false
+  },
+  {
+    "id": "1007",
+    "name": "PersonalRoute",
+    "trainIds": [
+      "1001",
+      "1001",
+      "1001"
+    ],
+    "stationIds": [
+      "001",
+      "006",
+      "007",
+      "008"
+    ],
+    "departureTime": "00:57",
+    "arrivalTime": "02:15",
+    "routeDistance": 160.0,
+    "disabled": true
+  },
+  {
+    "id": "1009",
+    "name": "MiniRuta",
+    "trainIds": [
+      "1005"
+    ],
+    "stationIds": [
+      "001",
+      "002"
+    ],
+    "departureTime": "12:00",
+    "arrivalTime": "12:07",
+    "routeDistance": 30.0,
+    "disabled": false
+  },
+  {
+    "id": "100004",
+    "name": "Ruta2",
+    "trainIds": [
+      "1002"
+    ],
+    "stationIds": [
+      "007",
+      "009",
+      "003"
+    ],
+    "departureTime": "05:57",
+    "arrivalTime": "07:11",
+    "routeDistance": 225.0,
+    "disabled": false
+  }
+]

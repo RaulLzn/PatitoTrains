@@ -15,7 +15,7 @@ import java.io.Serializable;
  * Repositorio para estaciones.
  */
 public class StationRepository implements Serializable {
-    private static final String FILE_PATH = "RMIServer/src/main/java/database/Station.Json";
+    private static final String FILE_PATH = "Station.Json";
     private final FileJsonAdapter<StationEntity> jsonAdapter;
 
     public StationRepository() {

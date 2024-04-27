@@ -1,0 +1,478 @@
+[
+  {
+    "id": "100100",
+    "premiumPassengers": [],
+    "executivePassengers": [],
+    "standardPassengers": [],
+    "firstWagon": true
+  },
+  {
+    "id": "100101",
+    "premiumPassengers": [],
+    "executivePassengers": [],
+    "standardPassengers": [],
+    "firstWagon": false
+  },
+  {
+    "id": "100102",
+    "premiumPassengers": [],
+    "executivePassengers": [],
+    "standardPassengers": [],
+    "firstWagon": false
+  },
+  {
+    "id": "100103",
+    "premiumPassengers": [],
+    "executivePassengers": [],
+    "standardPassengers": [],
+    "firstWagon": false
+  },
+  {
+    "id": "100104",
+    "premiumPassengers": [],
+    "executivePassengers": [],
+    "standardPassengers": [],
+    "firstWagon": false
+  },
+  {
+    "id": "100105",
+    "premiumPassengers": [],
+    "executivePassengers": [],
+    "standardPassengers": [],
+    "firstWagon": false
+  },
+  {
+    "id": "100106",
+    "premiumPassengers": [],
+    "executivePassengers": [],
+    "standardPassengers": [],
+    "firstWagon": false
+  },
+  {
+    "id": "100107",
+    "premiumPassengers": [],
+    "executivePassengers": [],
+    "standardPassengers": [],
+    "firstWagon": false
+  },
+  {
+    "id": "100108",
+    "premiumPassengers": [],
+    "executivePassengers": [],
+    "standardPassengers": [],
+    "firstWagon": false
+  },
+  {
+    "id": "100109",
+    "premiumPassengers": [],
+    "executivePassengers": [],
+    "standardPassengers": [],
+    "firstWagon": false
+  },
+  {
+    "id": "100110",
+    "premiumPassengers": [],
+    "executivePassengers": [],
+    "standardPassengers": [],
+    "firstWagon": false
+  },
+  {
+    "id": "100111",
+    "premiumPassengers": [],
+    "executivePassengers": [],
+    "standardPassengers": [],
+    "firstWagon": false
+  },
+  {
+    "id": "100200",
+    "premiumPassengers": [],
+    "executivePassengers": [],
+    "standardPassengers": [],
+    "firstWagon": true
+  },
+  {
+    "id": "100201",
+    "premiumPassengers": [],
+    "executivePassengers": [],
+    "standardPassengers": [],
+    "firstWagon": false
+  },
+  {
+    "id": "100202",
+    "premiumPassengers": [],
+    "executivePassengers": [],
+    "standardPassengers": [],
+    "firstWagon": false
+  },
+  {
+    "id": "100203",
+    "premiumPassengers": [],
+    "executivePassengers": [],
+    "standardPassengers": [],
+    "firstWagon": false
+  },
+  {
+    "id": "100204",
+    "premiumPassengers": [],
+    "executivePassengers": [],
+    "standardPassengers": [],
+    "firstWagon": false
+  },
+  {
+    "id": "100205",
+    "premiumPassengers": [],
+    "executivePassengers": [],
+    "standardPassengers": [],
+    "firstWagon": false
+  },
+  {
+    "id": "100206",
+    "premiumPassengers": [],
+    "executivePassengers": [],
+    "standardPassengers": [],
+    "firstWagon": false
+  },
+  {
+    "id": "100300",
+    "premiumPassengers": [],
+    "executivePassengers": [],
+    "standardPassengers": [],
+    "firstWagon": true
+  },
+  {
+    "id": "100301",
+    "premiumPassengers": [],
+    "executivePassengers": [],
+    "standardPassengers": [],
+    "firstWagon": false
+  },
+  {
+    "id": "100302",
+    "premiumPassengers": [],
+    "executivePassengers": [],
+    "standardPassengers": [],
+    "firstWagon": false
+  },
+  {
+    "id": "100303",
+    "premiumPassengers": [],
+    "executivePassengers": [],
+    "standardPassengers": [],
+    "firstWagon": false
+  },
+  {
+    "id": "100304",
+    "premiumPassengers": [],
+    "executivePassengers": [],
+    "standardPassengers": [],
+    "firstWagon": false
+  },
+  {
+    "id": "100305",
+    "premiumPassengers": [],
+    "executivePassengers": [],
+    "standardPassengers": [],
+    "firstWagon": false
+  },
+  {
+    "id": "100306",
+    "premiumPassengers": [],
+    "executivePassengers": [],
+    "standardPassengers": [],
+    "firstWagon": false
+  },
+  {
+    "id": "100307",
+    "premiumPassengers": [],
+    "executivePassengers": [],
+    "standardPassengers": [],
+    "firstWagon": false
+  },
+  {
+    "id": "100308",
+    "premiumPassengers": [],
+    "executivePassengers": [],
+    "standardPassengers": [],
+    "firstWagon": false
+  },
+  {
+    "id": "100500",
+    "premiumPassengers": [],
+    "executivePassengers": [],
+    "standardPassengers": [],
+    "firstWagon": true
+  },
+  {
+    "id": "100501",
+    "premiumPassengers": [],
+    "executivePassengers": [],
+    "standardPassengers": [],
+    "firstWagon": false
+  },
+  {
+    "id": "100502",
+    "premiumPassengers": [],
+    "executivePassengers": [],
+    "standardPassengers": [],
+    "firstWagon": false
+  },
+  {
+    "id": "100503",
+    "premiumPassengers": [],
+    "executivePassengers": [],
+    "standardPassengers": [],
+    "firstWagon": false
+  },
+  {
+    "id": "100504",
+    "premiumPassengers": [],
+    "executivePassengers": [],
+    "standardPassengers": [],
+    "firstWagon": false
+  },
+  {
+    "id": "100505",
+    "premiumPassengers": [],
+    "executivePassengers": [],
+    "standardPassengers": [],
+    "firstWagon": false
+  },
+  {
+    "id": "100506",
+    "premiumPassengers": [],
+    "executivePassengers": [],
+    "standardPassengers": [],
+    "firstWagon": false
+  },
+  {
+    "id": "100507",
+    "premiumPassengers": [],
+    "executivePassengers": [],
+    "standardPassengers": [],
+    "firstWagon": false
+  },
+  {
+    "id": "100508",
+    "premiumPassengers": [],
+    "executivePassengers": [],
+    "standardPassengers": [],
+    "firstWagon": false
+  },
+  {
+    "id": "100509",
+    "premiumPassengers": [],
+    "executivePassengers": [],
+    "standardPassengers": [],
+    "firstWagon": false
+  },
+  {
+    "id": "100400",
+    "premiumPassengers": [],
+    "executivePassengers": [],
+    "standardPassengers": [],
+    "firstWagon": true
+  },
+  {
+    "id": "100401",
+    "premiumPassengers": [],
+    "executivePassengers": [],
+    "standardPassengers": [],
+    "firstWagon": false
+  },
+  {
+    "id": "100402",
+    "premiumPassengers": [],
+    "executivePassengers": [],
+    "standardPassengers": [],
+    "firstWagon": false
+  },
+  {
+    "id": "100403",
+    "premiumPassengers": [],
+    "executivePassengers": [],
+    "standardPassengers": [],
+    "firstWagon": false
+  },
+  {
+    "id": "100404",
+    "premiumPassengers": [],
+    "executivePassengers": [],
+    "standardPassengers": [],
+    "firstWagon": false
+  },
+  {
+    "id": "100405",
+    "premiumPassengers": [],
+    "executivePassengers": [],
+    "standardPassengers": [],
+    "firstWagon": false
+  },
+  {
+    "id": "100406",
+    "premiumPassengers": [],
+    "executivePassengers": [],
+    "standardPassengers": [],
+    "firstWagon": false
+  },
+  {
+    "id": "100407",
+    "premiumPassengers": [],
+    "executivePassengers": [],
+    "standardPassengers": [],
+    "firstWagon": false
+  },
+  {
+    "id": "100408",
+    "premiumPassengers": [],
+    "executivePassengers": [],
+    "standardPassengers": [],
+    "firstWagon": false
+  },
+  {
+    "id": "100409",
+    "premiumPassengers": [],
+    "executivePassengers": [],
+    "standardPassengers": [],
+    "firstWagon": false
+  },
+  {
+    "id": "100410",
+    "premiumPassengers": [],
+    "executivePassengers": [],
+    "standardPassengers": [],
+    "firstWagon": false
+  },
+  {
+    "id": "100411",
+    "premiumPassengers": [],
+    "executivePassengers": [],
+    "standardPassengers": [],
+    "firstWagon": false
+  },
+  {
+    "id": "100412",
+    "premiumPassengers": [],
+    "executivePassengers": [],
+    "standardPassengers": [],
+    "firstWagon": false
+  },
+  {
+    "id": "100413",
+    "premiumPassengers": [],
+    "executivePassengers": [],
+    "standardPassengers": [],
+    "firstWagon": false
+  },
+  {
+    "id": "100414",
+    "premiumPassengers": [],
+    "executivePassengers": [],
+    "standardPassengers": [],
+    "firstWagon": false
+  },
+  {
+    "id": "100600",
+    "premiumPassengers": [],
+    "executivePassengers": [],
+    "standardPassengers": [],
+    "firstWagon": true
+  },
+  {
+    "id": "100601",
+    "premiumPassengers": [],
+    "executivePassengers": [],
+    "standardPassengers": [],
+    "firstWagon": false
+  },
+  {
+    "id": "100602",
+    "premiumPassengers": [],
+    "executivePassengers": [],
+    "standardPassengers": [],
+    "firstWagon": false
+  },
+  {
+    "id": "100603",
+    "premiumPassengers": [],
+    "executivePassengers": [],
+    "standardPassengers": [],
+    "firstWagon": false
+  },
+  {
+    "id": "100604",
+    "premiumPassengers": [],
+    "executivePassengers": [],
+    "standardPassengers": [],
+    "firstWagon": false
+  },
+  {
+    "id": "100605",
+    "premiumPassengers": [],
+    "executivePassengers": [],
+    "standardPassengers": [],
+    "firstWagon": false
+  },
+  {
+    "id": "100606",
+    "premiumPassengers": [],
+    "executivePassengers": [],
+    "standardPassengers": [],
+    "firstWagon": false
+  },
+  {
+    "id": "100607",
+    "premiumPassengers": [],
+    "executivePassengers": [],
+    "standardPassengers": [],
+    "firstWagon": false
+  },
+  {
+    "id": "100608",
+    "premiumPassengers": [],
+    "executivePassengers": [],
+    "standardPassengers": [],
+    "firstWagon": false
+  },
+  {
+    "id": "100609",
+    "premiumPassengers": [],
+    "executivePassengers": [],
+    "standardPassengers": [],
+    "firstWagon": false
+  },
+  {
+    "id": "100610",
+    "premiumPassengers": [],
+    "executivePassengers": [],
+    "standardPassengers": [],
+    "firstWagon": false
+  },
+  {
+    "id": "100611",
+    "premiumPassengers": [],
+    "executivePassengers": [],
+    "standardPassengers": [],
+    "firstWagon": false
+  },
+  {
+    "id": "100612",
+    "premiumPassengers": [],
+    "executivePassengers": [],
+    "standardPassengers": [],
+    "firstWagon": false
+  },
+  {
+    "id": "100613",
+    "premiumPassengers": [],
+    "executivePassengers": [],
+    "standardPassengers": [],
+    "firstWagon": false
+  },
+  {
+    "id": "100614",
+    "premiumPassengers": [],
+    "executivePassengers": [],
+    "standardPassengers": [],
+    "firstWagon": false
+  }
+]

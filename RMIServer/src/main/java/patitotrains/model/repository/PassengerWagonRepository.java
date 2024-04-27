@@ -17,7 +17,7 @@ import java.io.Serializable;
  * Repositorio para vagones de pasajeros.
  */
 public class PassengerWagonRepository implements Serializable {
-    private static final String FILE_PATH = "RMIServer/src/main/java/database/PassengerWagon.Json";
+    private static final String FILE_PATH = "PassengerWagon.Json";
     private final FileJsonAdapter<PassengerWagonEntity> jsonAdapter;
 
     public PassengerWagonRepository() {

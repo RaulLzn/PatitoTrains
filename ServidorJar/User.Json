@@ -1,0 +1,104 @@
+[
+  {
+    "names": "Sebastian",
+    "lastNames": "Granados",
+    "numbers": {
+      "elements": [
+        "123456789",
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    "disabled": false,
+    "id": "100001",
+    "password": "añañin",
+    "userName": "grana2"
+  },
+  {
+    "names": "Raul",
+    "lastNames": "Lozano",
+    "numbers": {
+      "elements": [
+        "3207002968",
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    "disabled": false,
+    "id": "100002",
+    "password": "ralozlz",
+    "userName": "raloz"
+  },
+  {
+    "names": "James ",
+    "lastNames": "Rodriguez",
+    "numbers": {
+      "elements": [
+        "123123",
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    "disabled": false,
+    "id": "100003",
+    "password": "123",
+    "userName": "jamesElCrack"
+  },
+  {
+    "names": "Pepe",
+    "lastNames": "Lozano",
+    "numbers": {
+      "elements": [
+        "125444",
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    "disabled": false,
+    "id": "100004",
+    "password": "perez",
+    "userName": "pepe"
+  },
+  {
+    "names": "Ronald",
+    "lastNames": "Arenales",
+    "numbers": {
+      "elements": [
+        "3142317320",
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    "disabled": false,
+    "id": "100005",
+    "password": "Ronital2187-",
+    "userName": "Ronital2187"
+  },
+  {
+    "names": "Yeferson Urquijo",
+    "lastNames": "Lolito Fernandez",
+    "numbers": {
+      "elements": [
+        "3153577670",
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    "disabled": false,
+    "id": "100006",
+    "password": "Yoseph12345678",
+    "userName": "YosephFdez"
+  }
+]

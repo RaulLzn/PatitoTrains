@@ -1,0 +1,57 @@
+2024-04-23T13:23:28.897215633: Inicio de sesión de grana2
+2024-04-23T13:41:04.177187715: Inicio de sesión de grana2
+2024-04-23T13:55:36.661645875: Inicio de sesión de raloz
+2024-04-23T13:56:03.870028248: Inicio de sesión de raloz
+2024-04-23T13:56:58.795036579: Inicio de sesión de raloz
+2024-04-23T13:57:42.062839026: Inicio de sesión de grana2
+2024-04-23T14:08:24.477067923: Inicio de sesión exitoso: 
+
+2024-04-23T14:09:36.276986634: Inicio de sesión exitoso: grana2
+
+2024-04-23T14:24:14.645779748: Inicio de sesión exitoso: raloz
+
+2024-04-23T14:24:51.018759669: Registro de tren: RaulTrain 1005 modelo Arnold de 10 vagones registrado exitosamente.: raloz
+
+2024-04-23T14:25:21.217026696: Edicion de tren: 1004 PatitoExpress: raloz
+
+2024-04-23T14:26:58.793682598: Registro de usuario: James  Rodriguez con id 100003 registrado con el usuario jamesito.: raloz
+
+2024-04-23T14:27:17.126638268: Editado el usuario: jamesElCrack.: raloz
+
+2024-04-23T14:28:04.807986783: Se ha registrado la ruta MiniRuta con id 1009: raloz
+
+2024-04-23T14:28:28.101379162: Ruta MiniRuta editada exitosamente.: raloz
+
+2024-04-23T16:21:53.266661428: Inicio de sesión en Ticket Manager: raloz
+2024-04-23T16:27:27.859094013: Inicio de sesión exitoso: raloz
+
+2024-04-23T16:32:40.083445860: Inicio de sesión exitoso: raloz
+
+2024-04-23T16:33:28.731773917: Registro de tren: Patito 1006 modelo Mercedes de 15 vagones registrado exitosamente.: raloz
+
+2024-04-23T16:33:37.679486482: Edicion de tren: 1006 Patito: raloz
+
+2024-04-23T16:40:21.771131225: Ruta Ruta2 editada exitosamente.: raloz
+
+2024-04-23T16:48:13.201833973: Inicio de sesión exitoso: raloz
+
+2024-04-23T16:49:19.788904137: Registro de usuario: Pepe Perez con id 100004 registrado con el usuario pepe.: raloz
+
+2024-04-23T16:49:31.378234145: Editado el usuario: pepe.: raloz
+
+2024-04-23T16:55:46.164682127: Inicio de sesión exitoso: raloz
+
+2024-04-23T17:07:39.071314221: Inicio de sesión en Ticket Manager: raloz
+2024-04-24T17:04:52.458077879: Inicio de sesión exitoso: raloz
+
+2024-04-24T17:07:26.973638900: Registro de usuario: Ronald Arenales con id 100005 registrado con el usuario Ronital2187.: raloz
+
+2024-04-24T17:08:31.447826152: Registro de usuario: Yeferson Urquijo Lolito Fernandez con id 100006 registrado con el usuario YosephFdez.: raloz
+
+2024-04-25T12:13:23.503737071: Inicio de sesión exitoso para: raloz: raloz
+
+2024-04-26T15:42:59.504061590: Inicio de sesión exitoso para: raloz: raloz
+
+2024-04-26T18:23:29.430257798: Inicio de sesión en Ticket Manager: raloz
+2024-04-26T18:43:41.343560533: Inicio de sesión en Ticket Manager: raloz
+2024-04-26T19:46:24.196880220: Inicio de sesión en Ticket Manager: raloz
