@@ -55,3 +55,29 @@
 2024-04-26T18:23:29.430257798: Inicio de sesión en Ticket Manager: raloz
 2024-04-26T18:43:41.343560533: Inicio de sesión en Ticket Manager: raloz
 2024-04-26T19:46:24.196880220: Inicio de sesión en Ticket Manager: raloz
+2024-05-01T21:34:49.782585425: Inicio de sesión exitoso para: raloz: raloz
+
+2024-05-01T22:10:54.417026082: Inicio de sesión exitoso para: raloz: raloz
+
+2024-05-01T22:11:44.245336370: Inicio de sesión exitoso para: raloz: raloz
+
+2024-05-01T22:13:03.787461915: Inicio de sesión exitoso para: raloz: raloz
+
+2024-05-01T22:14:52.335848584: Inicio de sesión exitoso para: raloz: raloz
+
+2024-05-01T22:16:23.401756691: Inicio de sesión exitoso para: raloz: raloz
+
+2024-05-01T22:19:31.876217957: Inicio de sesión exitoso para: raloz: raloz
+
+2024-05-01T22:22:56.779598018: Inicio de sesión exitoso para: raloz: raloz
+
+2024-05-01T22:23:24.874294872: Inicio de sesión exitoso para: raloz: raloz
+
+2024-05-01T22:25:24.424544222: Inicio de sesión exitoso para: raloz: raloz
+
+2024-05-01T22:27:24.737270928: Inicio de sesión exitoso para: raloz: raloz
+
+2024-05-01T22:38:25.909647844: Inicio de sesión exitoso para: raloz: raloz
+
+2024-05-01T22:43:05.622875881: Inicio de sesión exitoso para: raloz: raloz
+
