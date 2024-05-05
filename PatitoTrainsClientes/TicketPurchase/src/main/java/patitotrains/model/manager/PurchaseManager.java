@@ -19,7 +19,7 @@ import java.time.LocalTime;
 
 
 
-public class PurchaseManager {
+public class PurchaseManager implements PurchaseManagerInterface {
 
     private LinkedList<IdType> idTypes;
     private LinkedList<Station> stations;
@@ -49,6 +49,7 @@ public class PurchaseManager {
         fillMap();
     }
 
+    @Override
     public String ticketId() {
         try {
             // Obtener el tamaño actual de la lista de tickets
@@ -63,6 +64,7 @@ public class PurchaseManager {
         }
     }
 
+    @Override
     public String pushLuggage(Train train, Luggage luggage) {
         try {
             serviceRemote.saveLuggage(luggage);
@@ -83,8 +85,7 @@ public class PurchaseManager {
         return "N/A";
     }
 
-
-
+    @Override
     public LinkedList<Route> gethabalibleRputes(){
         LinkedList<Route> ret = new LinkedList<>();
         Iterator<Route> iter = routes.iterator();
@@ -98,6 +99,7 @@ public class PurchaseManager {
         return ret;
     }
 
+    @Override
     public Array<Station> getPersonalPath(Station departure, Station arrival){
         return personalMap.ShortestPath(departure, arrival);
     }
@@ -107,6 +109,7 @@ public class PurchaseManager {
         seatTypes.add(new SeatType("1002", "Ejecutivo", 1200));
         seatTypes.add(new SeatType("1003", "Premium", 1800));
     }
+
     public void pullIdTypes(){
         IdType id1 = new IdType("001", "Tarjeta de Identidad");
         IdType id2 = new IdType("002", "Cedula de Ciudadania");
@@ -115,6 +118,7 @@ public class PurchaseManager {
 
     }
 
+    @Override
     public String[] getNamesTrainsPersonalPath(Array<Station> path){
         String[] toRet   = new String[path.size()];
 
@@ -132,6 +136,7 @@ public class PurchaseManager {
 
 
     }
+
 
     public double calPersoPathDistance(Array<Station> path){
         return personalMap.pathDistance(path);
@@ -202,6 +207,7 @@ public class PurchaseManager {
 
     }
 
+    @Override
     public boolean pushTicket (Ticket ticket) {
         try {
 
@@ -217,6 +223,7 @@ public class PurchaseManager {
         }
     }
 
+    @Override
     public boolean pushPersonalTicket (Ticket ticket) {
         try {
             ticket.getRoute().setId(Integer.toString(1000 + routes.size()));
@@ -248,9 +255,6 @@ public class PurchaseManager {
 
     }
 
-
-
-  
     public void pullRoutes(){
         try {
             routes = (LinkedList<Route>) serviceRemote.getAllRoutes();
@@ -259,6 +263,7 @@ public class PurchaseManager {
         }
         fillPersonalMap();
     }
+
     public SeatType[] seatTypeArray(){
         Iterator<SeatType> iter = seatTypes.iterator();
         SeatType [] seatArray = new SeatType[seatTypes.size()];
@@ -271,6 +276,7 @@ public class PurchaseManager {
         return seatArray;
 
     }
+
     public Station[] stationsArray(){
         Iterator<Station> iter = stations.iterator();
         Station [] stationArray = new Station[stations.size()];
@@ -283,8 +289,6 @@ public class PurchaseManager {
         return stationArray;
 
     }
-
-
 
     public Route[] routeArray(){
         Iterator<Route> iter = routes.iterator();
@@ -312,6 +316,7 @@ public class PurchaseManager {
 
     }
 
+    @Override
     public boolean validateLuggageWeight(double weight){
 
         if(weight > 80 || weight <= 0){
@@ -333,6 +338,7 @@ public class PurchaseManager {
         return arrayRet;
 
     }
+
     public String[] stationsArrayName(LinkedList<Station> list){
         Iterator<Station> iter = list.iterator();
         String [] nameArray = new String[list.size()];
@@ -428,6 +434,7 @@ public class PurchaseManager {
 
     }
 
+    @Override
     public LocalTime getDepartureTimeRouteByTrain(Train train) {
         LocalTime ret = LocalTime.of(0, 0, 0);
         Iterator<Route> iterRoute = routes.iterator();
@@ -443,6 +450,7 @@ public class PurchaseManager {
         return ret;
     }
 
+    @Override
     public LocalTime getArrivalTimeRouteByTrain(Train train) {
         LocalTime ret = LocalTime.of(0, 0, 0);
         Iterator<Route> iterRoute = routes.iterator();
