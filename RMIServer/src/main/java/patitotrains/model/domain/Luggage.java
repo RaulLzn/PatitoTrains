@@ -2,13 +2,21 @@ package patitotrains.model.domain;
 
 import java.io.Serializable;
 
+/**
+ * Clase que representa un equipaje.
+ */
 public class Luggage implements Serializable {
     private String id;
     private int weight;
     private String ticketId;
 
-
-
+    /**
+     * Constructor de la clase.
+     *
+     * @param id       ID del equipaje.
+     * @param weight   Peso del equipaje.
+     * @param ticketId ID del tiquete.
+     */
     public Luggage(String id, int weight, String ticketId) {
         this.id = id;
         this.weight = weight;

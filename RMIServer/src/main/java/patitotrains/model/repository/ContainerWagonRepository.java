@@ -14,14 +14,24 @@ import raul.Model.util.list.List;
 import java.io.Serializable;
 import java.rmi.RemoteException;
 
+/**
+ * Repositorio de vagones contenedores
+ */
 public class ContainerWagonRepository implements ContainerWagonServiceRemote , Serializable {
     private static final String FILE_PATH = "ContainerWagon.Json";
     private final FileJsonAdapter<ContainerWagonEntity> jsonAdapter;
 
+    /**
+     * Constructor de la clase
+     */
     public ContainerWagonRepository() {
         this.jsonAdapter = FileJsonAdapter.getInstance();
     }
 
+    /**
+     * Método que retorna todos los vagones contenedores
+     * @return Lista de vagones contenedores
+     */
     public List<ContainerWagon> getAllContainerWagons() {
         List<ContainerWagonEntity> containerWagonEntities = jsonAdapter.getObjects(FILE_PATH, ContainerWagonEntity[].class);
         List<ContainerWagon> containerWagons = new LinkedList<>();
@@ -34,6 +44,11 @@ public class ContainerWagonRepository implements ContainerWagonServiceRemote , S
         return containerWagons;
     }
 
+    /**
+     * Método que guarda un vagón contenedor
+     * @param containerWagon Vagón contenedor a guardar
+     * @return true si se guardó correctamente, false en caso contrario
+     */
     public boolean saveContainerWagon(ContainerWagon containerWagon) {
         List<ContainerWagonEntity> containerWagonEntities = jsonAdapter.getObjects(FILE_PATH, ContainerWagonEntity[].class);
         ContainerWagonEntity entity = mapToContainerWagonEntity(containerWagon);
@@ -42,6 +57,11 @@ public class ContainerWagonRepository implements ContainerWagonServiceRemote , S
         return jsonAdapter.writeObjects(FILE_PATH, containerWagonEntities);
     }
 
+    /**
+     * Método que mapea un objeto ContainerWagonEntity a un objeto ContainerWagon
+     * @param entity Objeto ContainerWagonEntity
+     * @return Objeto ContainerWagon
+     */
     private ContainerWagon mapToContainerWagon(ContainerWagonEntity entity) {
         ContainerWagon containerWagon = new ContainerWagon(entity.getId());
         LuggageEntity[] luggages = entity.getLuggages();
@@ -52,6 +72,11 @@ public class ContainerWagonRepository implements ContainerWagonServiceRemote , S
         return containerWagon;
     }
 
+    /**
+     * Método que mapea un objeto ContainerWagon a un objeto ContainerWagonEntity
+     * @param containerWagon Objeto ContainerWagon
+     * @return Objeto ContainerWagonEntity
+     */
     private ContainerWagonEntity mapToContainerWagonEntity(ContainerWagon containerWagon) {
         ContainerWagonEntity entity = new ContainerWagonEntity(containerWagon.getId());
         Iterator<Luggage> iterator = containerWagon.getLuggages().iterator();
@@ -64,14 +89,29 @@ public class ContainerWagonRepository implements ContainerWagonServiceRemote , S
         return entity;
     }
 
+    /**
+     * Método que mapea un objeto LuggageEntity a un objeto Luggage
+     * @param entity Objeto LuggageEntity
+     * @return Objeto Luggage
+     */
     private Luggage mapToLuggage(LuggageEntity entity) {
         return new Luggage(entity.getId(), entity.getWeight(), entity.getTicketId());
     }
 
+    /**
+     * Método que mapea un objeto Luggage a un objeto LuggageEntity
+     * @param luggage Objeto Luggage
+     * @return Objeto LuggageEntity
+     */
     private LuggageEntity mapToLuggageEntity(Luggage luggage) {
         return new LuggageEntity(luggage.getId(), luggage.getWeight(), luggage.getTicketId());
     }
 
+    /**
+     * Método que obtiene un vagón contenedor por ID
+     * @param id ID del vagón contenedor
+     * @return Objeto ContainerWagon
+     */
     public ContainerWagon getContainerWagonById(String id) {
         List<ContainerWagonEntity> containerWagonEntities = jsonAdapter.getObjects(FILE_PATH, ContainerWagonEntity[].class);
         Iterator<ContainerWagonEntity> iterator = containerWagonEntities.iterator();
@@ -84,6 +124,11 @@ public class ContainerWagonRepository implements ContainerWagonServiceRemote , S
         return null;
     }
 
+    /**
+     * Método que obtiene una lista de vagones contenedores por ID
+     * @param ids Lista de IDs de vagones contenedores
+     * @return Lista de vagones contenedores
+     */
     public List<ContainerWagon> getContainerWagonsByIds(Array<String> ids) {
         List<ContainerWagonEntity> containerWagonEntities = jsonAdapter.getObjects(FILE_PATH, ContainerWagonEntity[].class);
         List<ContainerWagon> containerWagons = new LinkedList<>();
@@ -101,6 +146,12 @@ public class ContainerWagonRepository implements ContainerWagonServiceRemote , S
         return containerWagons;
     }
 
+    /**
+     * Método que agrega un equipaje a un vagón contenedor
+     * @param containerWagonId ID del vagón contenedor
+     * @param luggage Equipaje a agregar
+     * @return true si se agregó correctamente, false en caso contrario
+     */
     public boolean addLuggageToContainerWagon(String containerWagonId, Luggage luggage) {
         List<ContainerWagonEntity> containerWagonEntities = jsonAdapter.getObjects(FILE_PATH, ContainerWagonEntity[].class);
         Iterator<ContainerWagonEntity> iterator = containerWagonEntities.iterator();
@@ -120,6 +171,11 @@ public class ContainerWagonRepository implements ContainerWagonServiceRemote , S
         return false;
     }
 
+    /**
+     * Método que elimina un vagón contenedor
+     * @param id ID del vagón contenedor
+     * @return true si se eliminó correctamente, false en caso contrario
+     */
     public boolean deleteContainerWagon(String id) {
         List<ContainerWagonEntity> containerWagonEntities = jsonAdapter.getObjects(FILE_PATH, ContainerWagonEntity[].class);
         Iterator<ContainerWagonEntity> iterator = containerWagonEntities.iterator();
@@ -133,6 +189,11 @@ public class ContainerWagonRepository implements ContainerWagonServiceRemote , S
         return false;
     }
 
+    /**
+     * Método que actualiza un vagón contenedor
+     * @param containerWagon Vagón contenedor a actualizar
+     * @return true si se actualizó correctamente, false en caso contrario
+     */
     @Override
     public boolean updateContainerWagon(ContainerWagon containerWagon) throws RemoteException {
         List<ContainerWagonEntity> containerWagonEntities = jsonAdapter.getObjects(FILE_PATH, ContainerWagonEntity[].class);
@@ -152,6 +213,12 @@ public class ContainerWagonRepository implements ContainerWagonServiceRemote , S
         return false;
     }
 
+    /**
+     * Método que elimina un equipaje de un vagón contenedor
+     * @param containerWagonId ID del vagón contenedor
+     * @param luggageId ID del equipaje
+     * @return true si se eliminó correctamente, false en caso contrario
+     */
     public boolean deleteLuggageFromContainerWagon(String containerWagonId, String luggageId) {
         List<ContainerWagonEntity> containerWagonEntities = jsonAdapter.getObjects(FILE_PATH, ContainerWagonEntity[].class);
         Iterator<ContainerWagonEntity> iterator = containerWagonEntities.iterator();

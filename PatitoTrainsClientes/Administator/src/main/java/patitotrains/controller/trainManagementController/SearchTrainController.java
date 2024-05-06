@@ -28,6 +28,9 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ResourceBundle;
 
+/**
+ * Clase que controla la vista de búsqueda de trenes
+ */
 public class SearchTrainController implements Initializable, SearchTrainControllerInterface {
 
 
@@ -70,25 +73,35 @@ public class SearchTrainController implements Initializable, SearchTrainControll
 
     private TrainManager trainManager;
 
-    //Eliminar una vez se tenga conectado a base, hecho para simular el flujo mantener los datos
+    /**
+     * Constructor de la clase
+     * @param trainManager Manager de trenes
+     */
     public SearchTrainController(TrainManager trainManager){
         this.trainManager = trainManager;
-
-       
     }
-    //------------------------------------
 
+    /**
+     * Constructor de la clase
+     * @throws NotBoundException
+     * @throws RemoteException
+     */
     public SearchTrainController() throws NotBoundException, RemoteException {
         trainManager = new TrainManager();
     }
 
-    @FXML
     void btnGoBackClicked(ActionEvent event) throws Exception {
         MenuView viewMenu;
         viewMenu = new MenuView();
         viewMenu.start(event);
         
     }
+
+    /**
+     * Método que se ejecuta al presionar el botón de registrar tren
+     * @param event Evento
+     * @throws IOException
+     */
     @FXML
     public void btnRegisterTrainClicked( ActionEvent event) throws IOException {
         RegisterTrainView registerView;
@@ -96,6 +109,11 @@ public class SearchTrainController implements Initializable, SearchTrainControll
         registerView.start(event, trainManager);
     }
 
+    /**
+     * Método que se ejecuta al inicializar la vista
+     * @param arg0 URL
+     * @param arg1 ResourceBundle
+     */
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
 
@@ -123,6 +141,9 @@ public class SearchTrainController implements Initializable, SearchTrainControll
         
     }   
 
+    /**
+     * Método que asigna los valores a las columnas de la tabla
+     */
     private void setColumnsValues(){
         columnId.setCellValueFactory(new PropertyValueFactory<>("id"));
         columnName.setCellValueFactory(new PropertyValueFactory<>("name"));

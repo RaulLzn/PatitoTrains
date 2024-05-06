@@ -16,6 +16,9 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ResourceBundle;
 
+/**
+ * Clase que controla la vista de la tabla de abordaje
+ */
 public class BoardingPanelController implements Initializable{
     
     @FXML
@@ -40,6 +43,11 @@ public class BoardingPanelController implements Initializable{
 
     BoardingPanelManager boardingPanelManager;
 
+    /**
+     * Método que inicializa la vista
+     * @param arg0 URL
+     * @param arg1 ResourceBundle
+     */
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
         try {
@@ -53,6 +61,9 @@ public class BoardingPanelController implements Initializable{
         configureColumnValueFactories(); // Llamamos al nuevo método para configurar las propiedades de celda
     }
 
+    /**
+     * Método que configura las propiedades de celda
+     */
     private void configureColumnValueFactories() {
         columnId.setCellValueFactory(new PropertyValueFactory<>("id"));
         columnName.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getPassenger().getNames()));
@@ -76,7 +87,9 @@ public class BoardingPanelController implements Initializable{
         });
     }
 
-
+    /**
+     * Método que establece los valores de la tabla
+     */
     public void setValues(){
         boardingPanelManager.pullData();
         ObservableList<Ticket> ticketObservableList;

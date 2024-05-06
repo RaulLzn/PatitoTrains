@@ -6,14 +6,26 @@ import java.io.FileInputStream;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.Properties;
-
+/**
+ * Clase que se encarga de manejar la conexión con el servidor RMI
+ */
 public class ServerSetupThread extends Thread {
+    /**
+     * Servicio remoto
+     */
     private final ServiceRemote adminService;
 
+    /**
+     * Constructor de la clase
+     * @param adminService Servicio remoto
+     */
     public ServerSetupThread(ServiceRemote adminService) {
         this.adminService = adminService;
     }
 
+    /**
+     * Método que inicia el hilo
+     */
     @Override
     public void run() {
         Properties properties = new Properties();

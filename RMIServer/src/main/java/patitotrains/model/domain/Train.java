@@ -5,7 +5,9 @@ import patitotrains.model.domain.types.TrainType;
 import raul.Model.array.Array;
 
 import java.io.Serializable;
-
+/**
+ * Clase que representa un tren.
+ */
 public class Train implements Serializable {
 
     private String id;
@@ -17,6 +19,15 @@ public class Train implements Serializable {
     private boolean onJourney;
     private boolean disabled;
 
+    /**
+     * Constructor de la clase.
+     *
+     * @param id ID del tren.
+     * @param name Nombre del tren.
+     * @param type Tipo del tren.
+     * @param amtPassengerWagons Cantidad de vagones de pasajeros.
+     * @param amtLuggageWagons Cantidad de vagones de equipaje.
+     */
     public Train(String id, String name, TrainType type,
                  int amtPassengerWagons, int amtLuggageWagons) {
         this.id = id;

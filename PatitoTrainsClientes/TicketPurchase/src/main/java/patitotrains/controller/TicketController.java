@@ -20,6 +20,9 @@ import java.net.URL;
 import java.time.LocalDateTime;
 import java.util.ResourceBundle;
 
+/**
+ * Controlador de la vista de boleto
+ */
 public class TicketController implements Initializable {
 
     private Array<String> wagonids;
@@ -102,6 +105,12 @@ public class TicketController implements Initializable {
     Array<Luggage> luggagesArray;
 
 
+    /**
+     * Constructor de la clase
+     * @param ticket Boleto
+     * @param luggagesArray Arreglo de equipaje
+     * @param wagonids Arreglo de identificadores de vagones
+     */
     @SuppressWarnings("exports")
     public TicketController(Ticket ticket, Array<Luggage> luggagesArray, Array<String> wagonids){
         this.ticket = ticket;
@@ -109,6 +118,11 @@ public class TicketController implements Initializable {
         this.wagonids = wagonids;
     }
 
+    /**
+     * Método que se ejecuta al dar clic en el botón de finalizar
+     * @param event Evento
+     * @throws IOException
+     */
     @FXML
     void btnFinishClicked(ActionEvent event) throws IOException {
         WelcomePageView welcomePageView = new WelcomePageView();
@@ -116,6 +130,9 @@ public class TicketController implements Initializable {
 
     }
 
+    /**
+     * Método que inicializa la vista
+     */
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
 
@@ -123,6 +140,9 @@ public class TicketController implements Initializable {
         
     }
 
+    /**
+     * Método que establece los valores de los elementos de la vista
+     */
     private void setValues(){
 
         lblArrivalTime.setText(ticket.getRoute().getArrivalTime().toString());
@@ -173,6 +193,11 @@ public class TicketController implements Initializable {
 
     }
 
+    /**
+     * Método que convierte una lista de trenes a una cadena de texto
+     * @param trains Lista de trenes
+     * @return Cadena de texto
+     */
     private String triansIdAsString(LinkedList<Train> trains){
         String ret = "";
         Iterator<Train> iter = trains.iterator();
@@ -185,6 +210,11 @@ public class TicketController implements Initializable {
 
     }
 
+    /**
+     * Método que convierte una fecha a una cadena de texto
+     * @param time Fecha
+     * @return Cadena de texto
+     */
     private String localTimeFormat(LocalDateTime time){
         String toRet = "";
 

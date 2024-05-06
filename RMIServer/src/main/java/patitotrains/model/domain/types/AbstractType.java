@@ -1,11 +1,19 @@
 package patitotrains.model.domain.types;
 
 import java.io.Serializable;
-
+/**
+ * Clase abstracta que representa un tipo.
+ */
 public abstract class AbstractType implements Serializable {
     protected String id;
     protected String description;
 
+    /**
+     * Constructor de la clase.
+     *
+     * @param id          ID del tipo.
+     * @param description Descripción del tipo.
+     */
     public AbstractType(String id, String description) {
         this.id = id;
         this.description = description;

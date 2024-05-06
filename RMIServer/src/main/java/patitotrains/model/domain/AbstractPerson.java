@@ -5,17 +5,30 @@ import raul.Model.array.Array;
 
 import java.io.Serializable;
 
+/**
+ * Clase abstracta que representa una persona.
+ */
 public abstract class  AbstractPerson implements Serializable {
     protected String names;
     protected String lastNames;
     protected Array<String> numbers;
-    
-    
+
+    /**
+     * Constructor de la clase.
+     *
+     * @param names      Nombres de la persona.
+     * @param lastNames  Apellidos de la persona.
+     * @param numbers    Números de contacto de la persona.
+     */
     public AbstractPerson( String names, String lastNames, Array<String> numbers){
         this.names = names;
         this.lastNames = lastNames;
         this.numbers = numbers;
     }
+
+    /**
+     * Constructor de la clase.
+     */
     public AbstractPerson(){
         names = "";
         lastNames = "";

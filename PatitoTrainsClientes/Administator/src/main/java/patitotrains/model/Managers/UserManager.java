@@ -1,5 +1,6 @@
 package patitotrains.model.Managers;
 
+import patitotrains.model.Managers.interfaceManagers.UserManagerInterface;
 import patitotrains.model.domain.User;
 import patitotrains.model.remote.client.RemoteServiceManager;
 import patitotrains.model.remote.services.ServiceRemote;
@@ -10,7 +11,7 @@ import raul.Model.util.list.List;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
-public class UserManager {
+public class UserManager implements UserManagerInterface {
 
     private final RemoteServiceManager serviceManager = RemoteServiceManager.getInstance();
     private final ServiceRemote serviceRemote = serviceManager.getServiceRemote();
@@ -33,6 +34,7 @@ public class UserManager {
      *
      * @return Lista de usuarios
      */
+    @Override
     public LinkedList<User> pullData() {
         try {
             // Convierte la lista de usuarios a una lista de usuarios de la aplicación
@@ -58,6 +60,7 @@ public class UserManager {
      * @param user Usuario a agregar
      * @return true si se agrega correctamente, false en caso contrario
      */
+    @Override
     public boolean addUser(User user){
         try {
             boolean addedLocally = userList.add(user);
@@ -72,6 +75,7 @@ public class UserManager {
         }
     }
 
+    @Override
     public LinkedList<User> searchUser(String usertOSearch){
         int strLen = usertOSearch.length();
         LinkedList<User> toReturn = new LinkedList<>();
@@ -124,6 +128,7 @@ public class UserManager {
         return toReturn;
     }
 
+    @Override
     public boolean existUserByName(String userName){
         
         Iterator<User> iter = userList.iterator();
@@ -139,7 +144,7 @@ public class UserManager {
         return false;
     }
 
-
+    @Override
     public boolean editUser(User oldRoute, User editedRoute){
         try {
             boolean editedLocally = userList.replace(oldRoute, editedRoute, t -> true);
@@ -155,14 +160,17 @@ public class UserManager {
         }
     }
 
+    @Override
     public int getEmployeeIdCounter() {
         return employeeIdCounter;
     }
 
+    @Override
     public void setEmployeeIdCounter(int employeeIdCounter) {
         this.employeeIdCounter = employeeIdCounter;
     }
 
+    @Override
     public User[] userArray(){
         User [] userArray = new User[userList.size()];
         int cnt = 0;
@@ -175,7 +183,7 @@ public class UserManager {
         return userArray;
     }
 
-
+    @Override
     public User[] userArray( LinkedList<User> userList){
         User [] userArray = new User[userList.size()];
         int cnt = 0;

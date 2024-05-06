@@ -120,6 +120,12 @@ public class RouteRepository implements Serializable {
         return null;
     }
 
+    /**
+     * Mapea una entidad de ruta a una ruta.
+     *
+     * @param entity Entidad de ruta.
+     * @return Ruta.
+     */
     private Route mapToRoute(RouteEntity entity) {
         LinkedList<Train> trains = new LinkedList<>();
         LinkedList<Station> stations = new LinkedList<>();
@@ -157,6 +163,12 @@ public class RouteRepository implements Serializable {
         return route;
     }
 
+    /**
+     * Mapea una ruta a una entidad de ruta.
+     *
+     * @param route Ruta.
+     * @return Entidad de ruta.
+     */
     private RouteEntity mapToRouteEntity(Route route) {
         RouteEntity entity = new RouteEntity(route.getId(), route.getName(), null, null, route.getDepartureTime().toString(), route.getArrivalTime().toString(), route.getRouteDistance(), route.isDisabled());
 
@@ -177,6 +189,12 @@ public class RouteRepository implements Serializable {
         return entity;
     }
 
+    /**
+     * Deshabilita una ruta.
+     *
+     * @param id ID de la ruta.
+     * @return Verdadero si la ruta se deshabilitó correctamente, falso en caso contrario.
+     */
     public boolean disableRoute(String id) {
         List<RouteEntity> routeEntities = jsonAdapter.getObjects(FILE_PATH, RouteEntity[].class);
         Iterator<RouteEntity> iterator = routeEntities.iterator();
@@ -191,6 +209,12 @@ public class RouteRepository implements Serializable {
         return false; // Route not found
     }
 
+    /**
+     * Habilita una ruta.
+     *
+     * @param id ID de la ruta.
+     * @return Verdadero si la ruta se habilitó correctamente, falso en caso contrario.
+     */
     public boolean enableRoute(String id) {
         List<RouteEntity> routeEntities = jsonAdapter.getObjects(FILE_PATH, RouteEntity[].class);
         Iterator<RouteEntity> iterator = routeEntities.iterator();

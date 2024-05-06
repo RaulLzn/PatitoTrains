@@ -22,6 +22,9 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ResourceBundle;
 
+/**
+ * Clase que controla la vista de datos de ruta
+ */
 public class RouteDataController implements Initializable{
 
     @FXML
@@ -84,8 +87,13 @@ public class RouteDataController implements Initializable{
 
     private Array<Integer> weight;
 
-
-
+    /**
+     * Constructor de la clase
+     * @param passenger Pasajero
+     * @param weight Peso de las maletas
+     * @throws NotBoundException
+     * @throws RemoteException
+     */
     public RouteDataController(@SuppressWarnings("exports") Passenger passenger, Array<Integer> weight) throws NotBoundException, RemoteException {
         this.passenger = passenger;
         this.weight = weight;
@@ -94,7 +102,10 @@ public class RouteDataController implements Initializable{
         purchaseManager.pullSeatTypes();
 
     }
-    
+
+    /**
+     * Método que inicializa la vista
+     */
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
         setComboBoxArrival();
@@ -122,8 +133,7 @@ public class RouteDataController implements Initializable{
 
 
      }
-        
-     
+
     private void generatePersoTicket(Event event) throws IOException{
         boolean valuesOk;
 
@@ -178,7 +188,11 @@ public class RouteDataController implements Initializable{
         return wagons;
     }
 
-
+    /**
+     * Método que genera un ticket predeterminado
+     * @param event Evento
+     * @throws IOException
+     */
     private void generatePreTicket(Event event) throws IOException{
         boolean valuesOk;
 

@@ -6,15 +6,24 @@ import patitotrains.model.repository.*;
 import patitotrains.model.trazabilidad.ActionLogger;
 
 import java.rmi.RemoteException;
-
+/**
+ * Clase que se encarga de iniciar el servidor centralizado
+ */
 public class CentralizedServerAdmin {
+    /**
+     * Método principal
+     * @param args Argumentos de la línea de comandos
+     */
     public static void main(String[] args) {
         try {
-            // Crea un objeto AdminServiceImpl
-
+            /**
+             * Se crea un objeto de tipo ServiceRemote
+             */
             ServiceRemote adminService = getServiceRemote();
 
-            // Inicia el hilo para configurar y registrar el servidor RMI
+            /**
+             * Se crea un hilo para configurar el servidor
+             */
             ServerSetupThread setupThread = new ServerSetupThread(adminService);
             setupThread.start();
         } catch (Exception e) {
@@ -23,6 +32,11 @@ public class CentralizedServerAdmin {
         }
     }
 
+    /**
+     * Método que obtiene el servicio remoto
+     * @return Servicio remoto
+     * @throws RemoteException
+     */
     private static ServiceRemote getServiceRemote() throws RemoteException {
         RouteRepository routeRepository = new RouteRepository();
         UserRepository userRepository = new UserRepository();
@@ -36,6 +50,9 @@ public class CentralizedServerAdmin {
         ActionLogger actionLogger = new ActionLogger();
 
 
+        /**
+         * Se crea un objeto de tipo ServiceImpl
+         */
         return new ServiceImpl(containerWagonRepository, passengerWagonRepository, routeRepository, userRepository, trainRepository, stationRepository, luggageRepository, passengerRepository, ticketRepository, actionLogger);
     }
 }

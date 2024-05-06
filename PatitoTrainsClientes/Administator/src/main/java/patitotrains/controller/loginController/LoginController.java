@@ -12,6 +12,9 @@ import patitotrains.view.menuViews.MenuView;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
+/**
+ * Clase que controla la vista de login
+ */
 public class LoginController {
 
     @FXML
@@ -31,10 +34,20 @@ public class LoginController {
 
     private LoginManager loginManager;
 
+    /**
+     * Constructor de la clase
+     * @throws NotBoundException
+     * @throws RemoteException
+     */
     public LoginController() throws NotBoundException, RemoteException {
         loginManager = new LoginManager();
     }
 
+    /**
+     * Método que se ejecuta al presionar el botón de login
+     * @param event Evento
+     * @throws Exception
+     */
     @FXML
     void btnLoginClicked(ActionEvent event) throws Exception {
         MenuView menuView = new MenuView();

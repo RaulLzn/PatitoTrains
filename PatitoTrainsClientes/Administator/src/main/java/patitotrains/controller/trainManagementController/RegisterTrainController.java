@@ -15,6 +15,9 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ResourceBundle;
 
+/**
+ * Clase que controla la vista de registro de trenes
+ */
 public class RegisterTrainController implements Initializable, RegisterTrainControllerInterface {
 
     @FXML
@@ -43,21 +46,30 @@ public class RegisterTrainController implements Initializable, RegisterTrainCont
 
     private TrainManager trainManager;
 
-
-
-
+    /**
+     * Constructor de la clase
+     * @throws NotBoundException
+     * @throws RemoteException
+     */
     public RegisterTrainController() throws NotBoundException, RemoteException {
         trainManager = new TrainManager();
 
        
     }
+
+    /**
+     * Constructor de la clase
+     * @param trainManager Manager de trenes
+     */
     public RegisterTrainController( TrainManager trainManager){
         this.trainManager = trainManager;
-
-
-        
     }
 
+    /**
+     * Método que inicializa la vista
+     * @param arg0 URL
+     * @param arg1 ResourceBundle
+     */
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
 
@@ -65,6 +77,10 @@ public class RegisterTrainController implements Initializable, RegisterTrainCont
         
     }
 
+    /**
+     * Método que se ejecuta al presionar el botón de regresar
+     * @param event Evento
+     */
     @FXML
     public void btnGoBackClicked( ActionEvent event){
         
@@ -77,6 +93,12 @@ public class RegisterTrainController implements Initializable, RegisterTrainCont
 
     }
 
+    /**
+     * Método que se ejecuta al presionar el botón de añadir
+     * @param event Evento
+     * @throws NotBoundException
+     * @throws RemoteException
+     */
     @FXML
     public void btnAddClicked( ActionEvent event) throws NotBoundException, RemoteException {
         String message = "";
@@ -146,6 +168,9 @@ public class RegisterTrainController implements Initializable, RegisterTrainCont
         labelMessage.setText(message);
     }
 
+    /**
+     * Método que limpia los campos de texto
+     */
     private void clear(){
 
         txtFieldName.clear();
@@ -156,6 +181,10 @@ public class RegisterTrainController implements Initializable, RegisterTrainCont
 
     }
 
+    /**
+     * Método que valida el campo de texto de la cantidad de vagones
+     * @return boolean
+     */
     private boolean validateCmbBox(){
 
         if(cmbBoxModel.getSelectionModel().getSelectedItem() == null){
@@ -167,6 +196,10 @@ public class RegisterTrainController implements Initializable, RegisterTrainCont
 
     }
 
+    /**
+     * Método que valida el campo de texto del nombre
+     * @return boolean
+     */
     private boolean validateTxtName(){
         
         if(txtFieldName.getText().isBlank()){
@@ -176,6 +209,10 @@ public class RegisterTrainController implements Initializable, RegisterTrainCont
         return true;
     }
 
+    /**
+     * Método que valida el campo de texto de la cantidad de vagones
+     * @return boolean
+     */
     private boolean validateTxtAmtWagons(){
         
         if(txtFieldAmtWagons.getText().isBlank()){
@@ -191,6 +228,10 @@ public class RegisterTrainController implements Initializable, RegisterTrainCont
 
     }
 
+    /**
+     * Método que retorna la cantidad de vagones
+     * @return int
+     */
     private int amtWagons(){
         try {
             int amtWagons = Integer.parseInt(txtFieldAmtWagons.getText());
@@ -200,6 +241,10 @@ public class RegisterTrainController implements Initializable, RegisterTrainCont
         }
     }
 
+    /**
+     * Método que retorna el tipo de tren seleccionado
+     * @return TrainType
+     */
     private TrainType trainTypeSelected(){
         return trainManager.getTrainTypeByDescription(cmbBoxModel.getSelectionModel().getSelectedItem());
 

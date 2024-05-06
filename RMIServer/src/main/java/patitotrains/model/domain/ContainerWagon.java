@@ -3,18 +3,23 @@ package patitotrains.model.domain;
 import raul.Model.linkedlist.doubly.circular.LinkedList;
 
 import java.io.Serializable;
-
+/**
+ * Clase que representa un vagon contenedor.
+ */
 public class ContainerWagon implements Serializable {
     
     private String id;
     private LinkedList<Luggage> luggages;
 
+    /**
+     * Constructor de la clase.
+     *
+     * @param id ID del vagon.
+     */
     public ContainerWagon(String id) {
         this.id = id;
         luggages = new LinkedList<>();
     }
-
-
 
     public String getId() {
         return id;

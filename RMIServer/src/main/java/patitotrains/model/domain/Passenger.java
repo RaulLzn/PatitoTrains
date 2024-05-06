@@ -5,12 +5,26 @@ import raul.Model.array.Array;
 
 import java.io.Serializable;
 
+/**
+ * Clase que representa un pasajero.
+ */
 public class Passenger extends AbstractPerson implements Serializable {
     private String id;
     private IdType idType;
     private String address;
     private ContactPerson contactPerson;
 
+    /**
+     * Constructor de la clase.
+     *
+     * @param names         Nombres de la persona.
+     * @param lastNames     Apellidos de la persona.
+     * @param numbers       Números de contacto de la persona.
+     * @param id            ID de la persona.
+     * @param idType        Tipo de identificación.
+     * @param address       Dirección de la persona.
+     * @param contactPerson Persona de contacto.
+     */
     public Passenger(String names, String lastNames, Array<String> numbers, String id, IdType idType, String address, ContactPerson contactPerson) {
         super(names, lastNames, numbers);
         this.id = id;
@@ -18,8 +32,6 @@ public class Passenger extends AbstractPerson implements Serializable {
         this.address = address;
         this.contactPerson = contactPerson;
     }
-
-
 
     public String getAddress() {
         return address;

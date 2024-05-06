@@ -18,7 +18,9 @@ import java.time.LocalTime;
 
 
 
-
+/**
+ * Clase que se encarga de la gestion de la compra de boletos
+ */
 public class PurchaseManager implements PurchaseManagerInterface {
 
     private LinkedList<IdType> idTypes;

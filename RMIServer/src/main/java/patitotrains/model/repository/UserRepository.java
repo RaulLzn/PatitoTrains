@@ -9,6 +9,9 @@ import raul.Model.util.list.List;
 
 import java.io.Serializable;
 
+/**
+ * Repositorio para usuarios.
+ */
 public class UserRepository implements Serializable {
 
     private final String USER_DATA_FILE = "User.Json"; // Ruta del archivo JSON

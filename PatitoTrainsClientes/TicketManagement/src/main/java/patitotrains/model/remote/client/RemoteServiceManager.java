@@ -10,15 +10,25 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.Properties;
 
+/**
+ * Clase que se encarga de manejar la conexión con el servidor RMI
+ */
 public class RemoteServiceManager {
     private static RemoteServiceManager instance;
     private String serverAddress;
     private int serverPort;
 
+    /**
+     * Constructor de la clase
+     */
     private RemoteServiceManager() {
         loadConfig();
     }
 
+    /**
+     * Método que obtiene la instancia de la clase
+     * @return Instancia de la clase
+     */
     public static synchronized RemoteServiceManager getInstance() {
         if (instance == null) {
             instance = new RemoteServiceManager();
@@ -26,11 +36,20 @@ public class RemoteServiceManager {
         return instance;
     }
 
+    /**
+     * Método que obtiene el servicio remoto
+     * @return Servicio remoto
+     * @throws RemoteException
+     * @throws NotBoundException
+     */
     public ServiceRemote getServiceRemote() throws RemoteException, NotBoundException {
         Registry registry = LocateRegistry.getRegistry(serverAddress, serverPort);
         return (ServiceRemote) registry.lookup("AdminService");
     }
 
+    /**
+     * Método que carga la configuración del archivo de propiedades
+     */
     private void loadConfig() {
         try (InputStream inputStream = getClass().getClassLoader().getResourceAsStream("config.properties")) {
             Properties properties = new Properties();

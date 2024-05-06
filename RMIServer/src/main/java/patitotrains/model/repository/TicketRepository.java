@@ -12,6 +12,9 @@ import raul.Model.util.list.List;
 
 import java.io.Serializable;
 
+/**
+ * Repositorio de tickets.
+ */
 public class TicketRepository implements Serializable {
     private static final String FILE_PATH = "Ticket.Json"; // Especifica la ruta correcta
 

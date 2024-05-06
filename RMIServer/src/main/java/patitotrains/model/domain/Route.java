@@ -5,6 +5,9 @@ import raul.Model.linkedlist.doubly.circular.LinkedList;
 import java.io.Serializable;
 import java.time.LocalTime;
 
+/**
+ * Clase que representa una ruta.
+ */
 public class Route implements Serializable {
     private String id;
     private String name;
@@ -15,7 +18,17 @@ public class Route implements Serializable {
     private double routeDistance;
     private boolean disabled;
 
-
+    /**
+     * Constructor de la clase.
+     *
+     * @param id ID de la ruta.
+     * @param name Nombre de la ruta.
+     * @param trains Trenes que recorren la ruta.
+     * @param stations Estaciones de la ruta.
+     * @param departureTime Hora de salida de la ruta.
+     * @param arrivalTime Hora de llegada de la ruta.
+     * @param routeDistance Distancia de la ruta.
+     */
     public Route(String id,String name, LinkedList<Train> trains, LinkedList<Station> stations, LocalTime departureTime,
                  LocalTime arrivalTime, double routeDistance) {
         this.id = id;

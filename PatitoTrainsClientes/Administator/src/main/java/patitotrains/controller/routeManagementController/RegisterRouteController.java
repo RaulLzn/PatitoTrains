@@ -22,6 +22,9 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ResourceBundle;
 
+/**
+ * Clase que controla la vista de registro de rutas
+ */
 public class RegisterRouteController implements Initializable{
 
     @FXML
@@ -74,31 +77,54 @@ public class RegisterRouteController implements Initializable{
 
     private LinkedList<Station> stopStations;
 
-
-
+    /**
+     * Método que inicializa la vista
+     * @param arg0 URL
+     * @param arg1 ResourceBundle
+     */
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
         cmbBoxAddStation.getItems().addAll(routeManager.getStationsNames());
         cmbBoxTrain.getItems().addAll(routeManager.getTrainsNames());
     }
 
+    /**
+     * Constructor de la clase
+     * @param routeManager Manejador de rutas
+     */
     public RegisterRouteController(RouteManager routeManager){
         this.routeManager = routeManager;
         stopStations = new LinkedList<>();
     }
 
+    /**
+     * Constructor de la clase
+     * @throws NotBoundException
+     * @throws RemoteException
+     */
     public RegisterRouteController() throws NotBoundException, RemoteException {
         routeManager = new RouteManager();
         stopStations = new LinkedList<>();
     }
 
-
+    /**
+     * Método que se ejecuta al presionar el botón de regresar
+     * @param event Evento
+     * @throws IOException
+     */
     @FXML
     void btnGoBackClicked(ActionEvent event) throws IOException {
         SearchRouteView searchRouteView = new SearchRouteView();
         searchRouteView.start(event, routeManager);
 
     }
+
+    /**
+     * Método que se ejecuta al presionar el botón de registrar
+     * @param event Evento
+     * @throws NotBoundException
+     * @throws RemoteException
+     */
     @FXML
     void btnRegisterClicked(ActionEvent event) throws NotBoundException, RemoteException {
         String message = "";
@@ -174,7 +200,11 @@ public class RegisterRouteController implements Initializable{
 
 
     }
-    
+
+    /**
+     * Método que se ejecuta al presionar el botón de añadir estación
+     * @param event Evento
+     */
     @FXML
     void btnAddStationClicked(ActionEvent event) {
         boolean toCheck = validateCmbBox(cmbBoxAddStation);
@@ -210,6 +240,9 @@ public class RegisterRouteController implements Initializable{
 
     }
 
+    /**
+     * Método que limpia los campos de la vista
+     */
     private void clear(){
         txtFieldName.clear();;
         txtFieldDepartureHour.clear();
@@ -223,6 +256,10 @@ public class RegisterRouteController implements Initializable{
 
     }
 
+    /**
+     * Método que valida el formato de los campos
+     * @return True si los campos tienen un formato valido, false en caso contrario
+     */
     private boolean validateFormat(){
         String message;
 
@@ -259,6 +296,10 @@ public class RegisterRouteController implements Initializable{
 
     }
 
+    /**
+     * Método que valida si se han añadido estaciones
+     * @return True si se han añadido al menos dos estaciones, false en caso contrario
+     */
     private boolean validateAddedStations(){
         if(stopStations.size() < 2){
             return false;
@@ -268,8 +309,11 @@ public class RegisterRouteController implements Initializable{
 
     }
 
-   
-  
+    /**
+     * Método que valida si un ComboBox tiene un valor seleccionado
+     * @param cmbBox ComboBox a validar
+     * @return True si el ComboBox tiene un valor seleccionado, false en caso contrario
+     */
     private boolean validateCmbBox(ComboBox<String> cmbBox){
 
         if(cmbBox.getSelectionModel().getSelectedItem() == null){
@@ -281,6 +325,10 @@ public class RegisterRouteController implements Initializable{
 
     }
 
+    /**
+     * Método que valida el campo de texto de la hora de partida
+     * @return True si el campo tiene un valor valido, false en caso contrario
+     */
     private boolean validateTxtHour(){
         
         if(txtFieldDepartureHour.getText().isBlank()){
@@ -295,6 +343,11 @@ public class RegisterRouteController implements Initializable{
         }
 
     }
+
+    /**
+     * Método que valida el campo de texto del minuto de partida
+     * @return True si el campo tiene un valor valido, false en caso contrario
+     */
     private boolean validateTxtMinute(){
         
         if(txtFieldDepartureMinute.getText().isBlank()){
@@ -309,6 +362,11 @@ public class RegisterRouteController implements Initializable{
         }
 
     }
+
+    /**
+     * Método que valida el campo de texto del nombre
+     * @return True si el campo tiene un valor valido, false en caso contrario
+     */
     private boolean validateTxtName(){
         
         if(txtFieldName.getText().isBlank()){

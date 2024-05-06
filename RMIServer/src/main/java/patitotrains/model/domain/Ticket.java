@@ -6,6 +6,9 @@ import patitotrains.model.domain.types.SeatType;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
+/**
+ * Clase que representa un tiquete.
+ */
 public class Ticket implements Serializable {
 
     private  String id;
@@ -15,6 +18,15 @@ public class Ticket implements Serializable {
     private SeatType seatType;
     private Route route;
 
+    /**
+     * Constructor de la clase.
+     *
+     * @param id        ID del tiquete.
+     * @param passenger Pasajero.
+     * @param value     Valor del tiquete.
+     * @param seatType  Tipo de asiento.
+     * @param route     Ruta.
+     */
     public Ticket(String id, Passenger passenger, double value, SeatType seatType, Route route) {
         this.id = id;
         this.passenger = passenger;

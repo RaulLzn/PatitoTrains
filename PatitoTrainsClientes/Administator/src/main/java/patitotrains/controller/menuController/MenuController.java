@@ -10,6 +10,9 @@ import patitotrains.view.routeManagementView.SearchRouteView;
 import patitotrains.view.trainManagementViews.SearchTrainView;
 import patitotrains.view.userManagementViews.SearchUserView;
 
+/**
+ * Clase que controla la vista del menú
+ */
 public class MenuController {
 
     @FXML
@@ -29,14 +32,22 @@ public class MenuController {
 
     }
 
-    
+    /**
+     * Método que se ejecuta al presionar el botón de regresar
+     * @param event Evento
+     * @throws Exception
+     */
     @FXML
     void btnBackClicked(ActionEvent event) throws Exception {
         LoginView loginView = new LoginView();
         loginView.start(event);
     }
 
-
+    /**
+     * Método que se ejecuta al presionar el panel de gestión de rutas
+     * @param event Evento
+     * @throws Exception
+     */
     @FXML
     void panelRouteManagementClicked(MouseEvent event) throws Exception {
         SearchRouteView viewRoute = new SearchRouteView();
@@ -44,6 +55,11 @@ public class MenuController {
 
     }
 
+    /**
+     * Método que se ejecuta al presionar el panel de gestión de trenes
+     * @param event Evento
+     * @throws Exception
+     */
     @FXML
     void panelTrainManagementClicked(MouseEvent event) throws Exception {
         SearchTrainView viewTrain = new SearchTrainView();
@@ -51,6 +67,11 @@ public class MenuController {
 
     }
 
+    /**
+     * Método que se ejecuta al presionar el panel de gestión de usuarios
+     * @param event Evento
+     * @throws Exception
+     */
     @FXML
     void panelUserManagementClicked(MouseEvent event) throws Exception {
         SearchUserView viewUser = new SearchUserView();

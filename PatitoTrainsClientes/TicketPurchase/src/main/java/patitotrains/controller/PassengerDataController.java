@@ -21,6 +21,9 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ResourceBundle;
 
+/**
+ * Clase que controla la vista de los datos del pasajero
+ */
 public class PassengerDataController implements Initializable{
 
     @FXML
@@ -95,22 +98,41 @@ public class PassengerDataController implements Initializable{
 
     private PurchaseManager purchaseManager;
 
+    /**
+     * Constructor de la clase
+     * @throws NotBoundException
+     * @throws RemoteException
+     */
     public PassengerDataController() throws NotBoundException, RemoteException {
         purchaseManager = new PurchaseManager();
         purchaseManager.pullIdTypes();
     }
+
+    /**
+     * Método que se encarga de manejar el evento de cuando se da click en el botón de regresar
+     * @param event Evento
+     * @throws IOException
+     */
     @FXML
     void btnGoBackClicked(ActionEvent event) throws IOException {
         WelcomePageView welcomePageView = new WelcomePageView();
         welcomePageView.start(event);
     }
 
-
+    /**
+     * Método que se encarga de manejar el evento de cuando se da click en el botón de continuar
+     * @throws IOException
+     */
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
        setCmbSeatTypeValues();
     }
 
+    /**
+     * Método que se encarga de manejar el evento de cuando se da click en el botón de continuar
+     * @param event Evento
+     * @throws IOException
+     */
     @FXML
     void btnContinueClicked(ActionEvent event) throws IOException {
         String message = "";
@@ -186,11 +208,20 @@ public class PassengerDataController implements Initializable{
 
     }   
 
+    /**
+     * Método que se encarga de manejar el evento de cuando se da click en el botón de regresar
+     * @param event Evento
+     * @throws IOException
+     */
     private void continueNextPage(Event event, Passenger passenger, Array<Integer> weights) throws IOException{
         RouteDataView routeDataView = new RouteDataView();
         routeDataView.start(event, passenger, weights);
     }
 
+    /**
+     * Método que se encarga de validar el formato de los datos ingresados
+     * @return True si los datos son correctos, false en caso contrario
+     */
     private boolean validateFormat() {
         String message = "";
 

@@ -27,6 +27,9 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ResourceBundle;
 
+/**
+ * Clase que controla la vista de búsqueda de rutas
+ */
 public class SearchRouteController implements Initializable{
 
     @FXML
@@ -67,19 +70,31 @@ public class SearchRouteController implements Initializable{
 
     private RouteManager routeManager;
 
-
-
+    /**
+     * Constructor de la clase
+     * @throws NotBoundException
+     * @throws RemoteException
+     */
     public SearchRouteController() throws NotBoundException, RemoteException {
         routeManager = new RouteManager();
         routeManager.pullData();
 
     }
 
+    /**
+     * Constructor de la clase
+     * @param routeManager Manager de rutas
+     */
     public SearchRouteController(RouteManager routeManager){
         this.routeManager = routeManager;
 
     }
 
+    /**
+     * Método que inicializa la vista
+     * @param arg0 URL
+     * @param arg1 ResourceBundle
+     */
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
         ObservableList<Route> routesObservableList;
@@ -106,6 +121,9 @@ public class SearchRouteController implements Initializable{
        
     }
 
+    /**
+     * Método que establece los valores de las columnas
+     */
     private void setColumnsValues() {
 
         columnId.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -144,7 +162,6 @@ public class SearchRouteController implements Initializable{
 
         });
 
-         
         columnEdit.setCellValueFactory(cellData -> {
             Button buttonEdit;
     

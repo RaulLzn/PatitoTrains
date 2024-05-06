@@ -24,6 +24,9 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ResourceBundle;
 
+/**
+ * Clase que controla la vista de edición de rutas
+ */
 public class    EditRouteController implements Initializable{
 
     @FXML
@@ -113,7 +116,12 @@ public class    EditRouteController implements Initializable{
     private Route route;
 
     private LinkedList<Station> tempStations;
-    
+
+    /**
+     * Constructor de la clase
+     * @param routeManager Manejador de rutas
+     * @param route Ruta a editar
+     */
     public EditRouteController(RouteManager routeManager, Route route){
         this.routeManager = routeManager;
         this.route = route;
@@ -121,6 +129,12 @@ public class    EditRouteController implements Initializable{
         tempStations.add(route.getStations());
     }
 
+    /**
+     * Constructor de la clase
+     * @param route Ruta a editar
+     * @throws NotBoundException
+     * @throws RemoteException
+     */
     public EditRouteController(Route route) throws NotBoundException, RemoteException {
         routeManager = new RouteManager();
         this.route = route;
@@ -128,7 +142,11 @@ public class    EditRouteController implements Initializable{
         tempStations.add(route.getStations());
     }
 
-
+    /**
+     * Método que inicializa la vista
+     * @param arg0 URL
+     * @param arg1 ResourceBundle
+     */
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
         cmbBoxStation.getItems().addAll(routeManager.getStationsNames());
@@ -140,6 +158,10 @@ public class    EditRouteController implements Initializable{
         
     }
 
+    /**
+     * Método que se ejecuta al presionar el botón de añadir estación
+     * @param event Evento
+     */
     @FXML
     void btnAddStationClicked(ActionEvent event) {
         boolean toCheck = validateCmbBox(cmbBoxStation);
@@ -173,7 +195,12 @@ public class    EditRouteController implements Initializable{
         }
     }
 
-
+    /**
+     * Método que se ejecuta al presionar el botón de aplicar
+     * @param event Evento
+     * @throws NotBoundException
+     * @throws RemoteException
+     */
     @FXML
     void btnApplyClicked(ActionEvent event) throws NotBoundException, RemoteException {
         String message = "";
@@ -272,7 +299,10 @@ public class    EditRouteController implements Initializable{
         
     }
 
-
+    /**
+     * Método que se ejecuta al presionar el botón de cancelar
+     * @param event Evento
+     */
     @FXML
     void btnCancelClicked(ActionEvent event) {
         noEditMode();
@@ -281,6 +311,10 @@ public class    EditRouteController implements Initializable{
         tempStations.add(route.getStations());
     }
 
+    /**
+     * Método que se ejecuta al presionar el botón de editar
+     * @param event Evento
+     */
     @FXML
     void btnEditClicked(ActionEvent event) {
         if(route.getTrains().peek().isOnJourney()){
@@ -292,6 +326,11 @@ public class    EditRouteController implements Initializable{
         
     }
 
+    /**
+     * Método que se ejecuta al presionar el botón de regresar
+     * @param event Evento
+     * @throws IOException
+     */
     @FXML
     void btnGoBackClicked(ActionEvent event) throws IOException {
         SearchRouteView searchRouteView = new SearchRouteView();
@@ -299,16 +338,28 @@ public class    EditRouteController implements Initializable{
 
     }
 
+    /**
+     * Método que se ejecuta al presionar el radio button de deshabilitar
+     * @param event Evento
+     */
     @FXML
     void radBtnDisableClicked(ActionEvent event) {
         radBtnEnable.setSelected(false);
     }
 
+    /**
+     * Método que se ejecuta al presionar el radio button de habilitar
+     * @param event Evento
+     */
     @FXML
     void radBtnEnableClicked(ActionEvent event) {
         radBtnDisable.setSelected(false);
     }
-   
+
+    /**
+     * Método que valida el formato de los campos
+     * @return True si los campos tienen un formato valido, false en caso contrario
+     */
     private boolean validateFormat(){
         String message;
 
@@ -345,7 +396,9 @@ public class    EditRouteController implements Initializable{
 
     }
 
-
+    /**
+     * Método que establece los valores de la vista
+     */
     private void setValues(){
         tempStations = new LinkedList<>();
         tempStations.add(route.getStations());
@@ -362,6 +415,9 @@ public class    EditRouteController implements Initializable{
         
     }
 
+    /**
+     * Método que establece el valor de deshabilitado
+     */
     private void setDisalbeValue(){
         if(route.isDisabled()){
             radBtnDisable.setSelected(true);
@@ -374,6 +430,9 @@ public class    EditRouteController implements Initializable{
 
     }
 
+    /**
+     * Método que establece la vista en modo de no edición
+     */
     private void noEditMode(){
 
         spltPaneActions.getItems().remove(brdPaneCancel);
@@ -394,7 +453,9 @@ public class    EditRouteController implements Initializable{
 
     }
 
-
+    /**
+     * Método que establece la vista en modo de edición
+     */
     private void editMode(){
         spltPaneActions.getItems().remove(brdPaneEdit);
         spltPaneActions.getItems().add(brdPaneApply);
@@ -412,6 +473,9 @@ public class    EditRouteController implements Initializable{
         radBtnEnable.setDisable(false);
     }
 
+    /**
+     * Método que establece los valores de las columnas
+     */
     private void setColumnsValues() {
         tableStations.getItems().clear();
         ObservableList<Station> stationsObservableList;
@@ -448,7 +512,11 @@ public class    EditRouteController implements Initializable{
 
         });
     }
-    
+
+    /**
+     * Método que valida si se han añadido estaciones
+     * @return True si se han añadido al menos dos estaciones, false en caso contrario
+     */
     private boolean validateAddedStations(){
         if(tempStations.size() < 2){
             return false;
@@ -458,8 +526,11 @@ public class    EditRouteController implements Initializable{
 
     }
 
-   
-  
+    /**
+     * Método que valida el formato de un combo box
+     * @param cmbBox Combo box a validar
+     * @return True si el combo box tiene un valor seleccionado, false en caso contrario
+     */
     private boolean validateCmbBox(ComboBox<String> cmbBox){
 
         if(cmbBox.getSelectionModel().getSelectedItem() == null){
@@ -471,6 +542,10 @@ public class    EditRouteController implements Initializable{
 
     }
 
+    /**
+     * Método que valida el formato de un text field
+     * @return True si el text field tiene un valor, false en caso contrario
+     */
     private boolean validateTxtHour(){
         
         if(txtFieldDepartureHour.getText().isBlank()){
@@ -485,6 +560,11 @@ public class    EditRouteController implements Initializable{
         }
 
     }
+
+    /**
+     * Método que valida el formato de un text field
+     * @return True si el text field tiene un valor, false en caso contrario
+     */
     private boolean validateTxtMinute(){
         
         if(txtFieldDepartureMinute.getText().isBlank()){
@@ -499,6 +579,11 @@ public class    EditRouteController implements Initializable{
         }
 
     }
+
+    /**
+     * Método que valida el formato de un text field
+     * @return True si el text field tiene un valor, false en caso contrario
+     */
     private boolean validateTxtName(){
         
         if(txtFieldName.getText().isBlank()){
@@ -507,6 +592,11 @@ public class    EditRouteController implements Initializable{
         
         return true;
     }
+
+    /**
+     * Método que valida el formato de un text field
+     * @return True si el text field tiene un valor, false en caso contrario
+     */
     private boolean haveChangeStations(){
         Iterator<Station> tempIter = tempStations.iterator();
         Iterator<Station> routeIter = route.getStations().iterator();

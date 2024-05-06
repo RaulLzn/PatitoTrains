@@ -16,6 +16,9 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ResourceBundle;
 
+/**
+ * Clase que controla la vista de edición de trenes
+ */
 public class EditTrainController implements Initializable, EditTrainControllerInterface {
 
     @FXML
@@ -83,18 +86,33 @@ public class EditTrainController implements Initializable, EditTrainControllerIn
 
     private SearchTrainView searchTrainView;
 
+    /**
+     * Constructor de la clase
+     * @throws NotBoundException
+     * @throws RemoteException
+     */
     public EditTrainController() throws NotBoundException, RemoteException {
         trainManager = new TrainManager();
         trainManager.pullData();
         searchTrainView = new SearchTrainView();
     }
-    // Provisional para las pruebas
+
+    /**
+     * Constructor de la clase
+     * @param train Tren
+     * @param trainManager Manager de trenes
+     */
     public EditTrainController( Train train,  TrainManager trainManager){
         this.trainManager = trainManager;
         this.train = train;
         searchTrainView = new SearchTrainView();
     }
 
+    /**
+     * Método que se ejecuta al inicializar la vista
+     * @param arg0 URL
+     * @param arg1 ResourceBundle
+     */
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
         spltPaneActions.getItems().remove(brdPaneCancel);
@@ -104,7 +122,10 @@ public class EditTrainController implements Initializable, EditTrainControllerIn
         
     }
 
-
+    /**
+     * Método que se ejecuta al presionar el botón de editar
+     * @param event Evento
+     */
     @FXML
     public void btnEditClicked( ActionEvent event) {
         if(!train.isOnJourney()){
@@ -116,6 +137,10 @@ public class EditTrainController implements Initializable, EditTrainControllerIn
 
     }
 
+    /**
+     * Método que se ejecuta al presionar el botón de regresar
+     * @param event Evento
+     */
     @FXML
     public void btnGoBackClicked( ActionEvent event)  {
        
@@ -127,17 +152,32 @@ public class EditTrainController implements Initializable, EditTrainControllerIn
 
     }
 
+    /**
+     * Método que se ejecuta al presionar el botón de deshabilitar
+     * @param event Evento
+     */
     @FXML
     public  void radBtnDisableClicked( ActionEvent event) {
         radBtnEnable.setSelected(false);
 
     }
 
+    /**
+     * Método que se ejecuta al presionar el botón de habilitar
+     * @param event Evento
+     */
     @FXML
     public void radBtnEnableClicked( ActionEvent event) {
         radBtnDisable.setSelected(false);
 
     }
+
+    /**
+     * Método que se ejecuta al presionar el botón de aplicar
+     * @param event Evento
+     * @throws NotBoundException
+     * @throws RemoteException
+     */
     @FXML
     public void btnApplyClicked( ActionEvent event) throws NotBoundException, RemoteException {
         String message = "";

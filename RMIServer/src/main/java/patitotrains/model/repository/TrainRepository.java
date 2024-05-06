@@ -13,6 +13,9 @@ import raul.Model.util.list.List;
 import java.io.Serializable;
 import java.util.Arrays;
 
+/**
+ * Repositorio de trenes.
+ */
 public class TrainRepository implements Serializable {
     private static final String FILE_PATH = "Train.Json";
     private final FileJsonAdapter<TrainEntity> jsonAdapter;
@@ -157,6 +160,13 @@ public class TrainRepository implements Serializable {
         return false;
     }
 
+    /**
+     * Agrega un vagón de pasajeros a un tren.
+     *
+     * @param trainId ID del tren.
+     * @param passengerWagon Vagón de pasajeros a agregar.
+     * @return Verdadero si el vagón de pasajeros se agregó correctamente, falso en caso contrario.
+     */
     public boolean addPassengerWagonToTrain(String trainId, PassengerWagon passengerWagon) {
         List<TrainEntity> trainEntities = jsonAdapter.getObjects(FILE_PATH, TrainEntity[].class);
         Iterator<TrainEntity> iterator = trainEntities.iterator();

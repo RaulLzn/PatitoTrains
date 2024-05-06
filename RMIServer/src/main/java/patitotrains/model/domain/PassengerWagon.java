@@ -5,6 +5,9 @@ import raul.Model.linkedlist.doubly.circular.LinkedList;
 
 import java.io.Serializable;
 
+/**
+ * Clase que representa un vagon de pasajeros.
+ */
 public class PassengerWagon implements Serializable {
     private String id;
     private LinkedList<Passenger> premiumPassengers;
@@ -12,6 +15,12 @@ public class PassengerWagon implements Serializable {
     private LinkedList<Passenger> standardPassengers;
     private boolean firstWagon;
 
+    /**
+     * Constructor de la clase.
+     *
+     * @param id ID del vagon.
+     * @param firstWagon Si es el primer vagon.
+     */
     public PassengerWagon(String id, boolean firstWagon) {
         this.id = id;
         premiumPassengers = new LinkedList<>();

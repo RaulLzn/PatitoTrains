@@ -4,12 +4,26 @@ import raul.Model.array.Array;
 
 import java.io.Serializable;
 
+/**
+ * Clase que representa un usuario.
+ */
 public class User extends AbstractPerson implements Serializable {
     private String id;
     private String userName;
     private String password;
     private boolean disabled;
 
+    /**
+     * Constructor de la clase.
+     *
+     * @param names    Nombres del usuario.
+     * @param lastNames Apellidos del usuario.
+     * @param numbers   Números de contacto del usuario.
+     * @param disabled  Indica si el usuario está deshabilitado.
+     * @param id        ID del usuario.
+     * @param userName  Nombre de usuario.
+     * @param password  Contraseña del usuario.
+     */
     public User(String names, String lastNames, Array<String> numbers, boolean disabled, String id, String userName, String password) {
         super(names, lastNames, numbers);
         this.disabled = disabled;
