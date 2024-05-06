@@ -41,7 +41,6 @@ public interface UserManagerInterface {
     int getEmployeeIdCounter();
     /**
      * Método que obtiene los datos de los usuarios
-     * @return Lista de usuarios
      */
     void setEmployeeIdCounter(int employeeIdCounter);
     /**

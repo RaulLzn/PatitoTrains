@@ -18,8 +18,6 @@ public interface SearchUserControllerInterface {
 
     /**
      * Método que se ejecuta al presionar el botón de regresar
-     * @param event Evento
-     * @throws IOException
      */
     void initialize(URL arg0, ResourceBundle arg1);
 }

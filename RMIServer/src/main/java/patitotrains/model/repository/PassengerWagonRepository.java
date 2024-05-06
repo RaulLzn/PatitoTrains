@@ -348,9 +348,6 @@ public class PassengerWagonRepository implements Serializable {
     /**
      * Agrega un pasajero a un vagon de pasajeros.
      *
-     * @param idWagon ID del vagon de pasajeros.
-     * @param passenger Pasajero.
-     * @param category Categoría de pasajeros.
      * @return Verdadero si el pasajero se agregó correctamente, falso en caso contrario.
      */
     public List<PassengerWagon> getPassengerWagonsByIds(Array<String> ids) {

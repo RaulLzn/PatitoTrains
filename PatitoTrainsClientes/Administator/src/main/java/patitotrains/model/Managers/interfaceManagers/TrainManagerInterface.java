@@ -82,7 +82,6 @@ public interface TrainManagerInterface {
 
     /**
      * Método que obtiene los datos de los trenes
-     * @return Lista de trenes
      */
     void setTrainIdCounter(int trainIdCounter);
 

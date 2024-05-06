@@ -36,8 +36,6 @@ public class LoginController {
 
     /**
      * Constructor de la clase
-     * @throws NotBoundException
-     * @throws RemoteException
      */
     public LoginController() throws NotBoundException, RemoteException {
         loginManager = new LoginManager();

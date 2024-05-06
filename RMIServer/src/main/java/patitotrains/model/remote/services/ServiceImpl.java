@@ -677,9 +677,7 @@ public class ServiceImpl extends UnicastRemoteObject implements ServiceRemote {
 
     /**
      * Método que obtiene todos los boletos de un tren
-     * @param trainId ID del tren
      * @return Lista de boletos
-     * @throws RemoteException
      */
     @Override
     public boolean logAction(String action) {
