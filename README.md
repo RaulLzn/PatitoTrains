@@ -15,9 +15,9 @@ This project is a system developed in Java to manage passenger trains. It uses J
   - Implementation of algorithms to calculate the shortest route, regardless of the passenger's location.
 
 - **Technologies used:**
-  - JavaFX: For user interfaces.
-  - RMI: For client-server communication.
-  - JSON: As a database to store and manage information.
+  - **JavaFX:** For user interfaces.
+  - **RMI:** For client-server communication.
+  - **JSON:** As a database to store and manage information.
 
 ## Installation
 
