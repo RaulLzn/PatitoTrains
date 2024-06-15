@@ -1,53 +1,53 @@
-# Sistema de Gestión de Trenes de Transporte de Pasajeros
+# Passenger Train Management System
 
-Este proyecto es un sistema desarrollado en Java para gestionar trenes de transporte de pasajeros. Utiliza JavaFX para las interfaces de usuario, RMI para la comunicación entre el servidor y los clientes, implementa estructuras de datos propias y utiliza JSON como base de datos para administrar la información.
+This project is a system developed in Java to manage passenger trains. It uses JavaFX for user interfaces, RMI for server-client communication, implements custom data structures, and uses JSON as a database to manage information.
 
-## Características
+## Features
 
-- **Módulos:**
-  - **Servidor Centralizado:** Encargado de gestionar la comunicación entre los diferentes módulos y los clientes.
-  - **Módulo de Administración:** Permite administrar la información relacionada con los trenes, rutas y horarios.
-  - **Módulo de Gestión de Tickets:** Facilita la compra y gestión de tickets por parte de los usuarios.
-  - **Módulo de Abordaje:** Se encarga de gestionar el abordaje de los pasajeros a los trenes.
+- **Modules:**
+  - **Centralized Server:** Responsible for managing communication between different modules and clients.
+  - **Administration Module:** Allows managing information related to trains, routes, and schedules.
+  - **Ticket Management Module:** Facilitates the purchase and management of tickets by users.
+  - **Boarding Module:** Manages the boarding of passengers onto the trains.
 
-- **Grafos y Algoritmos:**
-  - Se utilizan grafos para representar las rutas de los trenes.
-  - Implementación de algoritmos para calcular la ruta más corta, independientemente de la ubicación del pasajero.
+- **Graphs and Algorithms:**
+  - Graphs are used to represent train routes.
+  - Implementation of algorithms to calculate the shortest route, regardless of the passenger's location.
 
-- **Tecnologías utilizadas:**
-  - JavaFX: Para las interfaces de usuario.
-  - RMI: Para la comunicación cliente-servidor.
-  - JSON: Como base de datos para almacenar y administrar la información.
+- **Technologies used:**
+  - JavaFX: For user interfaces.
+  - RMI: For client-server communication.
+  - JSON: As a database to store and manage information.
 
-## Instalación
+## Installation
 
-1. Clona el repositorio: `https://github.com/RaulLzn/PatitoTrains.git`
-2. Abre el proyecto en tu IDE favorito.
-3. Ejecuta el servidor centralizado.
-4. Ejecuta los diferentes módulos según sea necesario.
+1. Clone the repository: `https://github.com/RaulLzn/PatitoTrains.git`
+2. Open the project in your favorite IDE.
+3. Run the centralized server.
+4. Run the different modules as needed.
 
-## Uso
+## Usage
 
-- Inicia sesión en el módulo correspondiente.
-- Explora las opciones disponibles para gestionar trenes, tickets y abordajes.
-- Realiza pruebas con diferentes escenarios para verificar el funcionamiento del sistema.
+- Log in to the corresponding module.
+- Explore the available options to manage trains, tickets, and boardings.
+- Perform tests with different scenarios to verify the system's functionality.
 
-## Contribución
+## Contribution
 
-Si deseas contribuir a este proyecto, sigue estos pasos:
+If you want to contribute to this project, follow these steps:
 
-1. Haz un fork del proyecto.
-2. Crea una nueva rama: `git checkout -b feature/nueva_funcionalidad`
-3. Haz tus cambios y realiza un commit: `git commit -am 'Agrega nueva funcionalidad'`
-4. Haz push a la rama: `git push origin feature/nueva_funcionalidad`
-5. Envía un pull request.
+1. Fork the project.
+2. Create a new branch: `git checkout -b feature/new_feature`
+3. Make your changes and commit: `git commit -am 'Add new feature'`
+4. Push to the branch: `git push origin feature/new_feature`
+5. Submit a pull request.
 
-## Créditos
+## Credits
 
-- Desarrolladores:
-  - [Sebastian Granados (Estudiante Ing. Sitemas UPB)](https://github.com/SebastianGranadosJ)
-  - [Raúl Lozano (Estudiante Ing. Sitemas UPB)](https://github.com/RaulLzn)
+- Developers:
+  - [Sebastian Granados (Systems Engineering Student UPB)](https://github.com/SebastianGranadosJ)
+  - [Raúl Lozano (Systems Engineering Student UPB)](https://github.com/RaulLzn)
 
-## Licencia
+## License
 
-Este proyecto está bajo la Licencia [Creative Commons Atribución-NoComercial (CC BY-NC)](https://creativecommons.org/licenses/by-nc/4.0/).
+This project is licensed under the [Creative Commons Attribution-NonCommercial (CC BY-NC)](https://creativecommons.org/licenses/by-nc/4.0/) license.
